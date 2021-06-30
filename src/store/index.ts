@@ -3,27 +3,41 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+export enum UserStoreMethods {
+  getEmail = 'getEmail',
+  getToken = 'getToken',
+  setEmail = 'setEmail',
+  setToken = 'setToken'
+}
+
+const TOKEN = 'token'
+const EMAIL = 'email'
+
 export default new Vuex.Store({
   state: {
-    token: null,
-    email: null
+    token: localStorage.getItem(TOKEN) || '',
+    email: localStorage.getItem(EMAIL) || ''
   },
   mutations: {
-    setEmail (state, email) {
+    [UserStoreMethods.setEmail] (state, email:string): void {
       state.email = email
+      localStorage.setItem(EMAIL, email)
+    },
+    [UserStoreMethods.setToken] (state, token:string): void {
+      state.token = token
+      localStorage.setItem(TOKEN, token)
     }
   },
   getters: {
-    getToken (state) {
-      return state.token
-    },
-    getEmail (state) {
-      return state.email
-    }
+    [UserStoreMethods.getToken]: (state) => state.token,
+    [UserStoreMethods.getEmail]: (state) => state.email
   },
   actions: {
-    setEmail ({ commit }, email) {
-      commit('setEmail', email)
+    [UserStoreMethods.setEmail] ({ commit }, email) {
+      commit(UserStoreMethods.setEmail, email)
+    },
+    [UserStoreMethods.setToken] ({ commit }, token) {
+      commit(UserStoreMethods.setToken, token)
     }
   }
 })
