@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from './store'
 
-axios.defaults.baseURL = 'http://localhost:44305'
+axios.defaults.baseURL = 'http://localhost:44381/api'
 
 axios.interceptors.request.use(
   request => {
