@@ -4,10 +4,10 @@
       <router-link to="/">Home</router-link>
     </el-col>
     <el-col :span="10">
-      <el-input v-model="searchInput"></el-input>
+      <el-input v-model="searchInput" placeholder="Search for books and authors"></el-input>
     </el-col>
     <el-col :span="2">
-      <el-button>Search</el-button>
+      <el-button @click="search">Search</el-button>
     </el-col>
     <el-col :span="2">
       <div v-if="isLoggedIn">
@@ -31,7 +31,11 @@ export default class Navbar extends Vue {
   public searchInput = ''
   public getToken: string | null
 
-  public isLoggedIn (): boolean {
+  public search (): void {
+    console.log(`searching for ${this.searchInput}`)
+  }
+
+  get isLoggedIn (): boolean {
     return this.getToken !== null
   }
 }
