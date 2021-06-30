@@ -1,7 +1,11 @@
 <template>
-  <div id="app">
+  <div>
     <navbar></navbar>
-    <router-view/>
+    <el-row>
+      <el-col :span="14">
+        <router-view/>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
