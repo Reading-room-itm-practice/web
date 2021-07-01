@@ -1,6 +1,6 @@
 <template>
-  <el-row :gutter='14' :offset='5' align='top' justify='center'>
-    <el-col>
+  <el-row :gutter='24' align='top' justify='center' id='register'>
+    <el-col :offset='14' :span='12'>
       <el-form :model='registerForm' :rules='validationRules'>
         <el-form-item prop='email'>
           <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
