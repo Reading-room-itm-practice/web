@@ -29,14 +29,13 @@ import { mapGetters } from 'vuex'
 @Component({ computed: mapGetters(['getToken']) })
 export default class Navbar extends Vue {
   public searchInput = ''
-  public getToken: string | null
 
   public search (): void {
     console.log(`searching for ${this.searchInput}`)
   }
 
   get isLoggedIn (): boolean {
-    return this.getToken !== null
+    return this.getToken !== ''
   }
 }
 </script>
