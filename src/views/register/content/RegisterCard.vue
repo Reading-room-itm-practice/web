@@ -1,10 +1,20 @@
 <template>
   <el-row :gutter='14' :offset='5' align='top' justify='center'>
     <el-col>
-      <email-form v-on:form-input='updateForm($event)'></email-form>
-      <password-form v-on:form-input='updateForm($event)'></password-form>
-      <password-confirmation-form v-on:form-input='updateForm($event)'></password-confirmation-form>
-      <el-button @click='sendForm'>Send</el-button>
+      <el-form :model='registerForm' :rules='validationRules'>
+        <el-form-item prop='email'>
+          <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
+        </el-form-item>
+        <el-form-item prop='password'>
+          <password-form v-on:form-input='updateForm($event)' type='password'></password-form>
+        </el-form-item>
+        <el-form-item prop='passwordConfirmation'>
+          <password-confirmation-form v-on:form-input='updateForm($event)'></password-confirmation-form>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click='sendForm'>Send</el-button>
+        </el-form-item>
+      </el-form>
     </el-col>
   </el-row>
 </template>
@@ -14,6 +24,8 @@ import { Vue, Component } from 'vue-property-decorator'
 import EmailForm from '@/components/forms/EmailForm.vue'
 import PasswordForm from '@/components/forms/PasswordForm.vue'
 import PasswordConfirmationForm from '@/components/forms/PasswordConfirmationForm.vue'
+import { email, password, passwordConfirmation } from '@/components/validations/validationRules.ts'
+import { baseRule } from '@/components/validations/baseRule'
 
 @Component({
   components: {
@@ -23,6 +35,12 @@ import PasswordConfirmationForm from '@/components/forms/PasswordConfirmationFor
   }
 })
 export default class RegisterCard extends Vue {
+  public validationRules: baseRule = {
+    email: email,
+    password: password,
+    passwordConfirmation: passwordConfirmation
+  }
+
   private registerForm: Array<string> = {
     email: '',
     password: '',
