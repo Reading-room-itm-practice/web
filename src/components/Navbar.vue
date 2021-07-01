@@ -16,7 +16,7 @@
       <div v-else>
         <router-link to="#">Log in</router-link>
         <br>
-        <router-link to="#">Sign up</router-link>
+        <router-link to="/register">Sign up</router-link>
       </div>
     </el-col>
   </el-row>
