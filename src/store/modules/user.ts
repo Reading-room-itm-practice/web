@@ -34,10 +34,10 @@ export const user: StoreOptions<UserState> = {
     [UserStoreMethods.getEmail]: (state): string => state.email
   },
   actions: {
-    [UserStoreMethods.setEmail] ({ commit }, email): void {
+    [UserStoreMethods.setEmail] ({ commit }, email: string): void {
       commit(UserStoreMethods.setEmail, email)
     },
-    [UserStoreMethods.setToken] ({ commit }, token): void {
+    [UserStoreMethods.setToken] ({ commit }, token: string): void {
       commit(UserStoreMethods.setToken, token)
     }
   }
