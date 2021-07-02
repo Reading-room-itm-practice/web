@@ -1,5 +1,5 @@
 <template>
-  <el-input v-model='formInput' ref='email' v-on:input="$emit('form-input', {
+  <el-input v-model='formInput' v-on:input="$emit('form-input', {
     type: 'email',
     body: formInput
   })"></el-input>
