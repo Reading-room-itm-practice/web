@@ -1,6 +1,6 @@
 <template>
   <el-input v-model='formInput' v-on:input="$emit('form-input', {
-    type: 'password',
+    type: 'email',
     body: formInput
   })"></el-input>
 </template>
@@ -9,7 +9,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
-export default class PasswordForm extends Vue {
+export default class EmailInput extends Vue {
   public formInput = ''
 }
 </script>

@@ -9,7 +9,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
-export default class PasswordConfirmationForm extends Vue {
+export default class PasswordConfirmationInput extends Vue {
   public formInput = '';
 }
 </script>
