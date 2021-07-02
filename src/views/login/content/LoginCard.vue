@@ -21,7 +21,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import EmailForm from '@/components/forms/EmailForm.vue'
 import PasswordForm from '@/components/forms/PasswordForm.vue'
 import { email, password } from '@/components/validations/validationRules.ts'
-import { baseRule } from '@/components/validations/baseRule'
+import { baseValidationRule } from '@/components/validations/baseValidationRule'
 
 @Component({
   components: {
@@ -30,7 +30,7 @@ import { baseRule } from '@/components/validations/baseRule'
   }
 })
 export default class LoginCard extends Vue {
-  public validationRules: baseRule = {
+  public validationRules: baseValidationRule = {
     email: email,
     password: password
   }
