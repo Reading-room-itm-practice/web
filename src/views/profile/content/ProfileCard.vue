@@ -1,9 +1,17 @@
 <template>
   <el-row :gutter='24' justify='top' align='center'>
     <el-col :offset='8'>
-      <profile-info></profile-info>
-      <profile-options></profile-options>
-      <profile-social></profile-social>
+      <el-row class='profileBubble' v-if='!isLoggedIn'>
+        <profile-options></profile-options>
+      </el-row>
+      <el-row>
+        <el-col :span='12' class='profileBubble'>
+          <profile-info></profile-info>
+        </el-col>
+        <el-col :span='12' class='profileBubble'>
+          <profile-social></profile-social>
+        </el-col>
+      </el-row>
     </el-col>
   </el-row>
 </template>
