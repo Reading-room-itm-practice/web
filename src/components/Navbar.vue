@@ -25,18 +25,18 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { mapGetters } from 'vuex'
+import { UserStoreMethods } from '@/store/modules/user'
 
-@Component({ computed: mapGetters(['getToken']) })
+@Component({ computed: mapGetters([UserStoreMethods.getToken]) })
 export default class Navbar extends Vue {
   public searchInput = ''
-  public getToken: string | null
 
   public search (): void {
     console.log(`searching for ${this.searchInput}`)
   }
 
   get isLoggedIn (): boolean {
-    return this.getToken !== null
+    return this.getToken !== ''
   }
 }
 </script>
