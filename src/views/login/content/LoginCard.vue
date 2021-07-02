@@ -1,15 +1,12 @@
 <template>
   <el-row :gutter='24' align='top' justify='center' id='register'>
     <el-col :offset='14' :span='12'>
-      <el-form :model='registerForm' :rules='validationRules' ref='registerForm'>
+      <el-form :model='loginForm' :rules='validationRules' ref='registerForm'>
         <el-form-item prop='email' label='Email'>
           <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
         </el-form-item>
         <el-form-item prop='password' label='Password'>
           <password-form v-on:form-input='updateForm($event)' type='password'></password-form>
-        </el-form-item>
-        <el-form-item prop='passwordConfirmation' label='Password confirmation'>
-          <password-confirmation-form v-on:form-input='updateForm($event)'></password-confirmation-form>
         </el-form-item>
         <el-form-item>
           <el-button @click='sendForm'>Send</el-button>
@@ -23,38 +20,34 @@
 import { Vue, Component } from 'vue-property-decorator'
 import EmailForm from '@/components/forms/EmailForm.vue'
 import PasswordForm from '@/components/forms/PasswordForm.vue'
-import PasswordConfirmationForm from '@/components/forms/PasswordConfirmationForm.vue'
-import { email, password, passwordConfirmation } from '@/components/validations/validationRules.ts'
+import { email, password } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
 
 @Component({
   components: {
     EmailForm,
-    PasswordForm,
-    PasswordConfirmationForm
+    PasswordForm
   }
 })
-export default class RegisterCard extends Vue {
+export default class LoginCard extends Vue {
   public validationRules: baseValidationRule = {
     email: email,
-    password: password,
-    passwordConfirmation: passwordConfirmation
+    password: password
   }
 
-  private registerForm: Array<string> = {
+  private loginForm: Array<string> = {
     email: '',
-    password: '',
-    passwordConfirmation: ''
+    password: ''
   }
 
   public updateForm (event: Array<string>): void {
-    this.registerForm[event.type] = event.body
+    this.loginForm[event.type] = event.body
   }
 
   public sendForm (): void {
     this.$refs.registerForm.validate((valid) => {
       if (valid) {
-        console.log(this.registerForm)
+        console.log(this.loginForm)
       }
     })
   }

@@ -1,18 +1,18 @@
-import { baseRule } from '@/components/validations/baseRule'
+import { baseValidationRule } from '@/components/validations/baseValidationRule'
 
-export const email: baseRule = {
+export const email: baseValidationRule = {
   required: true,
   message: 'Email is required',
   trigger: 'blur'
 }
 
-export const password: baseRule = {
+export const password: baseValidationRule = {
   required: true,
   message: 'Password is required',
   trigger: 'blur'
 }
 
-export const passwordConfirmation: baseRule = {
+export const passwordConfirmation: baseValidationRule = {
   required: true,
   message: 'Password confirmation is required',
   trigger: 'blur'
