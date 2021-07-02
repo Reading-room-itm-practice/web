@@ -1,7 +1,7 @@
 <template>
-  <el-row :gutter='24' align='top' justify='center' id='register'>
+  <el-row :gutter='24' align='top' justify='center' id='login'>
     <el-col :offset='14' :span='12'>
-      <el-form :model='loginForm' :rules='validationRules' ref='registerForm'>
+      <el-form :model='loginForm' :rules='validationRules' ref='loginForm'>
         <el-form-item prop='username' label='Username'>
           <username-input v-on:form-input='updateForm($event)' type='password'></username-input>
         </el-form-item>
@@ -52,7 +52,7 @@ export default class LoginCard extends Vue {
   }
 
   public sendForm (): void {
-    this.$refs.registerForm.validate((valid) => {
+    this.$refs.loginForm.validate((valid) => {
       if (valid) {
         axios.post('/AuthenticateUser/login', this.loginForm).then(
           (response) => {
