@@ -41,6 +41,10 @@ import axios from 'axios'
   }
 })
 export default class RegisterCard extends Vue {
+  created () {
+    if (this.isLoggedIn) this.$router.push('/')
+  }
+
   public validationRules: baseValidationRule = {
     username: username,
     email: email,
