@@ -14,7 +14,7 @@
         <router-link to="#">Profile</router-link>
       </div>
       <div v-else>
-        <router-link to="#">Log in</router-link>
+        <router-link to="/login">Log in</router-link>
         <br>
         <router-link to="/register">Sign up</router-link>
       </div>
