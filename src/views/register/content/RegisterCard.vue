@@ -3,16 +3,16 @@
     <el-col :offset='14' :span='12'>
       <el-form :model='registerForm' :rules='validationRules' ref='registerForm'>
         <el-form-item prop='username' label='Username'>
-          <email-form v-on:form-input='updateForm($event)' type='username'></email-form>
+          <username-input v-on:form-input='updateForm($event)' type='username'></username-input>
         </el-form-item>
         <el-form-item prop='email' label='Email'>
-          <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
+          <email-input v-on:form-input='updateForm($event)' type='password'></email-input>
         </el-form-item>
         <el-form-item prop='password' label='Password'>
-          <password-form v-on:form-input='updateForm($event)' type='password'></password-form>
+          <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
         <el-form-item prop='passwordConfirmation' label='Password confirmation'>
-          <password-confirmation-form v-on:form-input='updateForm($event)'></password-confirmation-form>
+          <password-confirmation-input v-on:form-input='updateForm($event)'></password-confirmation-input>
         </el-form-item>
         <el-form-item>
           <el-button @click='sendForm'>Send</el-button>
@@ -24,18 +24,20 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import EmailForm from '@/components/forms/EmailForm.vue'
-import PasswordForm from '@/components/forms/PasswordForm.vue'
-import PasswordConfirmationForm from '@/components/forms/PasswordConfirmationForm.vue'
+import UsernameInput from '@/components/forms/UsernameInput.vue'
+import EmailInput from '@/components/forms/EmailInput.vue'
+import PasswordInput from '@/components/forms/PasswordInput.vue'
+import PasswordConfirmationInput from '@/components/forms/PasswordConfirmationInput.vue'
 import { email, password, passwordConfirmation, username } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
 import axios from 'axios'
 
 @Component({
   components: {
-    EmailForm,
-    PasswordForm,
-    PasswordConfirmationForm
+    UsernameInput,
+    EmailInput,
+    PasswordInput,
+    PasswordConfirmationInput
   }
 })
 export default class RegisterCard extends Vue {
