@@ -3,10 +3,10 @@
     <el-col :offset='14' :span='12'>
       <el-form :model='loginForm' :rules='validationRules' ref='registerForm'>
         <el-form-item prop='username' label='Username'>
-          <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
+          <username-input v-on:form-input='updateForm($event)' type='password'></username-input>
         </el-form-item>
         <el-form-item prop='password' label='Password'>
-          <password-form v-on:form-input='updateForm($event)' type='password'></password-form>
+          <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
         <el-form-item>
           <el-button @click='sendForm'>Send</el-button>
@@ -18,21 +18,25 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import EmailForm from '@/components/forms/EmailInput.vue'
-import PasswordForm from '@/components/forms/PasswordInput.vue'
+import UsernameInput from '@/components/forms/UsernameInput.vue'
+import PasswordInput from '@/components/forms/PasswordInput.vue'
 import { username, password } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
 import axios from 'axios'
 import { UserStoreMethods } from '@/store/modules/user'
-import { Action } from 'vuex-class'
+import { Action, Getter } from 'vuex-class'
 
 @Component({
   components: {
-    EmailForm,
-    PasswordForm
+    UsernameInput,
+    PasswordInput
   }
 })
 export default class LoginCard extends Vue {
+  created () {
+    if (this.isLoggedIn) this.$router.push('/')
+  }
+
   public validationRules: baseValidationRule = {
     username: username,
     password: password
@@ -54,6 +58,7 @@ export default class LoginCard extends Vue {
           (response) => {
             console.log(`received token ${response.data.message}`)
             this.setToken(response.data.message)
+            this.$router.push('/')
           }
         )
       }
@@ -61,5 +66,6 @@ export default class LoginCard extends Vue {
   }
 
   @Action [UserStoreMethods.setToken]
+  @Getter [UserStoreMethods.isLoggedIn]
 }
 </script>
