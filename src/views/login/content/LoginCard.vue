@@ -2,7 +2,7 @@
   <el-row :gutter='24' align='top' justify='center' id='register'>
     <el-col :offset='14' :span='12'>
       <el-form :model='loginForm' :rules='validationRules' ref='registerForm'>
-        <el-form-item prop='email' label='Email'>
+        <el-form-item prop='username' label='Username'>
           <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
         </el-form-item>
         <el-form-item prop='password' label='Password'>
@@ -18,10 +18,13 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import EmailForm from '@/components/forms/EmailForm.vue'
-import PasswordForm from '@/components/forms/PasswordForm.vue'
-import { email, password } from '@/components/validations/validationRules.ts'
+import EmailForm from '@/components/forms/EmailInput.vue'
+import PasswordForm from '@/components/forms/PasswordInput.vue'
+import { username, password } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
+import axios from 'axios'
+import { UserStoreMethods } from '@/store/modules/user'
+import { Action } from 'vuex-class'
 
 @Component({
   components: {
@@ -31,12 +34,12 @@ import { baseValidationRule } from '@/components/validations/baseValidationRule'
 })
 export default class LoginCard extends Vue {
   public validationRules: baseValidationRule = {
-    email: email,
+    username: username,
     password: password
   }
 
   private loginForm: Array<string> = {
-    email: '',
+    username: '',
     password: ''
   }
 
@@ -47,9 +50,16 @@ export default class LoginCard extends Vue {
   public sendForm (): void {
     this.$refs.registerForm.validate((valid) => {
       if (valid) {
-        console.log(this.loginForm)
+        axios.post('/AuthenticateUser/login', this.loginForm).then(
+          (response) => {
+            console.log(`received token ${response.data.message}`)
+            this.setToken(response.data.message)
+          }
+        )
       }
     })
   }
+
+  @Action [UserStoreMethods.setToken]
 }
 </script>
