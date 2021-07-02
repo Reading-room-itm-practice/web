@@ -2,13 +2,13 @@
   <el-row :gutter='24' align='top' justify='center' id='register'>
     <el-col :offset='14' :span='12'>
       <el-form :model='registerForm' :rules='validationRules' ref='registerForm'>
-        <el-form-item prop='email'>
+        <el-form-item prop='email' label='Email'>
           <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
         </el-form-item>
-        <el-form-item prop='password'>
+        <el-form-item prop='password' label='Password'>
           <password-form v-on:form-input='updateForm($event)' type='password'></password-form>
         </el-form-item>
-        <el-form-item prop='passwordConfirmation'>
+        <el-form-item prop='passwordConfirmation' label='Password confirmation'>
           <password-confirmation-form v-on:form-input='updateForm($event)'></password-confirmation-form>
         </el-form-item>
         <el-form-item>
