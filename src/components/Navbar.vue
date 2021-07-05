@@ -12,6 +12,8 @@
     <el-col :span="2">
       <div v-if="isLoggedIn">
         <router-link to="/profile">Profile</router-link>
+        <br>
+        <el-button @click="setToken('')">Log out</el-button>
       </div>
       <div v-else>
         <router-link to="/login">Log in</router-link>
@@ -24,10 +26,10 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { mapGetters } from 'vuex'
 import { UserStoreMethods } from '@/store/modules/user'
+import { Getter, Action } from 'vuex-class'
 
-@Component({ computed: mapGetters([UserStoreMethods.getToken]) })
+@Component
 export default class Navbar extends Vue {
   public searchInput = ''
 
@@ -35,8 +37,7 @@ export default class Navbar extends Vue {
     console.log(`searching for ${this.searchInput}`)
   }
 
-  get isLoggedIn (): boolean {
-    return this.getToken !== ''
-  }
+  @Action [UserStoreMethods.setToken]
+  @Getter [UserStoreMethods.isLoggedIn]
 }
 </script>

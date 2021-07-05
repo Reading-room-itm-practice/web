@@ -8,7 +8,8 @@ export enum UserStoreMethods {
   getEmail = 'getEmail',
   getToken = 'getToken',
   setEmail = 'setEmail',
-  setToken = 'setToken'
+  setToken = 'setToken',
+  isLoggedIn = 'isLoggedIn'
 }
 
 const TOKEN = 'token'
@@ -31,7 +32,8 @@ export const user: StoreOptions<UserState> = {
   },
   getters: {
     [UserStoreMethods.getToken]: (state): string => state.token,
-    [UserStoreMethods.getEmail]: (state): string => state.email
+    [UserStoreMethods.getEmail]: (state): string => state.email,
+    [UserStoreMethods.isLoggedIn]: (state): boolean => state.token !== ''
   },
   actions: {
     [UserStoreMethods.setEmail] ({ commit }, email: string): void {

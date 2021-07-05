@@ -2,14 +2,17 @@
   <el-row :gutter='24' align='top' justify='center' id='register'>
     <el-col :offset='14' :span='12'>
       <el-form :model='registerForm' :rules='validationRules' ref='registerForm'>
+        <el-form-item prop='username' label='Username'>
+          <username-input v-on:form-input='updateForm($event)' type='username'></username-input>
+        </el-form-item>
         <el-form-item prop='email' label='Email'>
-          <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
+          <email-input v-on:form-input='updateForm($event)' type='password'></email-input>
         </el-form-item>
         <el-form-item prop='password' label='Password'>
-          <password-form v-on:form-input='updateForm($event)' type='password'></password-form>
+          <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
         <el-form-item prop='passwordConfirmation' label='Password confirmation'>
-          <password-confirmation-form v-on:form-input='updateForm($event)'></password-confirmation-form>
+          <password-confirmation-input v-on:form-input='updateForm($event)'></password-confirmation-input>
         </el-form-item>
         <el-form-item>
           <el-button @click='sendForm'>Send</el-button>
@@ -21,40 +24,48 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import EmailForm from '@/components/forms/EmailForm.vue'
-import PasswordForm from '@/components/forms/PasswordForm.vue'
-import PasswordConfirmationForm from '@/components/forms/PasswordConfirmationForm.vue'
-import { email, password, passwordConfirmation } from '@/components/validations/validationRules.ts'
+import { EmailInput, UsernameInput, PasswordInput, PasswordConfirmationInput } from '@/components/forms'
+import { email, password, passwordConfirmation, username } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
+import axios from 'axios'
 
 @Component({
   components: {
-    EmailForm,
-    PasswordForm,
-    PasswordConfirmationForm
+    UsernameInput,
+    EmailInput,
+    PasswordInput,
+    PasswordConfirmationInput
   }
 })
 export default class RegisterCard extends Vue {
-  public validationRules: baseValidationRule = {
+  created () {
+    if (this.isLoggedIn) this.$router.push('/')
+  }
+
+  private validationRules: baseValidationRule = {
+    username: username,
     email: email,
     password: password,
     passwordConfirmation: passwordConfirmation
   }
 
   private registerForm: Array<string> = {
+    username: '',
     email: '',
     password: '',
     passwordConfirmation: ''
   }
 
-  public updateForm (event: Array<string>): void {
+  private updateForm (event: Array<string>): void {
     this.registerForm[event.type] = event.body
   }
 
-  public sendForm (): void {
+  private sendForm (): void {
     this.$refs.registerForm.validate((valid) => {
       if (valid) {
-        console.log(this.registerForm)
+        axios.post('/AuthenticateUser/register', this.registerForm).then(
+          () => this.$router.push('/login')
+        )
       }
     })
   }

@@ -1,12 +1,12 @@
 <template>
-  <el-row :gutter='24' align='top' justify='center' id='register'>
+  <el-row :gutter='24' align='top' justify='center' id='login'>
     <el-col :offset='14' :span='12'>
-      <el-form :model='loginForm' :rules='validationRules' ref='registerForm'>
-        <el-form-item prop='email' label='Email'>
-          <email-form v-on:form-input='updateForm($event)' type='password'></email-form>
+      <el-form :model='loginForm' :rules='validationRules' ref='loginForm'>
+        <el-form-item prop='username' label='Username'>
+          <username-input v-on:form-input='updateForm($event)' type='password'></username-input>
         </el-form-item>
         <el-form-item prop='password' label='Password'>
-          <password-form v-on:form-input='updateForm($event)' type='password'></password-form>
+          <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
         <el-form-item>
           <el-button @click='sendForm'>Send</el-button>
@@ -18,38 +18,53 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import EmailForm from '@/components/forms/EmailForm.vue'
-import PasswordForm from '@/components/forms/PasswordForm.vue'
-import { email, password } from '@/components/validations/validationRules.ts'
+import { UsernameInput, PasswordInput } from '@/components/forms'
+import { username, password } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
+import axios from 'axios'
+import { UserStoreMethods } from '@/store/modules/user'
+import { Action, Getter } from 'vuex-class'
 
 @Component({
   components: {
-    EmailForm,
-    PasswordForm
+    UsernameInput,
+    PasswordInput
   }
 })
 export default class LoginCard extends Vue {
-  public validationRules: baseValidationRule = {
-    email: email,
+  created () {
+    if (this.isLoggedIn) this.$router.push('/')
+  }
+
+  private validationRules: baseValidationRule = {
+    username: username,
     password: password
   }
 
   private loginForm: Array<string> = {
-    email: '',
+    username: '',
     password: ''
   }
 
-  public updateForm (event: Array<string>): void {
+  private updateForm (event: Array<string>): void {
     this.loginForm[event.type] = event.body
   }
 
-  public sendForm (): void {
-    this.$refs.registerForm.validate((valid) => {
+  private sendForm (): void {
+    this.$refs.loginForm.validate((valid) => {
       if (valid) {
-        console.log(this.loginForm)
+        axios.post('/AuthenticateUser/login', this.loginForm).then(
+          (response) => {
+            console.log(`received token ${response.data.message}`)
+            this.setToken(response.data.message)
+            this.$router.push('/')
+          }
+        )
       }
     })
   }
+
+  @Action [UserStoreMethods.setToken]
+  @Getter [UserStoreMethods.isLoggedIn]
 }
 </script>

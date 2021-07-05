@@ -1,5 +1,11 @@
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
 
+export const username: baseValidationRule = {
+  required: true,
+  message: 'Username is required',
+  trigger: 'blur'
+}
+
 export const email: baseValidationRule = {
   required: true,
   message: 'Email is required',
