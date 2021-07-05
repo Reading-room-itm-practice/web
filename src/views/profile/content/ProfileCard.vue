@@ -21,6 +21,8 @@ import { Vue, Component } from 'vue-property-decorator'
 import ProfileInfo from '@/views/profile/content/ProfileInfo.vue'
 import ProfileOptions from '@/views/profile/content/ProfileOptions.vue'
 import ProfileSocial from '@/views/profile/content/ProfileSocial.vue'
+import { Getter } from 'vuex-class'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
 
 @Component({
   components: {
@@ -30,5 +32,6 @@ import ProfileSocial from '@/views/profile/content/ProfileSocial.vue'
   }
 })
 export default class ProfileCard extends Vue {
+  @Getter [UserStoreMethods.isLoggedIn]
 }
 </script>
