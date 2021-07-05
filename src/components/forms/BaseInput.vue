@@ -1,23 +1,26 @@
 <template>
-  <el-input v-model='input' v-on:input='emitBaseInput'></el-input>
+  <el-input v-model='baseInput.body' v-on:input='emitBaseInput'></el-input>
 </template>
 
 <script lang='ts'>
 import { Vue, Component, Prop } from 'vue-property-decorator'
+import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
 
 @Component
 export default class BaseInput extends Vue {
-  public input = ''
   @Prop() readonly inputType: string
+  public input = ''
 
-  public emitBaseInput (): void {
-    this.$emit('base-input', {
-      type: this.inputType,
-      body: this.input
-    })
+  public baseInput: BaseInputInterface = {
+    type: this.inputType,
+    body: ''
   }
 
-  public emitInput (event): void {
+  public emitBaseInput (): void {
+    this.$emit('base-input', this.baseInput)
+  }
+
+  public emitInput (event: BaseInputInterface): void {
     this.$emit('form-input', event)
   }
 }
