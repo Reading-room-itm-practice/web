@@ -22,7 +22,7 @@ import { UsernameInput, PasswordInput } from '@/components/forms'
 import { username, password } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
 import axios from 'axios'
-import { UserStoreMethods } from '@/enums'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Action, Getter } from 'vuex-class'
 
 @Component({

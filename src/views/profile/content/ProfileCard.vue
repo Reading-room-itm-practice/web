@@ -22,7 +22,7 @@ import ProfileInfo from '@/views/profile/content/ProfileInfo.vue'
 import ProfileOptions from '@/views/profile/content/ProfileOptions.vue'
 import ProfileSocial from '@/views/profile/content/ProfileSocial.vue'
 import { Getter } from 'vuex-class'
-import { UserStoreMethods } from '@/enums'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
 
 @Component({
   components: {
