@@ -7,6 +7,7 @@ import ProfilePage from '../views/profile/ProfilePage.vue'
 import auth from '@/router/middleware/auth'
 import guest from '@/router/middleware/guest'
 import store from '@/store'
+import UserViewContainer from '@/views/UsersAction/UserViewContainer.vue'
 
 Vue.use(VueRouter)
 
@@ -17,34 +18,43 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
-    path: '/register',
-    name: 'RegisterPage',
-    component: RegisterPage,
+    path: '',
+    name: 'UsersAction',
+    component: UserViewContainer,
     meta: {
       middleware: [
         guest
       ]
-    }
+    },
+    children: [
+      {
+        path: '/register',
+        name: 'RegisterPage',
+        component: RegisterPage
+      },
+      {
+        path: '/login',
+        name: 'LoginPage',
+        component: LoginPage
+      }
+    ]
   },
   {
-    path: '/login',
-    name: 'LoginPage',
-    component: LoginPage,
-    meta: {
-      middleware: [
-        guest
-      ]
-    }
-  },
-  {
-    path: '/profile',
-    name: 'ProfilePage',
-    component: ProfilePage,
+    path: '',
+    name: 'UsersAction',
+    component: UserViewContainer,
     meta: {
       middleware: [
         auth
       ]
-    }
+    },
+    children: [
+      {
+        path: '/profile',
+        name: 'ProfilePage',
+        component: ProfilePage
+      }
+    ]
   }
 ]
 
