@@ -18,8 +18,7 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import UsernameInput from '@/components/forms/UsernameInput.vue'
-import PasswordInput from '@/components/forms/PasswordInput.vue'
+import { UsernameInput, PasswordInput } from '@/components/forms'
 import { username, password } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
 import axios from 'axios'
@@ -37,7 +36,7 @@ export default class LoginCard extends Vue {
     if (this.isLoggedIn) this.$router.push('/')
   }
 
-  public validationRules: baseValidationRule = {
+  private validationRules: baseValidationRule = {
     username: username,
     password: password
   }
@@ -47,11 +46,11 @@ export default class LoginCard extends Vue {
     password: ''
   }
 
-  public updateForm (event: Array<string>): void {
+  private updateForm (event: Array<string>): void {
     this.loginForm[event.type] = event.body
   }
 
-  public sendForm (): void {
+  private sendForm (): void {
     this.$refs.loginForm.validate((valid) => {
       if (valid) {
         axios.post('/AuthenticateUser/login', this.loginForm).then(

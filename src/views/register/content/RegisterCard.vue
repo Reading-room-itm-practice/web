@@ -24,10 +24,7 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import UsernameInput from '@/components/forms/UsernameInput.vue'
-import EmailInput from '@/components/forms/EmailInput.vue'
-import PasswordInput from '@/components/forms/PasswordInput.vue'
-import PasswordConfirmationInput from '@/components/forms/PasswordConfirmationInput.vue'
+import { EmailInput, UsernameInput, PasswordInput, PasswordConfirmationInput } from '@/components/forms'
 import { email, password, passwordConfirmation, username } from '@/components/validations/validationRules.ts'
 import { baseValidationRule } from '@/components/validations/baseValidationRule'
 import axios from 'axios'
@@ -45,7 +42,7 @@ export default class RegisterCard extends Vue {
     if (this.isLoggedIn) this.$router.push('/')
   }
 
-  public validationRules: baseValidationRule = {
+  private validationRules: baseValidationRule = {
     username: username,
     email: email,
     password: password,
@@ -59,11 +56,11 @@ export default class RegisterCard extends Vue {
     passwordConfirmation: ''
   }
 
-  public updateForm (event: Array<string>): void {
+  private updateForm (event: Array<string>): void {
     this.registerForm[event.type] = event.body
   }
 
-  public sendForm (): void {
+  private sendForm (): void {
     this.$refs.registerForm.validate((valid) => {
       if (valid) {
         axios.post('/AuthenticateUser/register', this.registerForm).then(
