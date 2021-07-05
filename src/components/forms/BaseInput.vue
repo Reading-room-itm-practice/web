@@ -11,7 +11,7 @@ export default class BaseInput extends Vue {
   @Prop() readonly inputType: string
   public input = ''
 
-  public baseInput: BaseInputInterface = {
+  private baseInput: BaseInputInterface = {
     type: this.inputType,
     body: ''
   }
