@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { UserStoreMethods } from '@/store/modules/user'
+import { UserStoreMethods } from '@/enums'
 import { Getter, Action } from 'vuex-class'
 
 @Component
