@@ -11,7 +11,7 @@
     </el-col>
     <el-col :span="2">
       <div v-if="isLoggedIn">
-        <router-link to="#">Profile</router-link>
+        <router-link to="/profile">Profile</router-link>
         <br>
         <el-button @click="setToken('')">Log out</el-button>
       </div>
