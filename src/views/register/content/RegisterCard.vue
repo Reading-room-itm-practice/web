@@ -25,8 +25,7 @@
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
 import { EmailInput, UsernameInput, PasswordInput, PasswordConfirmationInput } from '@/components/forms'
-import { email, password, passwordConfirmation, username } from '@/components/validations/validationRules.ts'
-import { baseValidationRule } from '@/components/validations/baseValidationRule'
+import { registerRules } from '@/components/validations/types/register'
 import axios from 'axios'
 
 @Component({
@@ -38,12 +37,7 @@ import axios from 'axios'
   }
 })
 export default class RegisterCard extends Vue {
-  private validationRules: baseValidationRule = {
-    username: username,
-    email: email,
-    password: password,
-    passwordConfirmation: passwordConfirmation
-  }
+  private validationRules = registerRules
 
   private registerForm: Array<string> = {
     username: '',

@@ -19,8 +19,7 @@
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
 import { UsernameInput, PasswordInput } from '@/components/forms'
-import { username, password } from '@/components/validations/validationRules.ts'
-import { baseValidationRule } from '@/components/validations/baseValidationRule'
+import { loginRules } from '@/components/validations/types/login'
 import axios from 'axios'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Action, Getter } from 'vuex-class'
@@ -32,10 +31,7 @@ import { Action, Getter } from 'vuex-class'
   }
 })
 export default class LoginCard extends Vue {
-  private validationRules: baseValidationRule = {
-    username: username,
-    password: password
-  }
+  private validationRules = loginRules
 
   private loginForm: Array<string> = {
     username: '',
