@@ -1,4 +1,4 @@
-export default function auth ({ next, store }) {
+export default function guest ({ next, store }) {
   if (store.getters.isLoggedIn) {
     return next({
       name: 'Home'
