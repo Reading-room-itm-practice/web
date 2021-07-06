@@ -32,10 +32,6 @@ import { Action, Getter } from 'vuex-class'
   }
 })
 export default class LoginCard extends Vue {
-  created () {
-    if (this.isLoggedIn) this.$router.push('/')
-  }
-
   private validationRules: baseValidationRule = {
     username: username,
     password: password
