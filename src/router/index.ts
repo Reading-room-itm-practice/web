@@ -6,7 +6,6 @@ import LoginPage from '../views/login/LoginPage.vue'
 import ProfilePage from '../views/profile/ProfilePage.vue'
 import auth from '@/router/middleware/auth'
 import guest from '@/router/middleware/guest'
-import CategoryPage from '@/components/cruds/categories/CategoryPage.vue'
 
 Vue.use(VueRouter)
 
@@ -40,16 +39,6 @@ const routes: Array<RouteConfig> = [
     path: '/profile',
     name: 'ProfilePage',
     component: ProfilePage,
-    meta: {
-      middleware: [
-        auth
-      ]
-    }
-  },
-  {
-    path: '/admin',
-    name: 'CategoryPage',
-    component: CategoryPage,
     meta: {
       middleware: [
         auth
