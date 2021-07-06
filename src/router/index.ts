@@ -6,7 +6,7 @@ import LoginPage from '../views/login/LoginPage.vue'
 import ProfilePage from '../views/profile/ProfilePage.vue'
 import auth from '@/router/middleware/auth'
 import guest from '@/router/middleware/guest'
-import store from '@/store'
+import CategoryPage from '@/components/cruds/categories/CategoryPage.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +45,16 @@ const routes: Array<RouteConfig> = [
         auth
       ]
     }
+  },
+  {
+    path: '/admin',
+    name: 'CategoryPage',
+    component: CategoryPage,
+    meta: {
+      middleware: [
+        auth
+      ]
+    }
   }
 ]
 
@@ -64,8 +74,7 @@ router.beforeEach((to, from, next) => {
   return middleware[0]({
     to,
     from,
-    next,
-    store
+    next
   })
 })
 
