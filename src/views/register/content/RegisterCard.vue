@@ -27,6 +27,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import { EmailInput, UsernameInput, PasswordInput, PasswordConfirmationInput } from '@/components/forms'
 import { registerRules } from '@/components/validations/types/register'
 import axios from 'axios'
+import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
 
 @Component({
   components: {
@@ -39,14 +40,14 @@ import axios from 'axios'
 export default class RegisterCard extends Vue {
   private validationRules = registerRules
 
-  private registerForm: Array<string> = {
+  private registerForm = {
     username: '',
     email: '',
     password: '',
     passwordConfirmation: ''
   }
 
-  private updateForm (event: Array<string>): void {
+  private updateForm (event: BaseInputInterface): void {
     this.registerForm[event.type] = event.body
   }
 
