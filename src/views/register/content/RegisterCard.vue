@@ -27,7 +27,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import { EmailInput, UsernameInput, PasswordInput, PasswordConfirmationInput } from '@/components/forms'
 import { registerRules } from '@/components/validations/types/register'
 import axios from 'axios'
-import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
+import { BaseInputInterface } from '@/interfaces/baseInputInterface'
 
 @Component({
   components: {

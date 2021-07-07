@@ -1,6 +1,6 @@
-import { RequiredRule } from '@/components/validations/rules/RequiredRule'
-import { LengthRule } from '@/components/validations/rules/LenghtRule'
-import { TypeRule } from '@/components/validations/rules/TypeRule'
+import { RequiredRule } from '@/components/validations/rules/requiredRule'
+import { LengthRule } from '@/components/validations/rules/lenghtRule'
+import { TypeRule } from '@/components/validations/rules/typeRule'
 
 export const rules = {
   username: [
