@@ -4,7 +4,7 @@
 
 <script lang='ts'>
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { BaseInputInterface } from '@/interfaces/baseInputInterface'
+import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
 
 @Component
 export default class BaseInput extends Vue {

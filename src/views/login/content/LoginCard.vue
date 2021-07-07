@@ -21,9 +21,9 @@ import { Vue, Component } from 'vue-property-decorator'
 import { UsernameInput, PasswordInput } from '@/components/forms'
 import { loginRules } from '@/components/validations/types/login'
 import axios from 'axios'
-import { UserStoreMethods } from '@/enums/userStoreMethods'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Action, Getter } from 'vuex-class'
-import { BaseInputInterface } from '@/interfaces/baseInputInterface'
+import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
 
 @Component({
   components: {
