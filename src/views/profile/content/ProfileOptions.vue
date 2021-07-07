@@ -2,10 +2,10 @@
   <h2>
     <el-row>
       <el-col :span='12'>
-          Change avatar
+        {{ $t('profile.avatar') }}
       </el-col>
       <el-col :span='12'>
-        Change Password
+        {{ $t('profile.passwordChange') }}
       </el-col>
     </el-row>
   </h2>

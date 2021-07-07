@@ -2,16 +2,16 @@
   <h2>
     <el-row>
         <el-col>
-          Followers: 0
+          {{ $t('profile.followers') }}
         </el-col>
     </el-row>
     <hr>
     <el-row>
-      Friends: 0
+      {{ $t('profile.friends') }}
     </el-row>
     <hr>
     <el-row>
-      Favourite books: 0
+      {{ $t('profile.favourites') }}
     </el-row>
   </h2>
 </template>

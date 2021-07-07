@@ -6,6 +6,6 @@ Vue.use(VueI18n)
 
 export const i18n = new VueI18n({
   locale: 'en',
-  messages: localizations.en,
+  messages: localizations,
   fallbackLocale: 'en'
 })

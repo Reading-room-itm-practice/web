@@ -2,20 +2,20 @@
   <el-row :gutter='24' align='top' justify='center' id='register'>
     <el-col :offset='14' :span='12'>
       <el-form :model='registerForm' :rules='validationRules' ref='registerForm'>
-        <el-form-item prop='username' label='Username'>
+        <el-form-item prop='username' :label="$t('register.username')">
           <username-input v-on:form-input='updateForm($event)' type='username'></username-input>
         </el-form-item>
-        <el-form-item prop='email' label='Email'>
+        <el-form-item prop='email' :label="$t('register.email')">
           <email-input v-on:form-input='updateForm($event)' type='password'></email-input>
         </el-form-item>
-        <el-form-item prop='password' label='Password'>
+        <el-form-item prop='password' :label="$t('register.password')">
           <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
-        <el-form-item prop='passwordConfirmation' label='Password confirmation'>
+        <el-form-item prop='passwordConfirmation' :label="$t('register.passwordConfirmation')">
           <password-confirmation-input v-on:form-input='updateForm($event)'></password-confirmation-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click='sendForm'>Send</el-button>
+          <el-button @click='sendForm'>{{ $t('register.button') }}</el-button>
         </el-form-item>
       </el-form>
     </el-col>

@@ -2,14 +2,14 @@
   <el-row :gutter='24' align='top' justify='center' id='login'>
     <el-col :offset='14' :span='12'>
       <el-form :model='loginForm' :rules='validationRules' ref='loginForm'>
-        <el-form-item prop='username' label='Username'>
+        <el-form-item prop='username' :label="$t('login.username')">
           <username-input v-on:form-input='updateForm($event)' type='password'></username-input>
         </el-form-item>
-        <el-form-item prop='password' label='Password'>
+        <el-form-item prop='password' :label="$t('login.password')">
           <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click='sendForm'>Send</el-button>
+          <el-button @click='sendForm'>{{ $t('login.button') }}</el-button>
         </el-form-item>
       </el-form>
     </el-col>
