@@ -22,7 +22,9 @@ export default class Authors extends Vue {
 
   async created (): void {
     const response = await axios.get('Authors')
-    this.authors = response.data
+    if (response) {
+      this.authors = response.data
+    }
   }
 }
 </script>
