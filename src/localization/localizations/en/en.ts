@@ -1,9 +1,10 @@
-import { homepage } from '@/localization/localizations/en/homepage'
-import { register } from '@/localization/localizations/en/register'
-import { login } from '@/localization/localizations/en/login'
-import { profile } from '@/localization/localizations/en/profile'
-import { navbar } from '@/localization/localizations/en/navbar'
-import { errors } from '@/localization/localizations/en/errors'
+import { homepage } from '@/localization/localizations/en/views/homepage'
+import { register } from '@/localization/localizations/en/views/register'
+import { login } from '@/localization/localizations/en/views/login'
+import { profile } from '@/localization/localizations/en/views/profile'
+import { navbar } from '@/localization/localizations/en/components/navbar'
+import { errors } from '@/localization/localizations/en/views/errors'
+import { validation } from '@/localization/localizations/en/components/validation'
 
 export const english = {
   homepage,
@@ -11,5 +12,6 @@ export const english = {
   register,
   login,
   profile,
-  errors
+  errors,
+  validation
 }
