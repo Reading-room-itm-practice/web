@@ -1,7 +1,7 @@
 export const validation = {
   username: {
     required: 'Username is required',
-    length: 'Length should be 3 to 20'
+    length: 'Username Length should be between 3 to 20 characters'
   },
   email: {
     required: 'Email is required',
