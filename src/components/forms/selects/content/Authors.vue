@@ -13,17 +13,18 @@
 <script lang='ts'>
 
 import { Vue, Component } from 'vue-property-decorator'
+import { Author } from '@/models/author'
 import axios from 'axios'
 
 @Component
 export default class Authors extends Vue {
-  private authors = []
-  private selectedAuthor = ''
+  private authors: Array<Author> = []
+  private selectedAuthor: Author = ''
 
   async created (): void {
     const response = await axios.get('Authors')
     if (response) {
-      this.authors = response.data
+      this.authors = response.data as Array<Author>
     }
   }
 }
