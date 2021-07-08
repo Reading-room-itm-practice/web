@@ -1,7 +1,7 @@
 export const profile = {
-  passwordChange: 'Change password',
+  passwordChange: 'Passwort ändern',
   followers: 'Followers',
-  friends: 'Friends',
-  favourites: 'Favourite books',
-  avatar: 'Change avatar'
+  friends: 'Freunde',
+  favourites: 'Lieblingsbücher',
+  avatar: 'Avatar ändern'
 }
