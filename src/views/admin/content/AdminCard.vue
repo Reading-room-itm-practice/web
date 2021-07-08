@@ -9,7 +9,6 @@
 </template>
 
 <script lang='ts'>
-
 import { Vue, Component } from 'vue-property-decorator'
 import Authors from '@/components/forms/selects/content/Authors.vue'
 
