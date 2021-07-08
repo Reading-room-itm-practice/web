@@ -4,5 +4,6 @@ export const navbar = {
   searchButton: 'Search',
   login: 'Log in',
   register: 'Sign up',
-  logout: 'Log out'
+  logout: 'Log out',
+  profile: 'Profile'
 }

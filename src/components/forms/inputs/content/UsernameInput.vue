@@ -4,7 +4,7 @@
 
 <script lang='ts'>
 import { Component } from 'vue-property-decorator'
-import BaseInput from '@/components/forms/BaseInput.vue'
+import BaseInput from '@/components/forms/inputs/BaseInput.vue'
 
 @Component({
   components: { BaseInput }
