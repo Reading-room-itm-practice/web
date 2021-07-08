@@ -3,5 +3,5 @@ export const register = {
   password: 'Password',
   email: 'Email',
   passwordConfirmation: 'Password confirmation',
-  button: 'Register'
+  button: 'Create new account'
 }
