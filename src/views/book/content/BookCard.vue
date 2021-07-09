@@ -1,10 +1,10 @@
 <template>
   <el-row>
     <el-col>
-      <div v-if='book.mainPhotoId'>{{ 'imageeeeee' }}</div>
+      <div>{{ 'imageeeeee' }}</div>
     </el-col>
     <el-col>
-      <el-row>
+      <el-row v-if="!isLoading">
         {{ book.title }}
       </el-row>
       <el-row>
@@ -27,6 +27,8 @@ import { Book } from '@/models/book'
 import axios from 'axios'
 import { Author } from '@/models/author'
 import { Category } from '@/models/category'
+import { Getter } from 'vuex-class'
+import { RequestStateMethods } from '@/enums/RequestStateMethods'
 
 @Component
 export default class BookCard extends Vue {
@@ -69,5 +71,7 @@ export default class BookCard extends Vue {
   async getRates (): Promise<void> {
     console.log('get rates')
   }
+
+  @Getter [RequestStateMethods.isLoading]
 }
 </script>

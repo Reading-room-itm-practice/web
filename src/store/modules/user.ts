@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex, { StoreOptions } from 'vuex'
+import Vuex, { Module, StoreOptions } from 'vuex'
 import { UserState } from '@/models/user'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 
