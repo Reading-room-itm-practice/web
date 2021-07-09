@@ -30,19 +30,19 @@ import { Category } from '@/models/category'
 
 @Component
 export default class BookCard extends Vue {
-  private bookId: number = this.$route.params.id
-  private book: Book = ''
-  private author: Author = ''
-  private category: Category = ''
+  private bookId: string = this.$route.params.id
+  private book: Book | null = null
+  private author: Author | null = null
+  private category: Category | null = null
 
-  async created (): void {
+  async created (): Promise<void> {
     await this.getBook()
     await this.getAuthor()
     await this.getCategory()
     await this.getRates()
   }
 
-  async getBook (): void {
+  async getBook (): Promise<void> {
     await axios.get(`Books/${this.bookId}`).then(
       (response) => {
         this.book = response.data
@@ -50,23 +50,23 @@ export default class BookCard extends Vue {
     )
   }
 
-  async getAuthor (): void {
-    await axios.get(`Authors/${this.book.authorId}`).then(
+  async getAuthor (): Promise<void> {
+    await axios.get(`Authors/${this.book?.authorId}`).then(
       (response) => {
         this.author = response.data
       }
     )
   }
 
-  async getCategory (): void {
-    await axios.get(`Category/${this.book.categoryId}`).then(
+  async getCategory (): Promise<void> {
+    await axios.get(`Category/${this.book?.categoryId}`).then(
       (response) => {
         this.category = response.data
       }
     )
   }
 
-  async getRates (): void {
+  async getRates (): Promise<void> {
     console.log('get rates')
   }
 }
