@@ -1,10 +1,10 @@
 <template>
-  <el-row>
+  <el-row v-if="dataLoaded">
     <el-col>
       <div>{{ 'imageeeeee' }}</div>
     </el-col>
     <el-col>
-      <el-row v-if="!isLoading">
+      <el-row>
         {{ book.title }}
       </el-row>
       <el-row>
@@ -27,8 +27,6 @@ import { Book } from '@/models/book'
 import axios from 'axios'
 import { Author } from '@/models/author'
 import { Category } from '@/models/category'
-import { Getter } from 'vuex-class'
-import { RequestStateMethods } from '@/enums/RequestStateMethods'
 
 @Component
 export default class BookCard extends Vue {
@@ -72,6 +70,8 @@ export default class BookCard extends Vue {
     console.log('get rates')
   }
 
-  @Getter [RequestStateMethods.isLoading]
+  get dataLoaded (): boolean {
+    return this.category !== null && this.author !== null && this.book !== null
+  }
 }
 </script>

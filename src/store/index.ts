@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { user } from '@/store/modules/user'
-import { request } from '@/store/modules/request'
+import { RootState } from '@/models/root'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default new Vuex.Store<RootState>({
   modules: {
     user
   }
