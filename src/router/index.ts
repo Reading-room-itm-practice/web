@@ -7,6 +7,7 @@ import RegisterPage from '../views/register/RegisterPage.vue'
 import LoginPage from '../views/login/LoginPage.vue'
 import ProfilePage from '../views/profile/ProfilePage.vue'
 import AdminPage from '../views/admin/AdminPage.vue'
+import EmailConfirmationPage from '@/views/email_confirmation/EmailConfirmationPage.vue'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,16 @@ const routes: Array<RouteConfig> = [
     meta: {
       middleware: [
         auth
+      ]
+    }
+  },
+  {
+    path: '/emailConfirmation/:activationToken',
+    name: 'EmailConfirmationPage',
+    component: EmailConfirmationPage,
+    meta: {
+      middleware: [
+        guest
       ]
     }
   }
