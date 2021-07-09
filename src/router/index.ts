@@ -58,7 +58,7 @@ const routes: Array<RouteConfig> = [
     }
   },
   {
-    path: '/emailConfirmation/:token',
+    path: '/emailConfirmation/:activationToken',
     name: 'EmailConfirmationPage',
     component: EmailConfirmationPage,
     meta: {
