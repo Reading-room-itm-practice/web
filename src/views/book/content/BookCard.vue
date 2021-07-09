@@ -1,22 +1,27 @@
 <template>
-  <el-row v-if="dataLoaded">
-    <el-col>
-      <div>{{ 'imageeeeee' }}</div>
-    </el-col>
-    <el-col>
-      <el-row>
-        {{ book.title }}
-      </el-row>
-      <el-row>
-        <el-col>
-          {{ author.name }}
-          {{ category.name }}
-          {{ book.releaseYear }}
-        </el-col>
-      </el-row>
-      <el-row>
-        {{ book.description }}
-      </el-row>
+  <el-row v-if="dataLoaded" :gutter='24'>
+    <el-col class='book-bubble' :offset='8'>
+      <el-col class='book-cover' :span='8'>
+        <el-image :src="require('@/assets/logo.png')"></el-image>
+      </el-col>
+      <el-col :span='16'>
+        <el-row>
+          <h1 class='book-title'>
+            {{ book.title }} ({{ book.releaseYear }})
+          </h1>
+        </el-row>
+        <el-row>
+          <el-col :span='24'>
+            <el-link><h2>{{ author.name }}</h2></el-link>
+          </el-col>
+          <el-col :span='24'>
+            <el-link><h2>{{ category.name }}</h2></el-link>
+          </el-col>
+        </el-row>
+        <el-row>
+          <span class='book-desc'>{{ book.description }}</span>
+        </el-row>
+      </el-col>
     </el-col>
   </el-row>
 </template>
