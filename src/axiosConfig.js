@@ -22,6 +22,12 @@ axios.interceptors.response.use(
   error => {
     if (!error.response) {
       Vue.notify(errors.connection)
+    } else {
+      const status = error.response.status
+
+      if (status === 404) {
+        Vue.notify(errors.notFound)
+      }
     }
   }
 )
