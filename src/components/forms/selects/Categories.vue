@@ -2,7 +2,7 @@
   <el-select v-model='selectedCategory' placeholder='Categories' filterable allow-create>
     <el-option v-for='(category, index) in categories'
                :key='index'
-               :value='category.name'
+               :value='{id: category.id, name: category.name}'
                :label='category.name'
     >
       {{ category.name }}
@@ -13,14 +13,14 @@
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
 import axios from 'axios'
-import { Book } from '@/models/book'
+import { Category } from '@/models/category'
 
 @Component
 export default class Categories extends Vue {
-  private categories: Array<Book> = []
-  private selectedCategory: Book = ''
+  private categories: Array<Category> | null = null
+  private selectedCategory: Category | null = null
 
-  async created (): void {
+  async created (): Promise<void> {
     const response = await axios.get('Category')
     if (response) {
       this.categories = response.data
