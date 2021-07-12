@@ -2,7 +2,7 @@
   <el-select v-model='selectedCategory' placeholder='Categories' filterable allow-create>
     <el-option v-for='(category, index) in categories'
                :key='index'
-               :value='{id: category.id, name: category.name}'
+               :value='category'
                :label='category.name'
     >
       {{ category.name }}
