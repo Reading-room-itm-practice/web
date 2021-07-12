@@ -12,13 +12,17 @@
         </el-row>
         <el-row>
           <el-col :span='24'>
+            <hr>
             <el-link><h2>{{ author.name }}</h2></el-link>
+
           </el-col>
           <el-col :span='24'>
+            <hr>
             <el-link><h2>{{ category.name }}</h2></el-link>
           </el-col>
         </el-row>
         <el-row>
+          <hr>
           <span class='book-desc'>{{ book.description }}</span>
         </el-row>
       </el-col>
