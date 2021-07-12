@@ -2,7 +2,7 @@
   <el-select v-model='selectedAuthor' placeholder='Authors' filterable allow-create>
     <el-option v-for='(author, index) in authors'
                :key='index'
-               :value='author.name'
+               :value='author'
                :label='author.name'
                 >
       {{ author.name }}
@@ -11,17 +11,16 @@
 </template>
 
 <script lang='ts'>
-
 import { Vue, Component } from 'vue-property-decorator'
 import { Author } from '@/models/author'
 import axios from 'axios'
 
 @Component
 export default class Authors extends Vue {
-  private authors: Array<Author> = []
-  private selectedAuthor: Author = ''
+  private authors: Array<Author> | null = null
+  private selectedAuthor: Author | null = null
 
-  async created (): void {
+  async created (): Promise<void> {
     const response = await axios.get('Authors')
     if (response) {
       this.authors = response.data

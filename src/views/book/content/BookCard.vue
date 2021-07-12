@@ -48,7 +48,6 @@ export default class BookCard extends Vue {
     await this.getBook()
     await this.getAuthor()
     await this.getCategory()
-    await this.getRates()
   }
 
   async getBook (): Promise<void> {
@@ -73,10 +72,6 @@ export default class BookCard extends Vue {
         this.category = response.data
       }
     )
-  }
-
-  async getRates (): Promise<void> {
-    console.log('get rates')
   }
 
   get dataLoaded (): boolean {
