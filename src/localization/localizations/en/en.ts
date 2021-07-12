@@ -5,6 +5,7 @@ import { profile } from '@/localization/localizations/en/views/profile'
 import { navbar } from '@/localization/localizations/en/components/navbar'
 import { errors } from '@/localization/localizations/en/views/errors'
 import { validation } from '@/localization/localizations/en/components/validation'
+import { emailActivation } from '@/localization/localizations/en/views/emailActivation'
 
 export const english = {
   homepage,
@@ -13,5 +14,6 @@ export const english = {
   login,
   profile,
   errors,
-  validation
+  validation,
+  emailActivation
 }
