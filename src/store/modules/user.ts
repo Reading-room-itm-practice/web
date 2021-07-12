@@ -1,14 +1,15 @@
 import Vue from 'vue'
-import Vuex, { StoreOptions } from 'vuex'
+import Vuex, { Module } from 'vuex'
 import { UserState } from '@/models/user'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
+import { RootState } from '@/models/root'
 
 Vue.use(Vuex)
 
 const TOKEN = 'token'
 const EMAIL = 'email'
 
-export const user: StoreOptions<UserState> = {
+export const user: Module<UserState, RootState> = {
   state: {
     token: localStorage.getItem(TOKEN) || '',
     email: localStorage.getItem(EMAIL) || ''

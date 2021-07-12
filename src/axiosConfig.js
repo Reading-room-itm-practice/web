@@ -1,5 +1,5 @@
 import axios from 'axios'
-import store from './store'
+import store from '@/store'
 import { errors } from '@/plugins/errors'
 import Vue from 'vue'
 
@@ -12,6 +12,7 @@ axios.interceptors.request.use(
     if (token) {
       request.headers.Authorization = `Bearer ${token}`
     }
+
     return request
   },
   error => Promise.reject(error)
@@ -22,6 +23,12 @@ axios.interceptors.response.use(
   error => {
     if (!error.response) {
       Vue.notify(errors.connection)
+    } else {
+      const status = error.response.status
+
+      if (status === 404) {
+        Vue.notify(errors.notFound)
+      }
     }
   }
 )

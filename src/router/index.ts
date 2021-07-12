@@ -7,6 +7,7 @@ import RegisterPage from '../views/register/RegisterPage.vue'
 import LoginPage from '../views/login/LoginPage.vue'
 import ProfilePage from '../views/profile/ProfilePage.vue'
 import AdminPage from '../views/admin/AdminPage.vue'
+import BookPage from '@/views/book/BookPage.vue'
 import EmailConfirmationPage from '@/views/email_confirmation/EmailConfirmationPage.vue'
 
 Vue.use(VueRouter)
@@ -56,6 +57,11 @@ const routes: Array<RouteConfig> = [
         auth
       ]
     }
+  },
+  {
+    path: '/book/:id',
+    name: 'BookPage',
+    component: BookPage
   },
   {
     path: '/emailConfirmation/:activationToken',

@@ -1,4 +1,10 @@
 export type Book = {
   id: number,
-  name: string
+  authorId: number,
+  categoryId: number,
+  mainPhotoId: number | null,
+  photosId: Array<number> | null,
+  title: string,
+  releaseYear: number,
+  description: string
 }
