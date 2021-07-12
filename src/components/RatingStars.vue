@@ -5,6 +5,7 @@
               :key='index'
               @click='rate(index+1, star.isRated)'
     ></el-image>
+    <notifications group='rating' position='bottom center' classes='notification'/>
   </div>
 </template>
 
@@ -37,6 +38,7 @@ export default class RatingStars extends Vue {
     } else {
       this.applyRating(rating)
     }
+    Vue.notify(this.$t('rating.stars'))
   }
 
   private removeRating (): void {
