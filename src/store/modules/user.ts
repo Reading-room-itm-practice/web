@@ -13,7 +13,7 @@ export const user: Module<UserState, RootState> = {
   state: {
     token: localStorage.getItem(TOKEN) || '',
     email: localStorage.getItem(EMAIL) || '',
-    role: ''
+    role: 'User'
   },
   mutations: {
     [UserStoreMethods.setEmail] (state, email: string): void {
@@ -43,6 +43,7 @@ export const user: Module<UserState, RootState> = {
     },
     [UserStoreMethods.destroySession] ({ commit }): void {
       commit(UserStoreMethods.setToken, '')
+      commit(UserStoreMethods.setUserRole, 'User')
     },
     [UserStoreMethods.setUserRole] ({ commit }, role: string): void {
       commit(UserStoreMethods.setUserRole, role)

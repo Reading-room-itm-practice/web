@@ -2,6 +2,8 @@
   <el-row :gutter="24" id="nav">
     <el-col :span="8">
       <router-link to="/">{{ $t('navbar.home') }}</router-link>
+      <br>
+      <router-link to="/admin" v-if="getUserRole.includes('Admin')">Admin</router-link>
     </el-col>
     <el-col :span="10">
       <el-input v-model="searchInput" :placeholder="$t('navbar.searchBar')"></el-input>
@@ -46,5 +48,6 @@ export default class Navbar extends Vue {
 
   @Action [UserStoreMethods.destroySession]
   @Getter [UserStoreMethods.isLoggedIn]
+  @Getter [UserStoreMethods.getUserRole]
 }
 </script>
