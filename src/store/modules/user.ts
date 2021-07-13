@@ -3,6 +3,7 @@ import Vuex, { Module } from 'vuex'
 import { UserState } from '@/models/user'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { RootState } from '@/models/root'
+import { UserRoles } from '@/enums/UserRoles'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,7 @@ export const user: Module<UserState, RootState> = {
   state: {
     token: localStorage.getItem(TOKEN) || '',
     email: localStorage.getItem(EMAIL) || '',
-    role: 'User'
+    role: UserRoles.USER
   },
   mutations: {
     [UserStoreMethods.setEmail] (state, email: string): void {
@@ -43,7 +44,7 @@ export const user: Module<UserState, RootState> = {
     },
     [UserStoreMethods.destroySession] ({ commit }): void {
       commit(UserStoreMethods.setToken, '')
-      commit(UserStoreMethods.setUserRole, 'User')
+      commit(UserStoreMethods.setUserRole, UserRoles.USER)
     },
     [UserStoreMethods.setUserRole] ({ commit }, role: string): void {
       commit(UserStoreMethods.setUserRole, role)

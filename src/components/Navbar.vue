@@ -3,7 +3,7 @@
     <el-col :span="8">
       <router-link to="/">{{ $t('navbar.home') }}</router-link>
       <br>
-      <router-link to="/admin" v-if="getUserRole.includes('Admin')">Admin</router-link>
+      <router-link to="/admin" v-if="getUserRole.includes(UserRoles.ADMIN)">Admin</router-link>
     </el-col>
     <el-col :span="10">
       <el-input v-model="searchInput" :placeholder="$t('navbar.searchBar')"></el-input>
@@ -32,10 +32,12 @@ import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Getter, Action } from 'vuex-class'
 import { SuccessNotification } from '@/notifications/success'
 import { i18n } from '@/localization/i18n'
+import { UserRoles } from '@/enums/UserRoles'
 
 @Component
 export default class Navbar extends Vue {
   private searchInput = ''
+  private UserRoles = UserRoles
 
   private search (): void {
     console.log(`searching for ${this.searchInput}`)
