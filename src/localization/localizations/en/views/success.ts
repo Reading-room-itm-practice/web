@@ -1,4 +1,5 @@
 export const success = {
   group: 'success',
-  title: 'Success'
+  title: 'Success',
+  logout: 'Successful logout'
 }

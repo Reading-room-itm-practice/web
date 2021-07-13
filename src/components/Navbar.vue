@@ -13,7 +13,7 @@
       <div v-if="isLoggedIn">
         <router-link to="/profile">{{ $t('navbar.profile') }}</router-link>
         <br>
-        <el-button @click="setToken('')">{{ $t('navbar.logout') }}</el-button>
+        <el-button @click="logout">{{ $t('navbar.logout') }}</el-button>
       </div>
       <div v-else>
         <router-link to="/login">{{ $t('navbar.login') }}</router-link>
@@ -28,16 +28,23 @@
 import { Vue, Component } from 'vue-property-decorator'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Getter, Action } from 'vuex-class'
+import { SuccessNotification } from '@/notifications/success'
+import { i18n } from '@/localization/i18n'
 
 @Component
 export default class Navbar extends Vue {
-  public searchInput = ''
+  private searchInput = ''
 
-  public search (): void {
+  private search (): void {
     console.log(`searching for ${this.searchInput}`)
   }
 
-  @Action [UserStoreMethods.setToken]
+  private logout (): void {
+    Vue.notify(new SuccessNotification(i18n.t('success.logout')))
+    this.destroySession()
+  }
+
+  @Action [UserStoreMethods.destroySession]
   @Getter [UserStoreMethods.isLoggedIn]
 }
 </script>

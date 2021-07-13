@@ -1,4 +1,5 @@
 export const success = {
   group: 'success',
-  title: 'Erfolg'
+  title: 'Erfolg',
+  logout: 'Erfolgreiche Abmeldung'
 }
