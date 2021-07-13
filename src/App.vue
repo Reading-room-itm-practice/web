@@ -4,7 +4,8 @@
     <el-row>
       <el-col :span="14">
         <router-view/>
-        <notifications group='error' position='bottom center' classes='notification'/>
+        <notifications group='error' position='bottom center' classes='notification-error'/>
+        <notifications group='success' position='bottom center' classes='notification-success'/>
       </el-col>
     </el-row>
   </div>

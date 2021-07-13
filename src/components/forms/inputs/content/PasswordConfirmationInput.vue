@@ -1,5 +1,5 @@
 <template>
-  <base-input v-on:base-input='emitInput($event)' input-type='passwordConfirmation'></base-input>
+  <base-input v-on:base-input='emitInput($event)' input-type='confirmPassword'></base-input>
 </template>
 
 <script lang='ts'>

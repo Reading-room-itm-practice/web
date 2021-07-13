@@ -3,5 +3,8 @@ export enum UserStoreMethods {
   getToken = 'getToken',
   setEmail = 'setEmail',
   setToken = 'setToken',
-  isLoggedIn = 'isLoggedIn'
+  isLoggedIn = 'isLoggedIn',
+  destroySession = 'destroySession',
+  setUserRole = 'setUserRole',
+  getUserRole = 'getUserRole'
 }

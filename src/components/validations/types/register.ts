@@ -4,5 +4,5 @@ export const registerRules = {
   username: rules.username,
   email: rules.email,
   password: rules.password,
-  passwordConfirmation: rules.passwordConfirmation
+  confirmPassword: rules.passwordConfirmation
 }

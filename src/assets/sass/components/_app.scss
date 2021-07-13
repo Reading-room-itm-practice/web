@@ -7,7 +7,7 @@ body {
   margin: 0;
 }
 
-.notification {
+.notification-error {
   padding: 10px;
   margin: 0 5px 5px;
 
@@ -16,4 +16,15 @@ body {
   color: #ffffff;
   background-color: #FF892E;
   border-left: 5px solid #c9600f;
+}
+
+.notification-success {
+  padding: 10px;
+  margin: 0 5px 5px;
+
+  font-size: 12px;
+
+  color: #ffffff;
+  background-color: #82c90f;
+  border-left: 5px solid #1a710b;
 }
