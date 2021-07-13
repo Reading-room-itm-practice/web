@@ -5,7 +5,7 @@
               :key='index'
               @click='rate(index+1, star.isRated)'
     ></el-image>
-    <notifications group='rating' position='bottom center' classes='notification'/>
+    <notifications group='rating' position='bottom center' classes='notification-success'/>
   </div>
 </template>
 
