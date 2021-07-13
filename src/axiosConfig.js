@@ -1,7 +1,8 @@
 import axios from 'axios'
 import store from '@/store'
-import { errors } from '@/plugins/errors'
 import Vue from 'vue'
+import { ErrorNotification } from '@/notifications/error'
+import { i18n } from '@/localization/i18n'
 
 axios.defaults.baseURL = 'https://localhost:44381/api/'
 
@@ -22,13 +23,17 @@ axios.interceptors.response.use(
   response => response,
   error => {
     if (!error.response) {
-      Vue.notify(errors.connection)
+      Vue.notify(new ErrorNotification(i18n.t('errors.networkError')))
     } else {
       const status = error.response.status
 
       if (status === 404) {
-        Vue.notify(errors.notFound)
+        Vue.notify(new ErrorNotification(i18n.t('errors.notFound')))
       }
+
+      Vue.notify(new ErrorNotification(error.response.data.message))
+
+      return error
     }
   }
 )

@@ -24,6 +24,7 @@ import axios from 'axios'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Action, Getter } from 'vuex-class'
 import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
+import { SuccessNotification } from '@/notifications/success'
 
 @Component({
   components: {
@@ -46,13 +47,13 @@ export default class LoginCard extends Vue {
   private sendForm (): void {
     this.$refs.loginForm.validate((valid) => {
       if (valid) {
-        axios.post('/AuthenticateUser/login', this.loginForm).then(
-          (response) => {
-            console.log(`received token ${response.data.message}`)
-            this.setToken(response.data.message)
+        axios.post('/AuthenticateUser/login', this.loginForm).then((response) => {
+          if (response.status === 200) {
+            this.setToken(response.data.content)
+            Vue.notify(new SuccessNotification(response.data.message))
             this.$router.push('/')
           }
-        )
+        })
       }
     })
   }

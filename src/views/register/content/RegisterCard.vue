@@ -11,7 +11,7 @@
         <el-form-item prop='password' :label="$t('register.password')">
           <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
-        <el-form-item prop='passwordConfirmation' :label="$t('register.passwordConfirmation')">
+        <el-form-item prop='confirmPassword' :label="$t('register.passwordConfirmation')">
           <password-confirmation-input v-on:form-input='updateForm($event)'></password-confirmation-input>
         </el-form-item>
         <el-form-item>
@@ -28,6 +28,7 @@ import { EmailInput, UsernameInput, PasswordInput, PasswordConfirmationInput } f
 import { registerRules } from '@/components/validations/types/register'
 import axios from 'axios'
 import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
+import { SuccessNotification } from '@/notifications/success'
 
 @Component({
   components: {
@@ -44,7 +45,7 @@ export default class RegisterCard extends Vue {
     username: '',
     email: '',
     password: '',
-    passwordConfirmation: ''
+    confirmPassword: ''
   }
 
   private updateForm (event: BaseInputInterface): void {
@@ -54,9 +55,11 @@ export default class RegisterCard extends Vue {
   private sendForm (): void {
     this.$refs.registerForm.validate((valid) => {
       if (valid) {
-        axios.post('/AuthenticateUser/register', this.registerForm).then(
-          () => this.$router.push('/login')
-        )
+        axios.post('/AuthenticateUser/register', this.registerForm).then((response) => {
+          if (response.status === 201) {
+            Vue.notify(new SuccessNotification(response.data.message))
+          }
+        })
       }
     })
   }
