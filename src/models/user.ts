@@ -1,4 +1,5 @@
 export type UserState = {
   email: string,
-  token: string
+  token: string,
+  role: string
 }

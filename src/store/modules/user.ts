@@ -12,7 +12,8 @@ const EMAIL = 'email'
 export const user: Module<UserState, RootState> = {
   state: {
     token: localStorage.getItem(TOKEN) || '',
-    email: localStorage.getItem(EMAIL) || ''
+    email: localStorage.getItem(EMAIL) || '',
+    role: ''
   },
   mutations: {
     [UserStoreMethods.setEmail] (state, email: string): void {
@@ -22,12 +23,16 @@ export const user: Module<UserState, RootState> = {
     [UserStoreMethods.setToken] (state, token: string): void {
       state.token = token
       localStorage.setItem(TOKEN, token)
+    },
+    [UserStoreMethods.setUserRole] (state, role: string): void {
+      state.role = role
     }
   },
   getters: {
     [UserStoreMethods.getToken]: (state): string => state.token,
     [UserStoreMethods.getEmail]: (state): string => state.email,
-    [UserStoreMethods.isLoggedIn]: (state): boolean => state.token !== ''
+    [UserStoreMethods.isLoggedIn]: (state): boolean => state.token !== '',
+    [UserStoreMethods.getUserRole]: (state): string => state.role
   },
   actions: {
     [UserStoreMethods.setEmail] ({ commit }, email: string): void {
@@ -38,6 +43,9 @@ export const user: Module<UserState, RootState> = {
     },
     [UserStoreMethods.destroySession] ({ commit }): void {
       commit(UserStoreMethods.setToken, '')
+    },
+    [UserStoreMethods.setUserRole] ({ commit }, role: string): void {
+      commit(UserStoreMethods.setUserRole, role)
     }
   }
 }

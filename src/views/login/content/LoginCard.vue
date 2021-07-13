@@ -25,6 +25,7 @@ import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Action, Getter } from 'vuex-class'
 import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
 import { SuccessNotification } from '@/notifications/success'
+import jwtDecode from 'jwt-decode'
 
 @Component({
   components: {
@@ -34,6 +35,7 @@ import { SuccessNotification } from '@/notifications/success'
 })
 export default class LoginCard extends Vue {
   private validationRules = loginRules
+  private userRoleKey = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
 
   private loginForm = {
     username: '',
@@ -48,6 +50,7 @@ export default class LoginCard extends Vue {
     this.$refs.loginForm.validate((valid) => {
       if (valid) {
         axios.post('/AuthenticateUser/login', this.loginForm).then((response) => {
+          this.setUserRole(jwtDecode(response.data.content)[this.userRoleKey])
           if (response.status === 200) {
             this.setToken(response.data.content)
             Vue.notify(new SuccessNotification(response.data.message))
@@ -59,6 +62,7 @@ export default class LoginCard extends Vue {
   }
 
   @Action [UserStoreMethods.setToken]
+  @Action [UserStoreMethods.setUserRole]
   @Getter [UserStoreMethods.isLoggedIn]
 }
 </script>
