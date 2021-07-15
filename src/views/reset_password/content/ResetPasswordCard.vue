@@ -40,7 +40,7 @@ export default class ResetPasswordCard extends Vue {
   private async sendForm (): Promise<void> {
     await this.$refs.resetPasswordForm.validate((valid) => {
       if (valid) {
-        axios.post('AuthenticateUser/Reset-password-page', null, {
+        axios.post('AuthenticateUser/Forgot-password', null, {
           params: {
             email: this.resetPasswordForm.email
           }
