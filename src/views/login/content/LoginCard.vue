@@ -12,6 +12,10 @@
           <el-button @click='sendForm'>{{ $t('login.button') }}</el-button>
         </el-form-item>
       </el-form>
+      <h2>{{ $t('login.passwordResetMessage') }}</h2>
+      <router-link to='reset-password' class='reset-password'>
+        {{ $t('login.passwordResetAction') }}
+      </router-link>
     </el-col>
   </el-row>
 </template>
