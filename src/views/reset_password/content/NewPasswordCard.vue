@@ -50,14 +50,14 @@ export default class NewPasswordCard extends Vue {
     this.newPasswordForm[event.type] = event.body
   }
 
-  private sendForm (): void {
+  private async sendForm (): Promise<void> {
     const form = {
       token: this.token,
       userName: this.newPasswordForm.username,
       newPassword: this.newPasswordForm.password
     }
 
-    this.$refs.newPasswordForm.validate((valid) => {
+    await this.$refs.newPasswordForm.validate((valid) => {
       if (valid) {
         axios.post('AuthenticateUser/Reset-password-done', form).then((response) => {
           if (response.status === 200) {

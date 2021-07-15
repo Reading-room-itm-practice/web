@@ -50,12 +50,12 @@ export default class LoginCard extends Vue {
     this.loginForm[event.type] = event.body
   }
 
-  private sendForm (): void {
-    this.$refs.loginForm.validate((valid) => {
+  private async sendForm (): Promise<void> {
+    await this.$refs.loginForm.validate((valid) => {
       if (valid) {
         axios.post('/AuthenticateUser/login', this.loginForm).then((response) => {
-          this.setUserRole(jwtDecode(response.data.content)[this.userRoleKey])
           if (response.status === 200) {
+            this.setUserRole(jwtDecode(response.data.content)[this.userRoleKey])
             this.setToken(response.data.content)
             Vue.notify(new SuccessNotification(response.data.message))
             this.$router.push('/')
