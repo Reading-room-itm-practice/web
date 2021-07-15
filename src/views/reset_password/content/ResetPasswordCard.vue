@@ -3,7 +3,7 @@
     <el-col :offset='14' :span='12'>
       <el-form :model='resetPasswordForm' :rules='validationRules' ref='resetPasswordForm'>
         <el-form-item prop='email' :label="$t('register.email')">
-          <email-input v-on:form-input='updateForm($event)' type='password'></email-input>
+          <email-input v-on:form-input='updateForm($event)'></email-input>
         </el-form-item>
         <el-form-item>
           <el-button @click='sendForm'>{{ $t('register.button') }}</el-button>
