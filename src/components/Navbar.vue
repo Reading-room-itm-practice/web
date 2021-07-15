@@ -37,8 +37,7 @@ import { Getter, Action } from 'vuex-class'
 import { SuccessNotification } from '@/notifications/success'
 import { i18n } from '@/localization/i18n'
 import { UserRoles } from '@/enums/UserRoles'
-import axios from 'axios'
-import { BasicResource } from '@/models/resource'
+import { BasicResource } from '@/models/resourceBasic'
 
 @Component
 export default class Navbar extends Vue {
@@ -57,9 +56,14 @@ export default class Navbar extends Vue {
   private search (): void {
     console.log(`searching for ${this.searchInput} ${this.selectedResourceType}`)
     if (this.searchInput && this.selectedResourceType) {
-      axios.get(`Search${this.selectedResourceType}${this.searchInput}`).then((response) =>
-        console.log(response)
-      )
+      this.$router.push({
+        name: 'SearchPage',
+        params: {
+          type: this.selectedResourceType,
+          input: this.searchInput
+        }
+      })
+      this.searchInput = ''
     }
   }
 

@@ -9,6 +9,7 @@ import ProfilePage from '../views/profile/ProfilePage.vue'
 import AdminPage from '../views/admin/AdminPage.vue'
 import BookPage from '@/views/book/BookPage.vue'
 import EmailConfirmationPage from '@/views/email_confirmation/EmailConfirmationPage.vue'
+import SearchPage from '@/views/search/SearchPage.vue'
 
 Vue.use(VueRouter)
 
@@ -72,6 +73,11 @@ const routes: Array<RouteConfig> = [
         guest
       ]
     }
+  },
+  {
+    path: '/search/:input',
+    name: 'SearchPage',
+    component: SearchPage
   }
 ]
 
