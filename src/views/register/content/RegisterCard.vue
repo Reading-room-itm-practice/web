@@ -52,7 +52,7 @@ export default class RegisterCard extends Vue {
     this.registerForm[event.type] = event.body
   }
 
-  private async sendForm (): void {
+  private async sendForm (): Promise<void> {
     await this.$refs.registerForm.validate((valid) => {
       if (valid) {
         axios.post('/AuthenticateUser/register', this.registerForm).then((response) => {
