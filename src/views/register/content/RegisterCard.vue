@@ -15,7 +15,7 @@
           <password-confirmation-input v-on:form-input='updateForm($event)'></password-confirmation-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click='sendForm'>{{ $t('register.button') }}</el-button>
+          <el-button @click='sendForm'>{{ $t('button.register') }}</el-button>
         </el-form-item>
       </el-form>
     </el-col>

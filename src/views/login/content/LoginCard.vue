@@ -9,7 +9,7 @@
           <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click='sendForm'>{{ $t('login.button') }}</el-button>
+          <el-button @click='sendForm'>{{ $t('button.login') }}</el-button>
         </el-form-item>
       </el-form>
       <h2>{{ $t('login.passwordResetMessage') }}</h2>

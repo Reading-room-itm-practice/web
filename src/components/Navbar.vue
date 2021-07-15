@@ -9,7 +9,7 @@
       <el-input v-model="searchInput" :placeholder="$t('navbar.searchBar')"></el-input>
     </el-col>
     <el-col :span="2">
-      <el-button @click="search">{{ $t('navbar.searchButton') }}</el-button>
+      <el-button @click="search">{{ $t('button.search') }}</el-button>
     </el-col>
     <el-col :span="2">
       <div v-if="isLoggedIn">

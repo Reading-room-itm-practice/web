@@ -6,7 +6,7 @@
           <email-input v-on:form-input='updateForm($event)'></email-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click='sendForm'>{{ $t('register.button') }}</el-button>
+          <el-button @click='sendForm'>{{ $t('button.resetPassword') }}</el-button>
         </el-form-item>
       </el-form>
     </el-col>
