@@ -27,6 +27,9 @@
         </el-row>
       </el-col>
     </el-col>
+    <el-col class='book-bubble' :offset='8'>
+      <book-rating :book-id='bookId'></book-rating>
+    </el-col>
   </el-row>
 </template>
 
@@ -36,8 +39,11 @@ import { Book } from '@/models/book'
 import axios from 'axios'
 import { Author } from '@/models/author'
 import { Category } from '@/models/category'
+import BookRating from '@/views/book/content/BookRating.vue'
 
-@Component
+@Component({
+  components: { BookRating }
+})
 export default class BookCard extends Vue {
   private bookId: string = this.$route.params.id
   private book: Book | null = null
