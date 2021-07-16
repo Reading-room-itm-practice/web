@@ -1,11 +1,18 @@
 <template>
   <el-col v-if="dataLoaded">
-    <single-review v-for='review in reviews'
+    <single-review v-for='review in paginatedReviews'
             :key="'userId'+review.id"
             :id='review.id'
             :rating='review.stars'
             :comment='review.content'
     ></single-review>
+    <el-pagination
+      :page-size="perPage"
+      layout="prev, pager, next"
+      @current-change='changePage'
+      :current-page ="currentPage"
+      :total="reviews.length"
+    ></el-pagination>
   </el-col>
 </template>
 
@@ -21,6 +28,9 @@ import SingleReview from '@/views/book/content/Review.vue'
 export default class ReviewCard extends Vue {
   @Prop() readonly bookId
   private reviews: Array<Review> | null = null
+  private paginatedReviews: Array<Review> = []
+  private currentPage = 1
+  private perPage = 5
 
   created (): Promise<void> {
     if (this.bookId) {
@@ -31,9 +41,15 @@ export default class ReviewCard extends Vue {
       }).then((response) => {
         if (response.status === 200) {
           this.reviews = response.data.content
+          this.changePage(1)
         }
       })
     }
+  }
+
+  private changePage (number: number): void {
+    this.paginatedReviews = this.reviews.slice((number - 1) * this.perPage, number * this.perPage)
+    this.currentPage = number
   }
 
   get dataLoaded (): boolean {
