@@ -4,7 +4,7 @@
       <el-form>
           <rating-stars v-on:rated='reviewForm.stars = $event'></rating-stars>
           <el-input type='textarea' v-model='reviewForm.content'></el-input>
-          <el-button @click='sendReview'>Send</el-button>
+          <el-button @click='sendReview'>{{ $t('book.add') }}</el-button>
       </el-form>
     </el-col>
   </el-row>

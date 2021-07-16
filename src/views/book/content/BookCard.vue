@@ -28,6 +28,9 @@
       </el-col>
     </el-col>
     <el-col class='book-bubble' :offset='8'>
+      <h1>
+        {{ $t('book.review') }}
+      </h1>
       <book-rating :book-id='bookId'></book-rating>
     </el-col>
   </el-row>
