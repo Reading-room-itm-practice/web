@@ -29,12 +29,12 @@
     </el-col>
     <el-col class='book-bubble' :offset='8'>
       <el-row>
-      <h1>{{ $t('book.review') }}</h1>
-        <review-card :book-id='bookId'></review-card>
+        <rate-book :book-id='bookId'></rate-book>
       </el-row>
       <hr>
       <el-row>
-        <book-rating :book-id='bookId'></book-rating>
+        <h1>{{ $t('book.review') }}</h1>
+        <review-card :book-id='bookId'></review-card>
       </el-row>
     </el-col>
   </el-row>
@@ -46,11 +46,11 @@ import { Book } from '@/models/book'
 import axios from 'axios'
 import { Author } from '@/models/author'
 import { Category } from '@/models/category'
-import BookRating from '@/views/book/content/BookRating.vue'
+import RateBook from '@/views/book/content/RateBook.vue'
 import ReviewCard from '@/views/book/content/ReviewCard.vue'
 
 @Component({
-  components: { BookRating, ReviewCard }
+  components: { RateBook, ReviewCard }
 })
 export default class BookCard extends Vue {
   private bookId: string = this.$route.params.id

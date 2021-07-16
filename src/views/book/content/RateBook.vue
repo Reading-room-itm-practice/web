@@ -1,9 +1,9 @@
 <template>
-  <el-row v-if="dataLoaded" :gutter='24'>
+  <el-row v-if="dataLoaded" :gutter='24' class='rate-book'>
     <el-col>
       <el-form>
           <rating-stars v-on:rated='reviewForm.stars = $event'></rating-stars>
-          <el-input type='textarea' v-model='reviewForm.content'></el-input>
+          <el-input type='textarea' autosize v-model='reviewForm.content'></el-input>
           <el-button @click='sendReview'>{{ $t('book.add') }}</el-button>
       </el-form>
     </el-col>
@@ -23,7 +23,7 @@ import { SuccessNotification } from '@/notifications/success'
     RatingStars
   }
 })
-export default class BookRating extends Vue {
+export default class RateBook extends Vue {
   @Prop() readonly bookId
   private reviewForm: Review = {
     bookId: this.bookId,
@@ -48,3 +48,9 @@ export default class BookRating extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.rate-book {
+  padding: 20px;
+}
+</style>
