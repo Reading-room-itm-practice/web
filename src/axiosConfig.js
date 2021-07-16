@@ -29,9 +29,9 @@ axios.interceptors.response.use(
 
       if (status === 404) {
         Vue.notify(new ErrorNotification(i18n.t('errors.notFound')))
+      } else {
+        Vue.notify(new ErrorNotification(error.response.data.message))
       }
-
-      Vue.notify(new ErrorNotification(error.response.data.message))
 
       return error
     }
