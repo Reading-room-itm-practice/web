@@ -17,7 +17,7 @@
           </el-col>
           <el-col :span='24'>
             <hr>
-            <el-link><h2>{{ category.name }}</h2></el-link>
+            <router-link class='link' :to="'/category/'+category.id"><h2>{{ category.name }}</h2></router-link>
           </el-col>
         </el-row>
         <el-row>

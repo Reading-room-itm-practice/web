@@ -1,7 +1,7 @@
 <template>
   <el-row v-if='dataLoaded'>
     <el-col :offset='8'>
-      {{ author }}
+      {{ category }}
     </el-col>
   </el-row>
 </template>
@@ -9,16 +9,16 @@
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
 import axios from 'axios'
-import { Author } from '@/models/author'
+import { Category } from '@/models/category'
 
 @Component
-export default class AuthorCard extends Vue {
-  private author: Author | null = null
+export default class CategoryCard extends Vue {
+  private category: Category | null = null
 
   async created (): Promise<void> {
-    await axios.get(`Authors/${this.$route.params.id}`).then((response) => {
+    await axios.get(`Category/${this.$route.params.id}`).then((response) => {
       if (response.status === 200) {
-        this.author = response.data
+        this.category = response.data
       }
     })
   }

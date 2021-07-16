@@ -10,6 +10,7 @@ import AdminPage from '../views/admin/AdminPage.vue'
 import BookPage from '@/views/book/BookPage.vue'
 import EmailConfirmationPage from '@/views/email_confirmation/EmailConfirmationPage.vue'
 import AuthorPage from '@/views/author/AuthorPage.vue'
+import CategoryPage from '@/views/category/CategoryPage.vue'
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,11 @@ const routes: Array<RouteConfig> = [
     path: '/author/:id',
     name: 'AuthorPage',
     component: AuthorPage
+  },
+  {
+    path: '/category/:id',
+    name: 'CategoryPage',
+    component: CategoryPage
   }
 ]
 
