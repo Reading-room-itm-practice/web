@@ -11,6 +11,12 @@
                   :src="require('@/assets/star_full.png')"
                   width
         ></el-image>
+        <el-image class='star'
+                  v-for='starId in (5 - rating)'
+                  :key='starId'
+                  :src="require('@/assets/star_empty.png')"
+                  width
+        ></el-image>
       </el-col>
     </el-row>
     <el-row class='review-border'>
