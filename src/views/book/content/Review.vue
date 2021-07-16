@@ -1,9 +1,32 @@
 <template>
-  <el-row>
-    <el-col>
-
-    </el-col>
-  </el-row>
+  <div class='review'>
+    <el-row class='review-border'>
+      <el-col>
+        <h2>User name timestamp</h2>
+      </el-col>
+      <el-col>
+        <el-image class='star'
+                  v-for='starId in rating'
+                  :key='starId'
+                  :src="require('@/assets/star_full.png')"
+                  width
+        ></el-image>
+      </el-col>
+    </el-row>
+    <el-row class='review-border'>
+      <h5>{{ $t('book.isRead') }} {{ isReadByUser }}</h5>
+    </el-row>
+    <el-row class='review-border'>
+      <el-col>
+        <h4>{{ comment }}</h4>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col class='review-like'>
+        <el-button>+</el-button>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script lang='ts'>
@@ -13,10 +36,8 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class Review extends Vue {
   @Prop() readonly id
   @Prop() readonly rating
-  @Prop() readonly content
+  @Prop() readonly comment
 
-  created (): void {
-
-  }
+  private isReadByUser = true
 }
 </script>

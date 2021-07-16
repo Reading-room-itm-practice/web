@@ -1,6 +1,11 @@
 <template>
   <el-col v-if="dataLoaded">
-    asdas
+    <single-review v-for='review in reviews'
+            :key='review.id'
+            :id='review.id'
+            :rating='review.stars'
+            :comment='review.content'
+    ></single-review>
   </el-col>
 </template>
 
@@ -8,8 +13,11 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import axios from 'axios'
 import { Review } from '@/models/review'
+import SingleReview from '@/views/book/content/Review.vue'
 
-@Component
+@Component({
+  components: { SingleReview }
+})
 export default class ReviewCard extends Vue {
   @Prop() readonly bookId
   private reviews: Array<Review> | null = null
@@ -21,7 +29,6 @@ export default class ReviewCard extends Vue {
           bookId: this.bookId
         }
       }).then((response) => {
-        console.log(response)
         if (response.status === 200) {
           this.reviews = response.data.content
         }
