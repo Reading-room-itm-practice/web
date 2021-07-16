@@ -1,7 +1,7 @@
 <template>
   <el-col v-if="dataLoaded">
     <single-review v-for='review in reviews'
-            :key='review.id'
+            :key="'userId'+review.id"
             :id='review.id'
             :rating='review.stars'
             :comment='review.content'

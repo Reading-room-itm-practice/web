@@ -7,7 +7,7 @@
       <el-col>
         <el-image class='star'
                   v-for='starId in rating'
-                  :key='starId'
+                  :key="'rate'+starId"
                   :src="require('@/assets/star_full.png')"
                   width
         ></el-image>
