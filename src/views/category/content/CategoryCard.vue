@@ -24,7 +24,7 @@ export default class CategoryCard extends Vue {
   }
 
   get dataLoaded (): boolean {
-    return this.author !== null
+    return this.category !== null
   }
 }
 </script>
