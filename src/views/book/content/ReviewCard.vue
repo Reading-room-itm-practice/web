@@ -8,10 +8,13 @@
     ></single-review>
     <el-pagination
       :page-size="perPage"
-      layout="prev, pager, next"
+      layout="sizes, prev, pager, next"
       @current-change='changePage'
+      @size-change="changePerPage"
       :current-page ="currentPage"
       :total="reviews.length"
+      :page-sizes="[5, 10, 15]"
+      popper-class='pagination'
     ></el-pagination>
   </el-col>
 </template>
@@ -50,6 +53,11 @@ export default class ReviewCard extends Vue {
   private changePage (number: number): void {
     this.paginatedReviews = this.reviews?.slice((number - 1) * this.perPage, number * this.perPage)
     this.currentPage = number
+  }
+
+  private changePerPage (pageSize: number): void {
+    this.perPage = pageSize
+    this.paginatedReviews = this.reviews?.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
   }
 
   get dataLoaded (): boolean {
