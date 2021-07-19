@@ -31,7 +31,7 @@ import SingleReview from '@/views/book/content/Review.vue'
 export default class ReviewCard extends Vue {
   @Prop(String) readonly bookId: string | undefined
   private reviews: Array<Review> | null = null
-  private paginatedReviews: Array<Review> | undefined = []
+  private paginatedReviews: Array<Review> | undefined = undefined
   private currentPage = 1
   private perPage = 5
 
@@ -52,11 +52,15 @@ export default class ReviewCard extends Vue {
 
   private changePage (number: number): void {
     this.currentPage = number
-    this.paginatedReviews = this.reviews?.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
+    this.updatePagination()
   }
 
   private changePerPage (pageSize: number): void {
     this.perPage = pageSize
+    this.updatePagination()
+  }
+
+  private updatePagination (): void {
     this.paginatedReviews = this.reviews?.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
   }
 
