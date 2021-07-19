@@ -51,8 +51,8 @@ export default class ReviewCard extends Vue {
   }
 
   private changePage (number: number): void {
-    this.paginatedReviews = this.reviews?.slice((number - 1) * this.perPage, number * this.perPage)
     this.currentPage = number
+    this.paginatedReviews = this.reviews?.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
   }
 
   private changePerPage (pageSize: number): void {
