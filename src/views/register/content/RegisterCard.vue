@@ -15,7 +15,7 @@
           <password-confirmation-input v-on:form-input='updateForm($event)'></password-confirmation-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click='sendForm'>{{ $t('register.button') }}</el-button>
+          <el-button @click='sendForm'>{{ $t('button.register') }}</el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -52,8 +52,8 @@ export default class RegisterCard extends Vue {
     this.registerForm[event.type] = event.body
   }
 
-  private sendForm (): void {
-    this.$refs.registerForm.validate((valid) => {
+  private async sendForm (): Promise<void> {
+    await this.$refs.registerForm.validate((valid) => {
       if (valid) {
         axios.post('/AuthenticateUser/register', this.registerForm).then((response) => {
           if (response.status === 201) {

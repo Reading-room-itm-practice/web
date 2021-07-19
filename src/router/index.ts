@@ -9,6 +9,8 @@ import ProfilePage from '../views/profile/ProfilePage.vue'
 import AdminPage from '../views/admin/AdminPage.vue'
 import BookPage from '@/views/book/BookPage.vue'
 import EmailConfirmationPage from '@/views/email_confirmation/EmailConfirmationPage.vue'
+import ResetPasswordPage from '@/views/reset_password/ResetPasswordPage.vue'
+import NewPasswordCard from '@/views/reset_password/content/NewPasswordCard.vue'
 
 Vue.use(VueRouter)
 
@@ -64,9 +66,29 @@ const routes: Array<RouteConfig> = [
     component: BookPage
   },
   {
-    path: '/emailConfirmation',
+    path: '/email-confirmation',
     name: 'EmailConfirmationPage',
     component: EmailConfirmationPage,
+    meta: {
+      middleware: [
+        guest
+      ]
+    }
+  },
+  {
+    path: '/reset-password',
+    name: 'ResetPasswordPage',
+    component: ResetPasswordPage,
+    meta: {
+      middleware: [
+        guest
+      ]
+    }
+  },
+  {
+    path: '/new-password',
+    name: 'NewPasswordCard',
+    component: NewPasswordCard,
     meta: {
       middleware: [
         guest
