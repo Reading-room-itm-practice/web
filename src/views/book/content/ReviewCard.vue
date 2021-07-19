@@ -26,15 +26,15 @@ import SingleReview from '@/views/book/content/Review.vue'
   components: { SingleReview }
 })
 export default class ReviewCard extends Vue {
-  @Prop() readonly bookId
+  @Prop(String) readonly bookId: string | undefined
   private reviews: Array<Review> | null = null
-  private paginatedReviews: Array<Review> = []
+  private paginatedReviews: Array<Review> | undefined = []
   private currentPage = 1
   private perPage = 5
 
-  created (): Promise<void> {
+  async created (): Promise<void> {
     if (this.bookId) {
-      axios.get('Review', {
+      await axios.get('Reviews', {
         params: {
           bookId: this.bookId
         }
@@ -48,7 +48,7 @@ export default class ReviewCard extends Vue {
   }
 
   private changePage (number: number): void {
-    this.paginatedReviews = this.reviews.slice((number - 1) * this.perPage, number * this.perPage)
+    this.paginatedReviews = this.reviews?.slice((number - 1) * this.perPage, number * this.perPage)
     this.currentPage = number
   }
 
