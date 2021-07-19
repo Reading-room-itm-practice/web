@@ -14,7 +14,6 @@
       :current-page ="currentPage"
       :total="reviews.length"
       :page-sizes="[5, 10, 15]"
-      popper-class='pagination'
     ></el-pagination>
   </el-col>
 </template>
