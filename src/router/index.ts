@@ -10,6 +10,7 @@ import AdminPage from '../views/admin/AdminPage.vue'
 import BookPage from '@/views/book/BookPage.vue'
 import EmailConfirmationPage from '@/views/email_confirmation/EmailConfirmationPage.vue'
 import SearchPage from '@/views/search/SearchPage.vue'
+import SearchResult from '@/views/search/content/SearchResult.vue'
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,11 @@ const routes: Array<RouteConfig> = [
     path: '/search/:input',
     name: 'SearchPage',
     component: SearchPage
+  },
+  {
+    path: '/search-result',
+    name: 'SearchResult',
+    component: SearchResult
   }
 ]
 
