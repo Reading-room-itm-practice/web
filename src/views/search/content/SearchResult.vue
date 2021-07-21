@@ -41,7 +41,6 @@ export default class SearchResult extends Vue {
 
   created (): void {
     this.data = this.$route.params.data
-    console.log(this.data)
     if (!this.data) {
       this.$router.push('/')
     }
@@ -50,7 +49,7 @@ export default class SearchResult extends Vue {
 
   private removeEmptyKeys (): void {
     for (const [key, value] of Object.entries(this.data)) {
-      if (!Array.from(value).length > 0) delete this.data[key]
+      if (!(Array.from(value).length > 0)) delete this.data[key]
     }
   }
 
