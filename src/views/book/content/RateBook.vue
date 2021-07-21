@@ -33,7 +33,7 @@ export default class RateBook extends Vue {
 
   private async sendReview (): Promise<void> {
     if (this.reviewForm && this.reviewForm.stars > 1) {
-      await axios.post('Review', { ...this.reviewForm }).then((response) => {
+      await axios.post('Reviews', { ...this.reviewForm }).then((response) => {
         if (response.status === 201) {
           Vue.notify(new SuccessNotification(this.$t('success.rating')))
         }
