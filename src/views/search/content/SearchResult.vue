@@ -41,6 +41,7 @@ export default class SearchResult extends Vue {
 
   created (): void {
     this.data = this.$route.params.data
+    console.log(this.data)
     if (!this.data) {
       this.$router.push('/')
     }

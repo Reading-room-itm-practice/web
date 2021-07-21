@@ -22,15 +22,26 @@ export default class ListingCard extends Vue {
         searchString: this.searchString
       }
     }).then((response) => {
-      console.log(response)
-      this.$router.push({
-        name: 'SearchResult',
-        params: {
-          data: response.data.content
-        }
-      })
-    }
-    )
+      const type = this.getResourceType()
+      let data = {}
+      if (type === '') {
+        data = response.data.content
+      } else {
+        data[type] = response.data.content
+      }
+      if (response.status === 200 && response.data.content) {
+        this.$router.push({
+          name: 'SearchResult',
+          params: {
+            data: data
+          }
+        })
+      }
+    })
+  }
+
+  private getResourceType (): string {
+    return this.searchType.split('/')[1]
   }
 }
 </script>
