@@ -1,37 +1,36 @@
 <template>
   <div>
-    {{$route.params}}
   </div>
 </template>
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
 import axios from 'axios'
-import { ResourceType } from '@/models/resourceType'
 
 @Component
 export default class ListingCard extends Vue {
-  private data = []
+  private searchType = this.$route.params.type
+  private searchString = this.$route.params.input
+
+  async created (): Promise<void> {
+    await this.getResource()
+  }
 
   private async getResource (): Promise<void> {
-    await axios.get(`Search${this.params.type}${this.params.input}`).then((response) => {
+    await axios.get(`Search${this.searchType}`, {
+      params: {
+        searchString: this.searchString
+      }
+    }).then((response) => {
       console.log(response)
-      this.data = response
+      this.$router.push({
+        name: 'SearchResult',
+        params: {
+          data: response.data.content
+        }
+      })
     }
     )
-  }
-
-  async mounted (): Promise<void> {
-    await this.getResource()
-  }
-
-  async updated (): Promise<void> {
-    await this.getResource()
-  }
-
-  get params (): ResourceType {
-    console.log(this.$route.params)
-    return this.$route.params
   }
 }
 </script>
