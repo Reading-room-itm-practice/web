@@ -5,7 +5,6 @@
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
 import { BasicResource } from '@/models/resourceBasic'
-import { SearchResult } from '@/models/searchResult'
 import axios from 'axios'
 
 @Component
@@ -35,7 +34,7 @@ export default class ListingCard extends Vue {
     })
   }
 
-  private getDataFromResponse (responseData: Array<BasicResource>): SearchResult {
+  private getDataFromResponse (responseData: Array<BasicResource>): Array<BasicResource> {
     const type = this.getResourceType()
     if (type === '') {
       return responseData

@@ -32,12 +32,12 @@
 </template>
 
 <script lang='ts'>
-
 import { Vue, Component } from 'vue-property-decorator'
+import { BasicResource } from '@/models/resourceBasic'
 
 @Component
 export default class SearchResult extends Vue {
-  private data: SearchResult
+  private data: Array<BasicResource> | undefined
 
   created (): void {
     this.data = this.$route.params.data
