@@ -8,7 +8,7 @@ import { BasicResource } from '@/models/resourceBasic'
 import axios from 'axios'
 
 @Component
-export default class ListingCard extends Vue {
+export default class SearchCard extends Vue {
   private searchType = this.$route.params.type
   private searchString = this.$route.params.input
 

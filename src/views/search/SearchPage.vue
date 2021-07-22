@@ -1,16 +1,16 @@
 <template>
-  <listing-card></listing-card>
+  <search-card></search-card>
 </template>
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import ListingCard from '@/views/search/content/SearchCard.vue'
+import SearchCard from '@/views/search/content/SearchCard.vue'
 
 @Component({
   components: {
-    ListingCard
+    SearchCard
   }
 })
-export default class ListingPage extends Vue {
+export default class SearchPage extends Vue {
 }
 </script>
