@@ -24,7 +24,6 @@ export default class ListingCard extends Vue {
       }
     }).then((response) => {
       const data = this.getDataFromResponse(response.data.content)
-      console.log(data)
       if (response.status === 200 && data) {
         this.$router.push({
           name: 'SearchResult',
