@@ -11,6 +11,8 @@ import BookPage from '@/views/book/BookPage.vue'
 import EmailConfirmationPage from '@/views/email_confirmation/EmailConfirmationPage.vue'
 import SearchPage from '@/views/search/SearchPage.vue'
 import SearchResult from '@/views/search/content/SearchResult.vue'
+import ResetPasswordPage from '@/views/reset_password/ResetPasswordPage.vue'
+import NewPasswordCard from '@/views/reset_password/content/NewPasswordCard.vue'
 
 Vue.use(VueRouter)
 
@@ -66,7 +68,7 @@ const routes: Array<RouteConfig> = [
     component: BookPage
   },
   {
-    path: '/emailConfirmation',
+    path: '/email-confirmation',
     name: 'EmailConfirmationPage',
     component: EmailConfirmationPage,
     meta: {
@@ -84,6 +86,26 @@ const routes: Array<RouteConfig> = [
     path: '/search-result',
     name: 'SearchResult',
     component: SearchResult
+  },
+  {
+    path: '/reset-password',
+    name: 'ResetPasswordPage',
+    component: ResetPasswordPage,
+    meta: {
+      middleware: [
+        guest
+      ]
+    }
+  },
+  {
+    path: '/new-password',
+    name: 'NewPasswordCard',
+    component: NewPasswordCard,
+    meta: {
+      middleware: [
+        guest
+      ]
+    }
   }
 ]
 

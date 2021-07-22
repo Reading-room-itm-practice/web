@@ -13,15 +13,13 @@
         <el-button @click="search" slot='append'>{{ $t('navbar.searchButton') }}</el-button>
       </el-input>
     </el-col>
-    <el-col :span="2">
+    <el-col :span="4">
       <div v-if="isLoggedIn">
-        <router-link to="/profile">{{ $t('navbar.profile') }}</router-link>
-        <br>
+        <router-link to="/profile" style='display: block;'>{{ $t('navbar.profile') }}</router-link>
         <el-button @click="logout">{{ $t('navbar.logout') }}</el-button>
       </div>
       <div v-else>
-        <router-link to="/login">{{ $t('navbar.login') }}</router-link>
-        <br>
+        <router-link to="/login" style='display: block;'>{{ $t('navbar.login') }}</router-link>
         <router-link to="/register">{{ $t('navbar.register') }}</router-link>
       </div>
     </el-col>
