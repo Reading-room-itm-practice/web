@@ -37,7 +37,7 @@ import { Vue, Component } from 'vue-property-decorator'
 
 @Component
 export default class SearchResult extends Vue {
-  private data
+  private data: SearchResult
 
   created (): void {
     this.data = this.$route.params.data
@@ -51,10 +51,6 @@ export default class SearchResult extends Vue {
     for (const [key, value] of Object.entries(this.data)) {
       if (!(Array.from(value).length > 0)) delete this.data[key]
     }
-  }
-
-  private goTo (path: string, id: string): void {
-    console.log(`going to ${path.toLocaleLowerCase()}/${id}`)
   }
 }
 </script>
