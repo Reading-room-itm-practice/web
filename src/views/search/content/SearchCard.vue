@@ -4,8 +4,9 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import axios from 'axios'
 import { BasicResource } from '@/models/resourceBasic'
+import { SearchResult } from '@/models/searchResult'
+import axios from 'axios'
 
 @Component
 export default class ListingCard extends Vue {
@@ -13,16 +14,17 @@ export default class ListingCard extends Vue {
   private searchString = this.$route.params.input
 
   async created (): Promise<void> {
-    await this.getResource()
+    await this.fetchResources()
   }
 
-  private async getResource (): Promise<void> {
+  private async fetchResources (): Promise<void> {
     await axios.get(`Search${this.searchType}`, {
       params: {
         searchString: this.searchString
       }
     }).then((response) => {
-      const data = this.getResourcesFromResponse(response.data.content)
+      const data = this.getDataFromResponse(response.data.content)
+      console.log(data)
       if (response.status === 200 && data) {
         this.$router.push({
           name: 'SearchResult',
@@ -34,7 +36,7 @@ export default class ListingCard extends Vue {
     })
   }
 
-  private getResourcesFromResponse (responseData: Array<BasicResource>) {
+  private getDataFromResponse (responseData: Array<BasicResource>): SearchResult {
     const type = this.getResourceType()
     if (type === '') {
       return responseData
