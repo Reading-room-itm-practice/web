@@ -40,9 +40,9 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class Review extends Vue {
-  @Prop() readonly id
-  @Prop() readonly rating
-  @Prop() readonly comment
+  @Prop(Number) readonly id: number | undefined
+  @Prop(Number) readonly rating: number | undefined
+  @Prop(String) readonly comment: string | undefined
 
   private isReadByUser = true
 }
