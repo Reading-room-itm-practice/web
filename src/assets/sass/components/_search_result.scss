@@ -1,0 +1,15 @@
+.search-type {
+  background-color: #efeeee;
+  border-radius: 8px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.search-bubble {
+  border-radius: 8px;
+}
+
+.search-bubble:hover {
+  background-color: rgba(117, 179, 239, 0.2);
+  cursor: pointer;
+}
