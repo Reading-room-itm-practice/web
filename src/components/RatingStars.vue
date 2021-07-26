@@ -34,7 +34,7 @@ export default class RatingStars extends Vue {
 
   private ratingSelected (rating: number, isRated: boolean): void {
     this.rating = rating
-    if (this.rating > 0 && this.rating < 11) {
+    if (this.rating > 0 && this.rating < 6) {
       if (isRated) {
         this.emptyStars()
       } else {
