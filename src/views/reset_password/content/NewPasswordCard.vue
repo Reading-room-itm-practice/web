@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter='24' align='top' justify='center'>
+  <el-row :gutter='24' align='top' justify='center' :class="getTheme + '-login'">
     <el-col :offset='14' :span='12'>
       <el-form :model='newPasswordForm' :rules='validationRules' ref='newPasswordForm'>
         <el-form-item prop='password' :label="$t('register.password')">
@@ -23,6 +23,8 @@ import { newPasswordRules } from '@/components/validations/types/newPassword'
 import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
 import axios from 'axios'
 import { SuccessNotification } from '@/notifications/success'
+import { Getter } from 'vuex-class'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
 
 @Component({
   components: {
@@ -64,5 +66,7 @@ export default class NewPasswordCard extends Vue {
       }
     })
   }
+
+  @Getter [UserStoreMethods.getTheme]
 }
 </script>
