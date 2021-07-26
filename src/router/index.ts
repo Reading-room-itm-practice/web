@@ -9,6 +9,8 @@ import ProfilePage from '../views/profile/ProfilePage.vue'
 import AdminPage from '../views/admin/AdminPage.vue'
 import BookPage from '@/views/book/BookPage.vue'
 import EmailConfirmationPage from '@/views/email_confirmation/EmailConfirmationPage.vue'
+import AuthorPage from '@/views/author/AuthorPage.vue'
+import CategoryPage from '@/views/category/CategoryPage.vue'
 import SearchPage from '@/views/search/SearchPage.vue'
 import SearchResult from '@/views/search/content/SearchResult.vue'
 import ResetPasswordPage from '@/views/reset_password/ResetPasswordPage.vue'
@@ -76,6 +78,16 @@ const routes: Array<RouteConfig> = [
         guest
       ]
     }
+  },
+  {
+    path: '/author/:id',
+    name: 'AuthorPage',
+    component: AuthorPage
+  },
+  {
+    path: '/category/:id',
+    name: 'CategoryPage',
+    component: CategoryPage
   },
   {
     path: '/search/:input',

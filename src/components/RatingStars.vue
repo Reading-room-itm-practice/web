@@ -3,9 +3,8 @@
     <el-image class='star' v-for='(star, index) in stars'
               :src="star.imagePath"
               :key='index'
-              @click='rate(index+1, star.isRated)'
+              @click='ratingSelected(index+1, star.isRated)'
     ></el-image>
-    <notifications group='rating' position='bottom center' classes='notification-success'/>
   </div>
 </template>
 
@@ -17,6 +16,7 @@ import { Star } from '@/models/star'
 export default class RatingStars extends Vue {
   private stars: Array<Star> = []
   private baseStarImagePath: string = require('@/assets/star_empty.png')
+  public rating: number | null = null
 
   created (): void {
     this.drawStars()
@@ -32,24 +32,28 @@ export default class RatingStars extends Vue {
     }
   }
 
-  private rate (rating: number, isRated: boolean): void {
-    if (isRated) {
-      this.removeRating()
-    } else {
-      this.applyRating(rating)
+  private ratingSelected (rating: number, isRated: boolean): void {
+    this.rating = rating
+    if (this.rating > 0 && this.rating < 6) {
+      if (isRated) {
+        this.emptyStars()
+      } else {
+        this.fillStars()
+      }
+      this.$emit('rated', this.rating)
     }
-    Vue.notify(this.$t('rating.stars'))
   }
 
-  private removeRating (): void {
+  private emptyStars (): void {
+    this.rating = 0
     for (let i = 0; i < 5; i++) {
       this.stars[i].imagePath = require('@/assets/star_empty.png')
       this.stars[i].isRated = false
     }
   }
 
-  private applyRating (rating: number): void {
-    for (let i = 0; i < rating; i++) {
+  private fillStars (): void {
+    for (let i = 0; i < this.rating; i++) {
       this.stars[i].imagePath = require('@/assets/star_full.png')
       this.stars[i].isRated = true
     }

@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter='24' align='top' justify='center' id='register'>
+  <el-row :gutter='24' align='top' justify='center' :class="getTheme + '-register register'">
     <el-col :offset='14' :span='12'>
       <el-form :model='registerForm' :rules='validationRules' ref='registerForm'>
         <el-form-item prop='username' :label="$t('register.username')">
@@ -29,6 +29,8 @@ import { registerRules } from '@/components/validations/types/register'
 import axios from 'axios'
 import { BaseInputInterface } from '@/interfaces/BaseInputInterface'
 import { SuccessNotification } from '@/notifications/success'
+import { Getter } from 'vuex-class'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
 
 @Component({
   components: {
@@ -63,5 +65,7 @@ export default class RegisterCard extends Vue {
       }
     })
   }
+
+  @Getter [UserStoreMethods.getTheme]
 }
 </script>

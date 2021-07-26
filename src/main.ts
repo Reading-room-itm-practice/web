@@ -8,10 +8,11 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Notifications from 'vue-notification'
 import globalStyles from './plugins/globalStyles'
 import { i18n } from '@/localization/i18n'
+import locale from 'element-ui/lib/locale/lang/en'
 
 Vue.config.productionTip = false
 
-Vue.use(ElementUI)
+Vue.use(ElementUI, { locale })
 Vue.use(axiosConfig)
 Vue.use(Notifications)
 Vue.use(globalStyles)

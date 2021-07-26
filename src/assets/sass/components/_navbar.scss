@@ -1,11 +1,33 @@
-#nav {
+.nav {
   padding: 20px;
-  background-color: $primary-background-color;
+
+  a {
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+  }
+
+  .break-items {
+    display: block;
+  }
 }
 
-a {
-  font-weight: bold;
-  font-size: 20px;
-  color: $primary-text-color;
-  text-decoration: none;
+.light-navbar {
+  background-color: $primary-background-color;
+
+  a {
+    color: $primary-text-color;
+  }
+
+  .el-switch__label {
+    color: $primary-text-color;
+  }
+}
+
+.dark-navbar {
+  background-color: $darkmode-navbar-color;
+
+  a {
+    color: $darkmode-text-color;
+  }
 }

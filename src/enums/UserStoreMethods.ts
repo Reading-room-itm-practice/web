@@ -6,5 +6,7 @@ export enum UserStoreMethods {
   isLoggedIn = 'isLoggedIn',
   destroySession = 'destroySession',
   setUserRole = 'setUserRole',
-  getUserRole = 'getUserRole'
+  getUserRole = 'getUserRole',
+  getTheme = 'getTheme',
+  setTheme = 'setTheme'
 }

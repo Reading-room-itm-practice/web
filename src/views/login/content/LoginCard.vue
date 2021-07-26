@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter='24' align='top' justify='center' id='login'>
+  <el-row :gutter='24' align='top' justify='center' id='login' :class="getTheme + '-login'">
     <el-col :offset='14' :span='12'>
       <el-form :model='loginForm' :rules='validationRules' ref='loginForm'>
         <el-form-item prop='username' :label="$t('login.username')">
@@ -68,5 +68,6 @@ export default class LoginCard extends Vue {
   @Action [UserStoreMethods.setToken]
   @Action [UserStoreMethods.setUserRole]
   @Getter [UserStoreMethods.isLoggedIn]
+  @Getter [UserStoreMethods.getTheme]
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row :class="getTheme + '-search'">
     <el-col :offset='8'>
       <el-row v-for='(resource, resourceType) in data' :key='resourceType' class='search-type'>
         <div v-if='resource.length > 0'>
@@ -34,6 +34,8 @@
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
 import { BasicResource } from '@/models/resourceBasic'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
+import { Getter } from 'vuex-class'
 
 @Component
 export default class SearchResult extends Vue {
@@ -52,5 +54,7 @@ export default class SearchResult extends Vue {
       if (!(Array.from(value).length > 0)) delete this.data[key]
     }
   }
+
+  @Getter [UserStoreMethods.getTheme]
 }
 </script>

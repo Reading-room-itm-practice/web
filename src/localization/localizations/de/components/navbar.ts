@@ -4,5 +4,7 @@ export const navbar = {
   login: 'Anmelden',
   register: 'Neuen Account erstellen',
   logout: 'Ausloggen',
-  profile: 'Profil'
+  profile: 'Profil',
+  darkmode: 'Dunkel',
+  lightmode: 'Hell'
 }

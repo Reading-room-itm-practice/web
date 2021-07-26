@@ -6,8 +6,8 @@ import { navbar } from '@/localization/localizations/en/components/navbar'
 import { errors } from '@/localization/localizations/en/views/errors'
 import { validation } from '@/localization/localizations/en/components/validation'
 import { emailActivation } from '@/localization/localizations/en/views/emailActivation'
-import { rating } from '@/localization/localizations/en/components/rating'
 import { success } from '@/localization/localizations/en/views/success'
+import { book } from '@/localization/localizations/en/views/book'
 import { button } from '@/localization/localizations/en/components/button'
 
 export const english = {
@@ -19,7 +19,7 @@ export const english = {
   errors,
   validation,
   emailActivation,
-  rating,
   success,
+  book,
   button
 }

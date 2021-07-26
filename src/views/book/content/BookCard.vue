@@ -13,12 +13,11 @@
         <el-row>
           <el-col :span='24'>
             <hr>
-            <el-link><h2>{{ author.name }}</h2></el-link>
-
+            <router-link class='link' :to="'/author/'+author.id"><h2>{{ author.name }}</h2></router-link>
           </el-col>
           <el-col :span='24'>
             <hr>
-            <el-link><h2>{{ category.name }}</h2></el-link>
+            <router-link class='link' :to="'/category/'+category.id"><h2>{{ category.name }}</h2></router-link>
           </el-col>
         </el-row>
         <el-row>
@@ -26,6 +25,16 @@
           <span class='book-desc'>{{ book.description }}</span>
         </el-row>
       </el-col>
+    </el-col>
+    <el-col class='book-bubble' :offset='8'>
+      <el-row>
+        <rate-book :book-id='bookId'></rate-book>
+      </el-row>
+      <hr>
+      <el-row>
+        <h1>{{ $t('book.review') }}</h1>
+        <review-card :book-id='bookId'></review-card>
+      </el-row>
     </el-col>
   </el-row>
 </template>
@@ -36,8 +45,12 @@ import { Book } from '@/models/book'
 import axios from 'axios'
 import { Author } from '@/models/author'
 import { Category } from '@/models/category'
+import RateBook from '@/views/book/content/RateBook.vue'
+import ReviewCard from '@/views/book/content/ReviewCard.vue'
 
-@Component
+@Component({
+  components: { RateBook, ReviewCard }
+})
 export default class BookCard extends Vue {
   private bookId: string = this.$route.params.id
   private book: Book | null = null
@@ -69,7 +82,7 @@ export default class BookCard extends Vue {
   async getCategory (): Promise<void> {
     await axios.get(`Category/${this.book?.categoryId}`).then(
       (response) => {
-        this.category = response.data
+        this.category = response.data.content
       }
     )
   }

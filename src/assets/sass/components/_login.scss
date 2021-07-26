@@ -1,3 +1,28 @@
 .reset-password {
-  color: navy;
+  text-decoration: none;
 }
+
+.light-login {
+  .login {
+    color: $primary-text-color;
+  }
+
+  .reset-password {
+    color: navy;
+  }
+}
+
+.dark-login {
+  .login {
+    color: $darkmode-text-color;
+  }
+
+  .reset-password {
+    color: $darkmode-text-color;
+  }
+
+  .el-form-item__label {
+    color: $darkmode-text-color;
+  }
+}
+
