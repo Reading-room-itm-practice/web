@@ -21,7 +21,5 @@ export const english = {
   emailActivation,
   success,
   book,
-  rating,
-  success,
   button
 }
