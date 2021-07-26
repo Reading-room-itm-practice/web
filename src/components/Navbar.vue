@@ -1,11 +1,15 @@
 <template>
   <el-row :class="getTheme + '-navbar nav'" ref='navbar'>
     <el-col :span="2" :offset='5'>
-      <el-switch v-model="selectedTheme" active-value='dark' inactive-value='light'>
-      </el-switch>
-      <router-link to="/">{{ $t('navbar.home') }}</router-link>
-      <br>
-      <router-link to="/admin" v-if="getUserRole.includes(UserRoles.ADMIN)">Admin</router-link>
+      <router-link to="/" class='break-items'>{{ $t('navbar.home') }}</router-link>
+      <el-switch v-model="selectedTheme"
+                 active-value='dark'
+                 inactive-value='light'
+                 :active-text="$t('navbar.darkmode')"
+                 :inactive-text="$t('navbar.lightmode')"
+                 class='break-items'
+      ></el-switch>
+      <router-link to="/admin" v-if="getUserRole.includes(UserRoles.ADMIN)" class='break-items'>Admin</router-link>
     </el-col>
     <el-col :span="10">
       <el-input v-model="searchInput" :placeholder="$t('navbar.searchBar')">
@@ -17,11 +21,11 @@
     </el-col>
     <el-col :span="4">
       <div v-if="isLoggedIn">
-        <router-link to="/profile" style='display: block;'>{{ $t('navbar.profile') }}</router-link>
+        <router-link to="/profile" class='break-items'>{{ $t('navbar.profile') }}</router-link>
         <el-button @click="logout">{{ $t('navbar.logout') }}</el-button>
       </div>
       <div v-else>
-        <router-link to="/login" style='display: block;'>{{ $t('navbar.login') }}</router-link>
+        <router-link to="/login" class='break-items'>{{ $t('navbar.login') }}</router-link>
         <router-link to="/register">{{ $t('navbar.register') }}</router-link>
       </div>
     </el-col>

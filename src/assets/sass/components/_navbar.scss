@@ -6,12 +6,20 @@
     font-size: 20px;
     text-decoration: none;
   }
+
+  .break-items {
+    display: block;
+  }
 }
 
 .light-navbar {
   background-color: $primary-background-color;
 
   a {
+    color: $primary-text-color;
+  }
+
+  .el-switch__label {
     color: $primary-text-color;
   }
 }
