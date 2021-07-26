@@ -1,6 +1,8 @@
 <template>
-  <el-row id="nav">
+  <el-row :class="'nav ' + getTheme" ref='navbar'>
     <el-col :span="2" :offset='5'>
+      <el-switch v-model="selectedTheme" active-value='dark' inactive-value='light'>
+      </el-switch>
       <router-link to="/">{{ $t('navbar.home') }}</router-link>
       <br>
       <router-link to="/admin" v-if="getUserRole.includes(UserRoles.ADMIN)">Admin</router-link>
@@ -27,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Getter, Action } from 'vuex-class'
 import { SuccessNotification } from '@/notifications/success'
@@ -39,6 +41,7 @@ import { ResourceType } from '@/models/resourceType'
 export default class Navbar extends Vue {
   private searchInput = ''
   private UserRoles = UserRoles
+  private selectedTheme: string | null = null
   private types: Array<ResourceType> = [
     { id: '/', name: 'All' },
     { id: '/Author', name: 'Authors' },
@@ -67,8 +70,15 @@ export default class Navbar extends Vue {
     this.destroySession()
   }
 
+  @Watch('selectedTheme')
+  onPropertyChange (selectedMode: boolean): void {
+    this.setTheme(selectedMode)
+  }
+
   @Action [UserStoreMethods.destroySession]
+  @Action [UserStoreMethods.setTheme]
   @Getter [UserStoreMethods.isLoggedIn]
   @Getter [UserStoreMethods.getUserRole]
+  @Getter [UserStoreMethods.getTheme]
 }
 </script>

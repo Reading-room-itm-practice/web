@@ -1,11 +1,25 @@
-#nav {
+.nav {
   padding: 20px;
-  background-color: $primary-background-color;
+
+  a {
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+  }
 }
 
-a {
-  font-weight: bold;
-  font-size: 20px;
-  color: $primary-text-color;
-  text-decoration: none;
+.light {
+  background-color: $primary-background-color;
+
+  a {
+    color: $primary-text-color;
+  }
+}
+
+.dark {
+  background-color: $darkmode-background-color;
+
+  a {
+    color: $darkmode-text-color;
+  }
 }
