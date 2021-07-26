@@ -1,3 +1,9 @@
-#register {
+.register {
   margin: 20px;
+}
+
+.dark-register {
+  .el-form-item__label {
+    color: $darkmode-text-color;
+  }
 }
