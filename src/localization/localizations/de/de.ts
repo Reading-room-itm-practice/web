@@ -8,6 +8,7 @@ import { validation } from '@/localization/localizations/de/components/validatio
 import { emailActivation } from '@/localization/localizations/de/views/emailActivation'
 import { success } from '@/localization/localizations/de/views/success'
 import { book } from '@/localization/localizations/de/views/book'
+import { button } from '@/localization/localizations/de/components/button'
 
 export const deutsch = {
   homepage,
@@ -19,5 +20,8 @@ export const deutsch = {
   validation,
   emailActivation,
   success,
-  book
+  book,
+  rating,
+  success,
+  button
 }

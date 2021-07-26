@@ -9,9 +9,13 @@
           <password-input v-on:form-input='updateForm($event)' type='password'></password-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click='sendForm'>{{ $t('login.button') }}</el-button>
+          <el-button @click='sendForm'>{{ $t('button.login') }}</el-button>
         </el-form-item>
       </el-form>
+      <h2>{{ $t('login.passwordResetMessage') }}</h2>
+      <router-link to='reset-password' class='reset-password'>
+        {{ $t('login.passwordResetAction') }}
+      </router-link>
     </el-col>
   </el-row>
 </template>
@@ -46,12 +50,12 @@ export default class LoginCard extends Vue {
     this.loginForm[event.type] = event.body
   }
 
-  private sendForm (): void {
-    this.$refs.loginForm.validate((valid) => {
+  private async sendForm (): Promise<void> {
+    await this.$refs.loginForm.validate((valid) => {
       if (valid) {
         axios.post('/AuthenticateUser/login', this.loginForm).then((response) => {
-          this.setUserRole(jwtDecode(response.data.content)[this.userRoleKey])
           if (response.status === 200) {
+            this.setUserRole(jwtDecode(response.data.content)[this.userRoleKey])
             this.setToken(response.data.content)
             Vue.notify(new SuccessNotification(response.data.message))
             this.$router.push('/')

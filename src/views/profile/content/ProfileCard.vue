@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter='24' justify='top' align='center'>
     <el-col :offset='8'>
-      <el-row class='profileBubble' v-if='!isLoggedIn'>
+      <el-row class='profileBubble' v-if='isLoggedIn'>
         <profile-options></profile-options>
       </el-row>
       <el-row>

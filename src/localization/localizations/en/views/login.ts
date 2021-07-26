@@ -1,5 +1,6 @@
 export const login = {
   username: 'Username',
   password: 'Password',
-  button: 'Login'
+  passwordResetMessage: 'Have you forgotten your password?',
+  passwordResetAction: 'Click here to reset password.'
 }
