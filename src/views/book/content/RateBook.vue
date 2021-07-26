@@ -1,5 +1,5 @@
 <template>
-  <el-row v-if="dataLoaded" :gutter='24' class='rate-book'>
+  <el-row :gutter='24' class='rate-book'>
     <el-col>
       <el-form>
           <rating-stars v-on:rated='reviewForm.stars = $event'></rating-stars>
@@ -41,10 +41,6 @@ export default class RateBook extends Vue {
     } else {
       Vue.notify(new ErrorNotification(this.$t('errors.default')))
     }
-  }
-
-  get dataLoaded (): boolean {
-    return true
   }
 }
 </script>
