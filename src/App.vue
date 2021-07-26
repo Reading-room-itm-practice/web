@@ -1,5 +1,5 @@
 <template>
-  <div :class="getTheme + '-app'">
+  <div :class="getTheme + '-app'" ref='app'>
     <navbar></navbar>
     <el-row>
       <el-col :span="14">
@@ -13,7 +13,7 @@
 
 <script lang='ts'>
 import Navbar from '@/components/Navbar'
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 
@@ -23,6 +23,17 @@ import { UserStoreMethods } from '@/enums/UserStoreMethods'
   }
 })
 export default class App extends Vue {
+  @Watch('getTheme')
+  onPropertyChange (theme: string): void {
+    document.body.style.backgroundColor = (theme === 'dark') ? 'rgba(82, 97, 113, 0.93)' : 'white'
+  }
+
   @Getter [UserStoreMethods.getTheme]
 }
 </script>
+
+<style>
+body {
+  background-color: white;
+}
+</style>
