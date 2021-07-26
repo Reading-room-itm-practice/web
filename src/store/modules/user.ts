@@ -48,7 +48,7 @@ export const user: Module<UserState, RootState> = {
       commit(UserStoreMethods.setToken, token)
     },
     [UserStoreMethods.destroySession] ({ commit }): void {
-      commit(UserStoreMethods.setToken, '')
+      commit(UserStoreMethods.setToken, UserStoreDefaults.STRING_EMPTY)
       commit(UserStoreMethods.setUserRole, UserRoles.USER)
     },
     [UserStoreMethods.setUserRole] ({ commit }, role: string): void {
