@@ -8,7 +8,7 @@
   }
 }
 
-.light {
+.light-navbar {
   background-color: $primary-background-color;
 
   a {
@@ -16,8 +16,8 @@
   }
 }
 
-.dark {
-  background-color: $darkmode-background-color;
+.dark-navbar {
+  background-color: $darkmode-navbar-color;
 
   a {
     color: $darkmode-text-color;

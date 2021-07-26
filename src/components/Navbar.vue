@@ -1,5 +1,5 @@
 <template>
-  <el-row :class="'nav ' + getTheme" ref='navbar'>
+  <el-row :class="getTheme + '-navbar nav'" ref='navbar'>
     <el-col :span="2" :offset='5'>
       <el-switch v-model="selectedTheme" active-value='dark' inactive-value='light'>
       </el-switch>

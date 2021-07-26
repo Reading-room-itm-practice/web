@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="getTheme + '-app'">
     <navbar></navbar>
     <el-row>
       <el-col :span="14">
@@ -11,10 +11,18 @@
   </div>
 </template>
 
-<script>
+<script lang='ts'>
 import Navbar from '@/components/Navbar'
+import { Vue, Component } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
 
-export default {
-  components: { Navbar }
+@Component({
+  components: {
+    Navbar
+  }
+})
+export default class App extends Vue {
+  @Getter [UserStoreMethods.getTheme]
 }
 </script>
