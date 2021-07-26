@@ -19,7 +19,7 @@ export default class EmailConfirmationCard extends Vue {
 
   created (): void {
     if (this.token) {
-      axios.get('authenticateuser/confirm-email', {
+      axios.get('Authenticate/Confirm-email', {
         params: {
           token: this.token,
           username: this.username

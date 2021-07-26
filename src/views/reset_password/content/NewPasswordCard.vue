@@ -58,7 +58,7 @@ export default class NewPasswordCard extends Vue {
 
     await this.$refs.newPasswordForm.validate((valid) => {
       if (valid) {
-        axios.post('AuthenticateUser/Reset-password', form).then((response) => {
+        axios.post('Authenticate/Reset-password', form).then((response) => {
           if (response.status === 200) {
             Vue.notify(new SuccessNotification(response.data.message))
           }

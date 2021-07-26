@@ -57,7 +57,7 @@ export default class RegisterCard extends Vue {
   private async sendForm (): Promise<void> {
     await this.$refs.registerForm.validate((valid) => {
       if (valid) {
-        axios.post('/AuthenticateUser/register', this.registerForm).then((response) => {
+        axios.post('/Authenticate/Register', this.registerForm).then((response) => {
           if (response.status === 201) {
             Vue.notify(new SuccessNotification(response.data.message))
           }
