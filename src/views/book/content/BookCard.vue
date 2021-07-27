@@ -74,7 +74,7 @@ export default class BookCard extends Vue {
   async getAuthor (): Promise<void> {
     await axios.get(`Authors/${this.book?.authorId}`).then(
       (response) => {
-        this.author = response.data
+        this.author = response.data.content
       }
     )
   }
