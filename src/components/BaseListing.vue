@@ -1,6 +1,7 @@
 <template>
   <el-row v-if='isDataLoaded'>
     <el-col :offset='4'>
+      <h2>{{ type }}</h2>
       <base-list-element v-for='(record, index) in data' :key='index' :record='record'>{{record}}</base-list-element>
     </el-col>
   </el-row>
@@ -20,6 +21,7 @@ import BaseListElement from '@/components/BaseListElement.vue'
 })
 export default class BaseListing extends Vue {
   @Prop(Array) readonly data: Array<Book | Author | Category> | null
+  @Prop(String) readonly type: string
 
   get isDataLoaded (): boolean {
     return this.data !== null

@@ -21,5 +21,11 @@ export default class SearchPage extends Vue {
       })
     }
   }
+
+  get name (): string {
+    let tag = this.$options._componentTag.split('-')[1]
+    tag = tag.charAt(0).toUpperCase() + tag.slice(1)
+    return tag
+  }
 }
 </script>

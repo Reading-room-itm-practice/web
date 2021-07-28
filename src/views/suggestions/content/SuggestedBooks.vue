@@ -1,13 +1,13 @@
 <template>
   <el-col>
     <el-row>
-      <base-suggestion suggestionType='Books' v-on:got-suggestions='filterBooks($event)'></base-suggestion>
+      <base-suggestion :suggestionType='name' v-on:got-suggestions='filterBooks($event)'></base-suggestion>
     </el-row>
     <el-row v-if='unapprovedBooks'>
-      <base-listing :data='unapprovedBooks'></base-listing>
+      <base-listing :data='unapprovedBooks' :type="`Approved ${name}`"></base-listing>
     </el-row>
     <el-row v-if='approvedBooks'>
-      <base-listing :data='approvedBooks'></base-listing>
+      <base-listing :data='approvedBooks' :type="`Unapproved ${name}`"></base-listing>
     </el-row>
   </el-col>
 </template>
