@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter='24'>
-    <el-col :span='18'>
-      {{ record.id }}
+    <el-col :span='18' class='list-element'>
+      <slot></slot>
     </el-col>
     <el-col :span='6'>
       <el-button type="success" icon="el-icon-check" @click='approve' circle></el-button>

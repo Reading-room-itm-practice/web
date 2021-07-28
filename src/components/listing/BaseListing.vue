@@ -2,7 +2,7 @@
   <el-row v-if='isDataLoaded'>
     <el-col>
       <h2>{{ type }}</h2>
-      <base-list-element v-for='(record, index) in data' :key='index' :record='record'>{{record}}</base-list-element>
+      <base-list-element v-for='(record, index) in data' :key='index' :record='record'></base-list-element>
     </el-col>
   </el-row>
 </template>
@@ -12,7 +12,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 import { Book } from '@/models/book'
 import { Author } from '@/models/author'
 import { Category } from '@/models/category'
-import BaseListElement from '@/components/BaseListElement.vue'
+import BaseListElement from '@/components/listing/BaseListElement.vue'
 
 @Component({
   components: {

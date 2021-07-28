@@ -5,10 +5,18 @@
 <script lang='ts'>
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import axios from 'axios'
+import { SuggestionInterface } from '@/interfaces/SuggestionInterface'
+import { FilteredSuggestions } from '@/models/filteredSuggestions'
+import { Suggestion } from '@/models/suggestion'
 
 @Component
-export default class SearchPage extends Vue {
+export default class SearchPage extends Vue implements SuggestionInterface {
   @Prop(String) readonly suggestionType: string
+
+  private suggestions: FilteredSuggestions = {
+    approved: [],
+    unapproved: []
+  }
 
   async created (): Promise<void> {
     await this.getSuggestions()
@@ -17,7 +25,7 @@ export default class SearchPage extends Vue {
   private async getSuggestions (): Promise<void> {
     if (this.suggestionType) {
       await axios.get(`Admin${this.suggestionType}`).then((response) => {
-        this.$emit('got-suggestions', response.data.content)
+        this.filterSuggestions(response.data.content)
       })
     }
   }
@@ -26,6 +34,14 @@ export default class SearchPage extends Vue {
     let tag = this.$options._componentTag.split('-')[1]
     tag = tag.charAt(0).toUpperCase() + tag.slice(1)
     return tag
+  }
+
+  public filterSuggestions (suggestions: Array<Suggestion>): void {
+    suggestions.filter((suggestion) => {
+      if (suggestion.approved) return this.suggestions.approved.push(suggestion)
+      else return this.suggestions.unapproved.push(suggestion)
+    })
+    this.$emit('completed-filtering', this.suggestions)
   }
 }
 </script>
