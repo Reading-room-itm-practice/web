@@ -55,6 +55,10 @@ export default class SearchResult extends Vue {
     }
   }
 
+  private goTo (resource, id): void {
+    this.$router.push(`${resource.toLowerCase()}/${id}`)
+  }
+
   @Getter [UserStoreMethods.getTheme]
 }
 </script>

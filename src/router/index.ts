@@ -65,7 +65,7 @@ const routes: Array<RouteConfig> = [
     }
   },
   {
-    path: '/book/:id',
+    path: '/books/:id',
     name: 'BookPage',
     component: BookPage
   },
