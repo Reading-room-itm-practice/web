@@ -1,7 +1,14 @@
 <template>
-  <el-col>
+  <el-col :offset='8'>
     <el-row>
-      <suggested-books></suggested-books>
+      <el-tabs v-model="activeTab" @tab-click="changeTab">
+        <el-tab-pane label="Books" name="books">
+          <suggested-books></suggested-books>
+        </el-tab-pane>
+        <el-tab-pane label="Books2" name="books2">
+          asd
+        </el-tab-pane>
+      </el-tabs>
     </el-row>
   </el-col>
 </template>
@@ -16,5 +23,10 @@ import SuggestedBooks from '@/views/suggestions/content/SuggestedBooks.vue'
   }
 })
 export default class SuggestionPage extends Vue {
+  private activeTab = 'books'
+
+  changeTab (tab: Vue): void {
+    this.activeTab = tab.name
+  }
 }
 </script>

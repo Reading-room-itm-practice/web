@@ -2,7 +2,7 @@
   <el-row :gutter='24' justify='center' align='top'>
     <el-col>
       <el-row>
-        <suggested-books />
+        <suggestion-page />
       </el-row>
     </el-col>
   </el-row>
@@ -10,10 +10,10 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import SuggestedBooks from '@/views/suggestions/content/SuggestedBooks.vue'
+import SuggestionPage from '@/views/suggestions/SuggestionPage.vue'
 
 @Component({
-  components: { SuggestedBooks }
+  components: { SuggestionPage }
 })
 export default class AdminCard extends Vue {
 }

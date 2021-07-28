@@ -1,6 +1,6 @@
 <template>
   <el-row v-if='isDataLoaded'>
-    <el-col :offset='4'>
+    <el-col>
       <h2>{{ type }}</h2>
       <base-list-element v-for='(record, index) in data' :key='index' :record='record'>{{record}}</base-list-element>
     </el-col>
