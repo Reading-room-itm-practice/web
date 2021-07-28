@@ -10,7 +10,7 @@ import { FilteredSuggestions } from '@/models/filteredSuggestions'
 import { Suggestion } from '@/models/suggestion'
 
 @Component
-export default class SearchPage extends Vue implements SuggestionInterface {
+export default class BaseSuggestion extends Vue implements SuggestionInterface {
   @Prop(String) readonly suggestionType: string
 
   private suggestions: FilteredSuggestions = {
@@ -42,6 +42,14 @@ export default class SearchPage extends Vue implements SuggestionInterface {
       else return this.suggestions.unapproved.push(suggestion)
     })
     this.$emit('completed-filtering', this.suggestions)
+  }
+
+  public get loadedApproved (): boolean {
+    return this.suggestions.approved.length > 0
+  }
+
+  get loadedUnapproved (): boolean {
+    return this.suggestions.unapproved.length > 0
   }
 }
 </script>
