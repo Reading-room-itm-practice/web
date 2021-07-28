@@ -1,15 +1,34 @@
 <template>
-  <el-row>
-    <base-suggestion suggestionType='Books'></base-suggestion>
-  </el-row>
+  <el-col>
+    <el-row>
+      <base-suggestion suggestionType='Books' v-on:got-suggestions='filterBooks($event)'></base-suggestion>
+    </el-row>
+    <el-row v-if='unapprovedBooks'>
+      <base-listing :data='unapprovedBooks'></base-listing>
+    </el-row>
+    <el-row v-if='approvedBooks'>
+      <base-listing :data='approvedBooks'></base-listing>
+    </el-row>
+  </el-col>
 </template>
 
 <script lang='ts'>
 import { Component } from 'vue-property-decorator'
 import BaseSuggestion from '@/components/BaseSuggestion.vue'
+import { Book } from '@/models/book'
+import BaseListing from '@/components/BaseListing.vue'
 @Component({
-  components: { BaseSuggestion }
+  components: { BaseListing, BaseSuggestion }
 })
 export default class SuggestedBooks extends BaseSuggestion {
+  private approvedBooks: Array<Book> = []
+  private unapprovedBooks: Array<Book> = []
+
+  private filterBooks (books: Array<Book>): void {
+    books.filter((book) => {
+      if (book.approved) return this.approvedBooks.push(book)
+      else return this.unapprovedBooks.push(book)
+    })
+  }
 }
 </script>
