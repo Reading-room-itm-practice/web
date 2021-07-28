@@ -43,13 +43,5 @@ export default class BaseSuggestion extends Vue implements SuggestionInterface {
     })
     this.$emit('completed-filtering', this.suggestions)
   }
-
-  public get loadedApproved (): boolean {
-    return this.suggestions.approved.length > 0
-  }
-
-  get loadedUnapproved (): boolean {
-    return this.suggestions.unapproved.length > 0
-  }
 }
 </script>
