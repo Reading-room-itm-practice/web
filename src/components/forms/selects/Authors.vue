@@ -21,9 +21,9 @@ export default class Authors extends Vue {
   private selectedAuthor: Author | null = null
 
   async created (): Promise<void> {
-    const response = await axios.get('Authors')
+    const response = await axios.get('AdminAuthors')
     if (response) {
-      this.authors = response.data
+      this.authors = response.data.content
     }
   }
 }

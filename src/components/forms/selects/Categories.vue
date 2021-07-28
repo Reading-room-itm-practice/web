@@ -21,9 +21,9 @@ export default class Categories extends Vue {
   private selectedCategory: Category | null = null
 
   async created (): Promise<void> {
-    const response = await axios.get('Category')
+    const response = await axios.get('AdminCategory')
     if (response) {
-      this.categories = response.data
+      this.categories = response.data.content
     }
   }
 }

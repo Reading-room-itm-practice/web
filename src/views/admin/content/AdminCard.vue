@@ -2,10 +2,7 @@
   <el-row :gutter='24' justify='center' align='top'>
     <el-col>
       <el-row>
-        <authors></authors>
-      </el-row>
-      <el-row>
-        <categories></categories>
+        <suggested-books />
       </el-row>
     </el-col>
   </el-row>
@@ -13,11 +10,10 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
-import Authors from '@/components/forms/selects/Authors.vue'
-import Categories from '@/components/forms/selects/Categories.vue'
+import SuggestedBooks from '@/views/suggestions/content/SuggestedBooks.vue'
 
 @Component({
-  components: { Categories, Authors }
+  components: { SuggestedBooks }
 })
 export default class AdminCard extends Vue {
 }
