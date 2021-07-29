@@ -16,18 +16,18 @@
 <script lang='ts'>
 import { Component } from 'vue-property-decorator'
 import BaseSuggestion from '@/components/BaseSuggestion.vue'
-import { Book } from '@/models/book'
+import { Filtered } from '@/models/suggestions/filtered'
 import BaseListing from '@/components/listing/BaseListing.vue'
-import { FilteredSuggestions } from '@/models/filteredSuggestions'
+import { BookSuggestion } from '@/models/suggestions/bookSuggestion'
 
 @Component({
   components: { BaseListing, BaseSuggestion }
 })
 export default class SuggestedBooks extends BaseSuggestion {
-  private approvedBooks: Array<Book> = []
-  private unapprovedBooks: Array<Book> = []
+  private approvedBooks: Array<BookSuggestion> = []
+  private unapprovedBooks: Array<BookSuggestion> = []
 
-  private assignToBooks (books: FilteredSuggestions): void {
+  private assignToBooks (books: Filtered<BookSuggestion>): void {
     this.approvedBooks = books.approved
     this.unapprovedBooks = books.unapproved
   }
