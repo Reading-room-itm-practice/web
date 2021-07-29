@@ -1,3 +1,5 @@
+import { Suggestion } from '@/models/suggestion'
+
 export interface SuggestionInterface {
-  filterBooks(): void
+  filterSuggestions(suggestions: Array<Suggestion>): void
 }
