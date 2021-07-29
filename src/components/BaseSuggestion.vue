@@ -13,6 +13,7 @@ import { Suggestion } from '@/models/suggestions/suggestion'
 export default class BaseSuggestion extends Vue implements SuggestionInterface {
   @Prop(String) readonly suggestionType: string | undefined
 
+  private data: Array<Suggestion> | null = null
   private suggestions: FilteredSuggestions = {
     approved: [],
     unapproved: []
@@ -20,12 +21,13 @@ export default class BaseSuggestion extends Vue implements SuggestionInterface {
 
   async created (): Promise<void> {
     await this.getSuggestions()
+    this.filterSuggestions()
   }
 
   private async getSuggestions (): Promise<void> {
     if (this.suggestionType) {
       await axios.get(`Admin${this.suggestionType}`).then((response) => {
-        this.filterSuggestions(response.data.content)
+        this.data = response.data.content
       })
     }
   }
@@ -36,8 +38,8 @@ export default class BaseSuggestion extends Vue implements SuggestionInterface {
     return tag
   }
 
-  public filterSuggestions (suggestions: Array<Suggestion>): void {
-    suggestions.filter((suggestion) => {
+  public filterSuggestions (): void {
+    this.data.filter((suggestion) => {
       if (suggestion.approved) return this.suggestions.approved.push(suggestion)
       else return this.suggestions.unapproved.push(suggestion)
     })
