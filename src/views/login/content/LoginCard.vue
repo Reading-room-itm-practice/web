@@ -51,7 +51,7 @@ export default class LoginCard extends Vue {
   }
 
   private async sendForm (): Promise<void> {
-    await this.$refs.loginForm.validate((valid) => {
+    await this.$refs.loginForm?.validate((valid: boolean) => {
       if (valid) {
         axios.post('/Authenticate/Login', this.loginForm).then((response) => {
           if (response.status === 200) {
