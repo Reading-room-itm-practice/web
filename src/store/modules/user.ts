@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex, { Module } from 'vuex'
-import { UserState } from '@/models/userState'
+import { UserState } from '@/models/states/user'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { RootState } from '@/models/root'
 import { UserRoles } from '@/enums/UserRoles'
