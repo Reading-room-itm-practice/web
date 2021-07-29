@@ -6,12 +6,12 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import axios from 'axios'
 import { SuggestionInterface } from '@/interfaces/SuggestionInterface'
-import { FilteredSuggestions } from '@/models/filteredSuggestions'
-import { Suggestion } from '@/models/suggestion'
+import { FilteredSuggestions } from '@/models/suggestions/filteredSuggestions'
+import { Suggestion } from '@/models/suggestions/suggestion'
 
 @Component
 export default class BaseSuggestion extends Vue implements SuggestionInterface {
-  @Prop(String) readonly suggestionType: string
+  @Prop(String) readonly suggestionType: string | undefined
 
   private suggestions: FilteredSuggestions = {
     approved: [],
