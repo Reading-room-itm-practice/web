@@ -7,7 +7,7 @@
     </el-row>
       <el-row v-if='loadedUnapproved'>
         <base-listing :type="`Unapproved ${name}`">
-          <base-list-element v-for='(book, index) in books.unapproved' :key='index' :record='book'>
+          <base-list-element :route='route' v-for='(book, index) in books.unapproved' :key='index' :record='book'>
             <el-collapse-item :title='book.title'>
               <book-listing :book='book'></book-listing>
             </el-collapse-item>
@@ -16,7 +16,7 @@
       </el-row>
       <el-row v-if='loadedApproved'>
         <base-listing :type="`Approved ${name}`">
-          <base-list-element v-for='(book, index) in books.approved' :key='index' :record='book'>
+          <base-list-element :route='route' v-for='(book, index) in books.approved' :key='index' :record='book'>
             <el-collapse-item :title='book.title'>
               <book-listing :book='book'></book-listing>
             </el-collapse-item>
@@ -41,6 +41,7 @@ import BookListing from '@/components/listing/BookListing.vue'
   components: { BaseListing, BaseSuggestion, BaseListElement, BookDisplay, BookListing }
 })
 export default class SuggestedBooks extends BaseSuggestion {
+  private route = 'Books'
   private active = []
   private books: Filtered<BookSuggestion> = {
     approved: [],
