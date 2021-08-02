@@ -42,11 +42,13 @@ export default class BaseSuggestion extends Vue implements SuggestionInterface {
   }
 
   public filterSuggestions (): void {
-    this.data.filter((suggestion) => {
-      if (suggestion.approved) return this.suggestions.approved.push(suggestion)
-      else return this.suggestions.unapproved.push(suggestion)
-    })
-    this.$emit('completed-filtering', this.suggestions)
+    if (this.data) {
+      this.data.filter((suggestion) => {
+        if (suggestion.approved) return this.suggestions.approved.push(suggestion)
+        else return this.suggestions.unapproved.push(suggestion)
+      })
+      this.$emit('completed-filtering', this.suggestions)
+    }
   }
 }
 </script>

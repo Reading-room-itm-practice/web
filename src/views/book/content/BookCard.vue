@@ -5,9 +5,7 @@
         <el-image :src="require('@/assets/logo.png')"></el-image>
       </el-col>
       <el-col :span='16'>
-        <book-display :title="book.title"
-                      :releaseYear="book.releaseYear"
-                      :description="book.description"
+        <book-display :book="book"
                       :author="author"
                       :category="category"
         ></book-display>
@@ -35,6 +33,8 @@ import { Category } from '@/models/category'
 import RateBook from '@/views/book/content/RateBook.vue'
 import ReviewCard from '@/views/book/content/ReviewCard.vue'
 import BookDisplay from '@/components/BookDisplay.vue'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
+import { Getter } from 'vuex-class'
 
 @Component({
   components: { BookDisplay, RateBook, ReviewCard }
@@ -78,5 +78,7 @@ export default class BookCard extends Vue {
   get dataLoaded (): boolean {
     return this.category !== null && this.author !== null && this.book !== null
   }
+
+  @Getter [UserStoreMethods.getUserRole]
 }
 </script>

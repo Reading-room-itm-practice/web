@@ -6,11 +6,11 @@
     </el-tab-pane>
     <el-tab-pane label="Categories" name="categories">
       <span slot="label"><el-image :src="require('@/assets/text.png')" class='tab-image'></el-image></span>
-      Cats
+      <suggested-categories></suggested-categories>
     </el-tab-pane>
     <el-tab-pane label="Authors" name="authors">
       <span slot="label"><el-image :src="require('@/assets/man.png')" class='tab-image'></el-image></span>
-      Authors
+      <suggested-authors></suggested-authors>
     </el-tab-pane>
   </el-tabs>
 </template>
@@ -18,9 +18,13 @@
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
 import SuggestedBooks from '@/views/suggestions/content/SuggestedBooks.vue'
+import SuggestedCategories from '@/views/suggestions/content/SuggestedCategories.vue'
+import SuggestedAuthors from '@/views/suggestions/content/SuggestedAuthors.vue'
 
 @Component({
   components: {
+    SuggestedAuthors,
+    SuggestedCategories,
     SuggestedBooks
   }
 })

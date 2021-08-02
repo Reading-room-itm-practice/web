@@ -1,14 +1,22 @@
 <template>
   <el-col>
     <el-row>
-      <base-suggestion :suggestionType='name' v-on:completed-filtering='assignToBooks($event)'
+      <base-suggestion :suggestionType='name' v-on:completed-filtering='books = $event'
       ></base-suggestion>
     </el-row>
     <el-row v-if='loadedUnapproved'>
-      <base-listing :data='unapprovedBooks' :type="`Approved ${name}`"></base-listing>
+      <base-listing :type="`Unapproved ${name}`">
+        <base-list-element v-for='(book, index) in books.unapproved' :key='index' :record='book'>
+          <book-listing :book='book'></book-listing>
+        </base-list-element>
+      </base-listing>
     </el-row>
     <el-row v-if='loadedApproved'>
-      <base-listing :data='approvedBooks' :type="`Unapproved ${name}`"></base-listing>
+      <base-listing :type="`Approved ${name}`">
+        <base-list-element v-for='(book, index) in books.approved' :key='index' :record='book'>
+          <book-listing :book='book'></book-listing>
+        </base-list-element>
+      </base-listing>
     </el-row>
   </el-col>
 </template>
@@ -19,25 +27,25 @@ import BaseSuggestion from '@/components/BaseSuggestion.vue'
 import { Filtered } from '@/models/suggestions/filtered'
 import BaseListing from '@/components/listing/BaseListing.vue'
 import { BookSuggestion } from '@/models/suggestions/bookSuggestion'
+import BookDisplay from '@/components/BookDisplay.vue'
+import BaseListElement from '@/components/listing/BaseListElement.vue'
+import BookListing from '@/components/listing/BookListing.vue'
 
 @Component({
-  components: { BaseListing, BaseSuggestion }
+  components: { BaseListing, BaseSuggestion, BaseListElement, BookDisplay, BookListing }
 })
 export default class SuggestedBooks extends BaseSuggestion {
-  private approvedBooks: Array<BookSuggestion> = []
-  private unapprovedBooks: Array<BookSuggestion> = []
-
-  private assignToBooks (books: Filtered<BookSuggestion>): void {
-    this.approvedBooks = books.approved
-    this.unapprovedBooks = books.unapproved
+  private books: Filtered<BookSuggestion> = {
+    approved: [],
+    unapproved: []
   }
 
   get loadedApproved (): boolean {
-    return this.approvedBooks.length > 0
+    return this.books.approved.length > 0
   }
 
   get loadedUnapproved (): boolean {
-    return this.unapprovedBooks.length > 0
+    return this.books.unapproved.length > 0
   }
 }
 </script>

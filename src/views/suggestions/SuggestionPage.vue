@@ -1,6 +1,6 @@
 <template>
   <el-col :offset='8'>
-    <el-row>
+    <el-row :gutter='24'>
       <suggestion-card></suggestion-card>
     </el-row>
   </el-col>

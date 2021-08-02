@@ -20,18 +20,18 @@ import { Author } from '@/models/author'
 
 @Component
 export default class BaseListElement extends Vue {
-  @Prop(Object) readonly record: Book | Category | Author
+  @Prop(Object) readonly record: Book | Category | Author | undefined
 
   private approve (): Promise<void> {
-    console.log(`approve ${this.record.id}`)
+    console.log(`approve ${this.record?.id}`)
   }
 
   private edit (): Promise<void> {
-    console.log(`edit ${this.record.id}`)
+    console.log(`edit ${this.record?.id}`)
   }
 
   private eradicate (): Promise<void> {
-    console.log(`eradicate ${this.record.id}`)
+    console.log(`eradicate ${this.record?.id}`)
   }
 }
 </script>
