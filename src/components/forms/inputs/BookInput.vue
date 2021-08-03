@@ -26,7 +26,7 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-image :src="require('@/assets/plus.png')" @click="sendForm" class='add-image'></el-image>
+        <el-image :src="require('@/assets/plus.png')" @click="$emit('form-validated', form, type)" class='add-image'></el-image>
       </el-row>
     </h2>
   </el-col>
@@ -41,15 +41,12 @@ import Categories from '@/components/forms/selects/Categories.vue'
   components: { Categories, Authors }
 })
 export default class BookInput extends Vue {
+  private type = 'Books'
   private form = {
     title: '',
     author: '',
     category: '',
     description: ''
-  }
-
-  private sendForm (): void {
-    console.log(this.form)
   }
 }
 </script>

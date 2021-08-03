@@ -8,10 +8,6 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="8">Biography</el-col>
-        <el-col :span="16">
-          <el-input type="textarea" v-model="form.bio"/>
-        </el-col>
       </el-row>
       <el-row>
         <el-image :src="require('@/assets/plus.png')" @click="$emit('form-validated', form, type)" class='add-image'></el-image>
@@ -24,11 +20,10 @@
 
 import { Vue, Component } from 'vue-property-decorator'
 @Component
-export default class AuthorInput extends Vue {
-  private type = 'Authors'
+export default class CategoryInput extends Vue {
+  private type = 'Category'
   private form = {
-    name: '',
-    bio: ''
+    name: ''
   }
 }
 </script>

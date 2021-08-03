@@ -8,5 +8,7 @@ export enum UserStoreMethods {
   setUserRole = 'setUserRole',
   getUserRole = 'getUserRole',
   getTheme = 'getTheme',
-  setTheme = 'setTheme'
+  setTheme = 'setTheme',
+  getRouteModifier = 'getRouteModifier',
+  isAdmin = 'isAdmin'
 }
