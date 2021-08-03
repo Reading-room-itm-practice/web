@@ -34,12 +34,11 @@ import { Component } from 'vue-property-decorator'
 import BaseListing from '@/components/listing/BaseListing.vue'
 import BaseSuggestion from '@/components/BaseSuggestion.vue'
 import BaseListElement from '@/components/listing/BaseListElement.vue'
-import BookDisplay from '@/components/BookDisplay.vue'
 import { Filtered } from '@/models/suggestions/filtered'
 import { AuthorSuggestion } from '@/models/suggestions/authorSuggestion'
 
 @Component({
-  components: { BaseListing, BaseSuggestion, BaseListElement, BookDisplay }
+  components: { BaseListing, BaseSuggestion, BaseListElement }
 })
 export default class SuggestedAuthors extends BaseSuggestion {
   private route = 'Authors'
