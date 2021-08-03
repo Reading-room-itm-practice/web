@@ -1,5 +1,9 @@
 <template>
-  <el-select v-model='selectedAuthor' placeholder='Authors' filterable allow-create>
+  <el-select v-model='selectedAuthor'
+             placeholder='Authors'
+             filterable
+             @change="$emit('author-selected', selectedAuthor)"
+  >
     <el-option v-for='(author, index) in authors'
                :key='index'
                :value='author'
@@ -21,7 +25,7 @@ export default class Authors extends Vue {
   private selectedAuthor: Author | null = null
 
   async created (): Promise<void> {
-    const response = await axios.get('AdminAuthors')
+    const response = await axios.get('Authors')
     if (response) {
       this.authors = response.data.content
     }

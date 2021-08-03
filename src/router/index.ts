@@ -15,6 +15,7 @@ import SearchPage from '@/views/search/SearchPage.vue'
 import SearchResult from '@/views/search/content/SearchResult.vue'
 import ResetPasswordPage from '@/views/reset_password/ResetPasswordPage.vue'
 import NewPasswordCard from '@/views/reset_password/content/NewPasswordCard.vue'
+import AddSuggestion from '@/views/suggestions/content/AddSuggestion.vue'
 
 Vue.use(VueRouter)
 
@@ -118,6 +119,11 @@ const routes: Array<RouteConfig> = [
         guest
       ]
     }
+  },
+  {
+    path: '/add-suggestion',
+    name: 'AddSuggestion',
+    component: AddSuggestion
   }
 ]
 

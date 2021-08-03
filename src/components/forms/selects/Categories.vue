@@ -1,5 +1,9 @@
 <template>
-  <el-select v-model='selectedCategory' placeholder='Categories' filterable allow-create>
+  <el-select v-model='selectedCategory'
+             placeholder='Categories'
+             filterable
+             @change="$emit('category-selected', selectedCategory)"
+  >
     <el-option v-for='(category, index) in categories'
                :key='index'
                :value='category'
@@ -21,7 +25,7 @@ export default class Categories extends Vue {
   private selectedCategory: Category | null = null
 
   async created (): Promise<void> {
-    const response = await axios.get('AdminCategory')
+    const response = await axios.get('Category')
     if (response) {
       this.categories = response.data.content
     }
