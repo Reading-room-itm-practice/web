@@ -1,10 +1,10 @@
 <template>
   <el-col>
     <el-collapse v-model='active'>
-    <el-row>
-      <base-suggestion :suggestionType='name' v-on:completed-filtering='books = $event'
-      ></base-suggestion>
-    </el-row>
+      <el-row>
+        <base-suggestion :suggestionType='name' v-on:completed-filtering='books = $event'
+        ></base-suggestion>
+      </el-row>
       <el-row v-if='loadedUnapproved'>
         <base-listing :type="`Unapproved ${name}`">
           <base-list-element :route='route' v-for='(book, index) in books.unapproved' :key='index' :record='book'>
