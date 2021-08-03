@@ -2,13 +2,13 @@
   <el-col :offset='8'>
     <el-collapse v-model="activeSuggestionType" accordion>
       <el-collapse-item title="Book">
-        <book-input v-on:form-validated='sendSuggestion'/>
+        <book-input v-on:form-validated='sendSuggestionForm'/>
       </el-collapse-item>
       <el-collapse-item title="Author">
-        <author-input v-on:form-validated='sendSuggestion'/>
+        <author-input v-on:form-validated='sendSuggestionForm'/>
       </el-collapse-item>
       <el-collapse-item title="Category">
-        <category-input v-on:form-validated='sendSuggestion'/>
+        <category-input v-on:form-validated='sendSuggestionForm'/>
       </el-collapse-item>
     </el-collapse>
   </el-col>
@@ -31,10 +31,10 @@ import { SuccessNotification } from '@/notifications/success'
 export default class AddSuggestion extends Vue {
   private activeSuggestionType = []
 
-  private async sendSuggestion (form, route: string): Promise<void> {
-    if (this.isAdmin) form.approved = true
-    console.log(form)
-    await axios.post(`${this.getRouteModifier}${route}`, form).then((response) => {
+  private async sendSuggestionForm (event): Promise<void> {
+    console.log(event)
+    if (this.isAdmin) event.form.approved = true
+    await axios.post(`${this.getRouteModifier}${event.route}`, event.form).then((response) => {
       if (response.status === 201) {
         Vue.notify(new SuccessNotification(response.data.message))
       }
