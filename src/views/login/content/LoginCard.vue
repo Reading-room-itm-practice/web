@@ -42,8 +42,8 @@ export default class LoginCard extends Vue {
   private userRoleKey = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
 
   private loginForm = {
-    username: 'FirstAdmin',
-    password: 'S3cretP@@3'
+    username: '',
+    password: ''
   }
 
   private updateForm (event: BaseInputInterface): void {

@@ -25,7 +25,7 @@ export default class BaseListElement extends Vue {
   @Prop(String) readonly route: string | undefined
 
   private async approve (): Promise<void> {
-    this.record.approved = true
+    this.record.approved = !this.record.approved
     await axios.put(`Admin${this.route}/${this.record?.id}`, this.record).then((res) => console.log(res))
     console.log(`approve ${this.record?.id}`)
   }
@@ -35,7 +35,7 @@ export default class BaseListElement extends Vue {
   }
 
   private async eradicate (): Promise<void> {
-    // await axios.delete
+    await axios.delete(`Admin${this.route}/${this.record?.id}`)
     console.log(`eradicate ${this.record?.id}`)
   }
 }
