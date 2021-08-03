@@ -1,19 +1,31 @@
 <template>
   <el-col>
-    <el-row>
-      <base-suggestion :suggestionType='name' v-on:completed-filtering='authors = $event'
-      ></base-suggestion>
-    </el-row>
-    <el-row v-if='loadedUnapproved'>
-      <base-listing :type="`Unapproved ${name}`">
-        {{ authors.unapproved }}
-      </base-listing>
-    </el-row>
-    <el-row v-if='loadedApproved'>
-      <base-listing :type="`Approved ${name}`">
-        {{ authors.approved }}
-      </base-listing>
-    </el-row>
+    <el-collapse v-model='active'>
+      <el-row>
+        <base-suggestion :suggestionType='name' v-on:completed-filtering='authors = $event'
+        ></base-suggestion>
+      </el-row>
+      <el-row v-if='loadedUnapproved'>
+        <base-listing :type="`Unapproved ${name}`">
+          <base-list-element :route='route' v-for='(author, index) in authors.unapproved' :key='index' :record='author'>
+            <el-collapse-item :title='author.name'>
+              <h2>{{ author.name }}</h2>
+              <h3>{{ author.biography }}</h3>
+            </el-collapse-item>
+          </base-list-element>
+        </base-listing>
+      </el-row>
+      <el-row v-if='loadedApproved'>
+        <base-listing :type="`Approved ${name}`">
+          <base-list-element :route='route' v-for='(author, index) in authors.approved' :key='index' :record='author'>
+            <el-collapse-item :title='author.name'>
+              <h2>{{ author.name }}</h2>
+              <h3>{{ author.biography }}</h3>
+            </el-collapse-item>
+          </base-list-element>
+        </base-listing>
+      </el-row>
+    </el-collapse>
   </el-col>
 </template>
 
@@ -30,6 +42,8 @@ import { AuthorSuggestion } from '@/models/suggestions/authorSuggestion'
   components: { BaseListing, BaseSuggestion, BaseListElement, BookDisplay }
 })
 export default class SuggestedAuthors extends BaseSuggestion {
+  private route = 'Authors'
+  private active = []
   private authors: Filtered<AuthorSuggestion> = {
     approved: [],
     unapproved: []
