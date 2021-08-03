@@ -5,7 +5,7 @@
         <book-input/>
       </el-collapse-item>
       <el-collapse-item title="Author">
-
+        <author-input/>
       </el-collapse-item>
       <el-collapse-item title="Category">
 
@@ -18,8 +18,10 @@
 
 import { Vue, Component } from 'vue-property-decorator'
 import BookInput from '@/components/forms/inputs/BookInput.vue'
+import AuthorInput from '@/components/forms/inputs/AuthorInput.vue'
+
 @Component({
-  components: { BookInput }
+  components: { BookInput, AuthorInput }
 })
 export default class AddSuggestion extends Vue {
   private activeSuggestionType = []
