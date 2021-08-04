@@ -21,14 +21,17 @@
 
 <script lang='ts'>
 
-import { Component } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import BaseSuggestionForm from '@/components/forms/BaseSuggestionForm.vue'
+import { AuthorSuggestion } from '@/models/suggestions/authorSuggestion'
 
 @Component({
   components: { BaseSuggestionForm }
 })
 export default class AuthorInput extends BaseSuggestionForm {
-  private form = {
+  @Prop(Object) readonly author: AuthorSuggestion | undefined
+
+  private form = this.author || {
     name: '',
     biography: ''
   }

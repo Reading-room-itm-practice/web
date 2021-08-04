@@ -18,6 +18,7 @@ import { CategorySuggestion } from '@/models/suggestions/categorySuggestion'
 import { BookSuggestion } from '@/models/suggestions/bookSuggestion'
 import { AuthorSuggestion } from '@/models/suggestions/authorSuggestion'
 import axios from 'axios'
+import { SuccessNotification } from '@/notifications/success'
 
 @Component
 export default class BaseListElement extends Vue {
@@ -26,17 +27,23 @@ export default class BaseListElement extends Vue {
 
   private async approve (): Promise<void> {
     this.record.approved = !this.record.approved
-    await axios.put(`Admin${this.route}/${this.record?.id}`, this.record).then((res) => console.log(res))
-    console.log(`approve ${this.record?.id}`)
+    await axios.put(`Admin${this.route}/${this.record?.id}`, this.record).then((response) => {
+      if (response.status === 200) {
+        Vue.notify(new SuccessNotification(response.data.message))
+      }
+    })
   }
 
-  private async edit (): Promise<void> {
-    console.log(`edit ${this.record?.id}`)
+  private edit (): Promise<void> {
+    this.$router.push({ name: 'AddSuggestion', params: { [this.route]: this.record, activeTab: this.route } })
   }
 
   private async eradicate (): Promise<void> {
-    await axios.delete(`Admin${this.route}/${this.record?.id}`)
-    console.log(`eradicate ${this.record?.id}`)
+    await axios.delete(`Admin${this.route}/${this.record?.id}`).then((response) => {
+      if (response.status === 200) {
+        Vue.notify(new SuccessNotification(response.data.message))
+      }
+    })
   }
 }
 </script>

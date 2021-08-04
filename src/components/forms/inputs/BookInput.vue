@@ -17,7 +17,7 @@
       <el-row>
         <el-col :span="8">Author</el-col>
         <el-col :span="16">
-          <authors v-on:author-selected="form.authorId = $event.value"/>
+          <authors v-model='form.authorId' :id='form.authorId' v-on:author-selected="form.authorId = $event.value"/>
         </el-col>
       </el-row>
       <el-row>
@@ -39,16 +39,19 @@
 
 <script lang='ts'>
 
-import { Component } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import Authors from '@/components/forms/selects/Authors.vue'
 import Categories from '@/components/forms/selects/Categories.vue'
 import BaseSuggestionForm from '@/components/forms/BaseSuggestionForm.vue'
+import { BookSuggestion } from '@/models/suggestions/bookSuggestion'
 
 @Component({
   components: { BaseSuggestionForm, Categories, Authors }
 })
 export default class BookInput extends BaseSuggestionForm {
-  private form = {
+  @Prop(Object) readonly book: Array<BookSuggestion> | undefined
+
+  private form = this.book || {
     title: '',
     authorId: 0,
     categoryId: 0,

@@ -15,14 +15,17 @@
 
 <script lang='ts'>
 
-import { Component } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import BaseSuggestionForm from '@/components/forms/BaseSuggestionForm.vue'
+import { CategorySuggestion } from '@/models/suggestions/categorySuggestion'
 
 @Component({
   components: { BaseSuggestionForm }
 })
 export default class CategoryInput extends BaseSuggestionForm {
-  private form = {
+  @Prop(Object) readonly category: Array<CategorySuggestion> | undefined
+
+  private form = this.category || {
     name: ''
   }
 }
