@@ -1,7 +1,7 @@
 <template>
   <el-col class='suggestion'>
     <h2>
-      <base-suggestion-form type="Category" :data="form" v-on:form-validated="$emit('form-validated', $event)">
+      <base-suggestion-form route-name="Category" :data="form" v-on:form-validated="$emit('form-validated', $event)">
         <el-row>
           <el-col :span="8">Name</el-col>
           <el-col :span="16">

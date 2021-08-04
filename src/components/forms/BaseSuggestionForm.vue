@@ -11,14 +11,14 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class BaseSuggestionForm extends Vue {
-  @Prop(String) readonly type: string | undefined
+  @Prop(String) readonly routeName: string | undefined
   @Prop(Object) readonly data: any | undefined
 
   private validate (): void {
     if (this.data) {
       this.$emit('form-validated', {
         form: this.data,
-        route: this.type
+        routeName: this.routeName
       })
     }
   }

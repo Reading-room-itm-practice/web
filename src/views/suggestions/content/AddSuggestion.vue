@@ -24,24 +24,24 @@ import axios from 'axios'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Getter } from 'vuex-class'
 import { SuccessNotification } from '@/notifications/success'
+import { SuggestionForm } from '@/models/suggestions/form'
 
 @Component({
   components: { BookInput, AuthorInput, CategoryInput }
 })
 export default class AddSuggestion extends Vue {
-  private activeSuggestionType = []
+  private activeSuggestionType: Array<string> = []
 
-  private async sendSuggestionForm (event): Promise<void> {
-    console.log(event)
+  private async sendSuggestionForm (event: SuggestionForm): Promise<void> {
     if (this.isAdmin) event.form.approved = true
-    await axios.post(`${this.getRouteModifier}${event.route}`, event.form).then((response) => {
+    await axios.post(`${this.getRouteModifier}${event.routeName}`, event.form).then((response) => {
       if (response.status === 201) {
         Vue.notify(new SuccessNotification(response.data.message))
       }
     })
   }
 
-  @Getter [UserStoreMethods.getRouteModifier]
-  @Getter [UserStoreMethods.isAdmin]
+  @Getter [UserStoreMethods.getRouteModifier]: string
+  @Getter [UserStoreMethods.isAdmin]: string
 }
 </script>

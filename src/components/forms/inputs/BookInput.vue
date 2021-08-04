@@ -1,7 +1,7 @@
 <template>
   <el-col class='suggestion'>
     <h2>
-      <base-suggestion-form type="Authors" :data="form" v-on:form-validated="$emit('form-validated', $event)">
+      <base-suggestion-form route-name="Books" :data="form" v-on:form-validated="$emit('form-validated', $event)">
       <el-row>
         <el-col :span="8">Title</el-col>
         <el-col :span="16">
@@ -17,13 +17,13 @@
       <el-row>
         <el-col :span="8">Author</el-col>
         <el-col :span="16">
-          <authors v-on:author-selected="form.authorId = $event.id"/>
+          <authors v-on:author-selected="form.authorId = $event.value"/>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="8">Category</el-col>
         <el-col :span="16">
-          <categories v-on:category-selected="form.categoryId = $event.id"/>
+          <categories v-on:category-selected="form.categoryId = $event.value"/>
         </el-col>
       </el-row>
       <el-row>
