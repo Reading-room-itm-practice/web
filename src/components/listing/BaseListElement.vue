@@ -26,7 +26,7 @@ export default class BaseListElement extends Vue {
   @Prop(String) readonly route: string | undefined
 
   private async approve (): Promise<void> {
-    this.record.approved = !this.record.approved
+    this.record?.approved = !this.record?.approved
     await axios.put(`Admin${this.route}/${this.record?.id}`, this.record).then((response) => {
       if (response.status === 200) {
         Vue.notify(new SuccessNotification(response.data.message))
@@ -35,7 +35,14 @@ export default class BaseListElement extends Vue {
   }
 
   private edit (): Promise<void> {
-    this.$router.push({ name: 'AddSuggestion', params: { [this.route]: this.record, activeTab: this.route } })
+    this.$router.push({
+      name: 'AddSuggestion',
+      params: {
+        form: this.record,
+        routeName: this.route,
+        tabToEdit: this.route
+      }
+    })
   }
 
   private async eradicate (): Promise<void> {

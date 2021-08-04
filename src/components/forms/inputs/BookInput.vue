@@ -17,13 +17,13 @@
       <el-row>
         <el-col :span="8">Author</el-col>
         <el-col :span="16">
-          <authors v-model='form.authorId' :id='form.authorId' v-on:author-selected="form.authorId = $event.value"/>
+          <authors v-model="form.authorId" :id='form.authorId' v-on:author-selected="form.authorId = $event.value"/>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="8">Category</el-col>
         <el-col :span="16">
-          <categories v-on:category-selected="form.categoryId = $event.value"/>
+          <categories v-model="form.categoryId" :id='form.categoryId'  v-on:category-selected="form.categoryId = $event.value"/>
         </el-col>
       </el-row>
       <el-row>
