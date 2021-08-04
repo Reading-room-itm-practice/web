@@ -24,7 +24,7 @@ import { Select } from 'element-ui'
 
 @Component
 export default class Categories extends Vue {
-  @Prop(Number) readonly id: string | number | undefined
+  @Prop(Number) readonly selectedCategoryId: number | undefined
 
   private categories: Array<Select> | null = null
   private selectedCategory: Select | null = null
@@ -33,7 +33,7 @@ export default class Categories extends Vue {
     const response = await axios.get('Category')
     if (response) {
       this.categories = castSelect(response.data.content)
-      if (this.id) this.selectedCategory = this.categories.find((category) => parseInt(category.value) === this.id)
+      if (this.selectedCategoryId) this.selectedCategory = this.categories.find((category) => parseInt(category.value) === this.selectedCategoryId)
     }
   }
 

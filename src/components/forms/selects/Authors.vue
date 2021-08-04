@@ -24,7 +24,7 @@ import { Select } from 'element-ui'
 
 @Component
 export default class Authors extends Vue {
-  @Prop(Number) readonly id: number | undefined
+  @Prop(Number) readonly selectedAuthorId: number | undefined
 
   private authors: Array<Select> | null = null
   private selectedAuthor: Select | null = null
@@ -34,7 +34,7 @@ export default class Authors extends Vue {
     if (response) {
       this.authors = castSelect(response.data.content)
     }
-    if (this.id) this.selectedAuthor = this.authors.find((author) => parseInt(author.value) === this.id)
+    if (this.selectedAuthorId) this.selectedAuthor = this.authors.find((author) => parseInt(author.value) === this.selectedAuthorId)
   }
 
   get isDataLoaded (): boolean {
