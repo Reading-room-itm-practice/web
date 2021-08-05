@@ -34,7 +34,6 @@ export default class AddSuggestion extends Vue {
   private activeTabName = this.$route.params.tabToEdit || ''
 
   private async sendSuggestionForm (form: SuggestionFormInterface, requestType?: string): Promise<void> {
-    console.log(form)
     if (requestType === Requests.PUT) {
       await this.updateSuggestionForm(this.$route.params.form)
     } else {
