@@ -55,6 +55,6 @@ export default class ResetPasswordCard extends Vue {
     })
   }
 
-  @Getter [UserStoreMethods.getTheme]
+  @Getter [UserStoreMethods.getTheme]: string
 }
 </script>

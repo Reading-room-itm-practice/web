@@ -133,7 +133,7 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next): void => {
   const middleware = to.meta?.middleware
 
   if (!middleware) {

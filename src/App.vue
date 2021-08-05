@@ -28,7 +28,7 @@ export default class App extends Vue {
     document.body.style.backgroundColor = (theme === 'dark') ? 'rgba(82, 97, 113, 0.93)' : 'white'
   }
 
-  @Getter [UserStoreMethods.getTheme]
+  @Getter [UserStoreMethods.getTheme]: string
 }
 </script>
 

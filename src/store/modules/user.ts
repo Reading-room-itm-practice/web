@@ -38,7 +38,7 @@ export const user: Module<UserState, RootState> = {
     [UserStoreMethods.getToken]: (state): string => state.token,
     [UserStoreMethods.getEmail]: (state): string => state.email,
     [UserStoreMethods.isLoggedIn]: (state): boolean => state.token !== UserStoreDefaults.STRING_EMPTY,
-    [UserStoreMethods.getUserRole]: (state): string => state.role,
+    [UserStoreMethods.getUserRole]: (state): string | Array<string> => state.role,
     [UserStoreMethods.getTheme]: (state): string => state.theme,
     [UserStoreMethods.getRouteModifier]: (state): string => state.role.includes(UserRoles.ADMIN) ? UserRoles.ADMIN : UserStoreDefaults.STRING_EMPTY,
     [UserStoreMethods.isAdmin]: (state, getters): boolean => getters.getRouteModifier === UserRoles.ADMIN

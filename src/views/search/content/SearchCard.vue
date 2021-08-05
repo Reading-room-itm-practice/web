@@ -9,8 +9,8 @@ import axios from 'axios'
 
 @Component
 export default class SearchCard extends Vue {
-  private searchType = this.$route.params.type
-  private searchString = this.$route.params.input
+  private searchType: string = this.$route.params.type
+  private searchString: string = this.$route.params.input
 
   async created (): Promise<void> {
     await this.fetchResources()

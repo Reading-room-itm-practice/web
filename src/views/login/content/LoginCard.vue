@@ -55,7 +55,7 @@ export default class LoginCard extends Vue {
       if (valid) {
         axios.post('/Authenticate/Login', this.loginForm).then((response) => {
           if (response.status === 200) {
-            this.setUserRole(jwtDecode(response.data.content)[this.userRoleKey])
+            this.setUserRole(jwtDecode<string>(response.data.content)[this.userRoleKey])
             this.setToken(response.data.content)
             Vue.notify(new SuccessNotification(response.data.message))
             this.$router.push('/')
@@ -65,8 +65,8 @@ export default class LoginCard extends Vue {
     })
   }
 
-  @Action [UserStoreMethods.setToken]
-  @Action [UserStoreMethods.setUserRole]
+  @Action [UserStoreMethods.setToken]: void
+  @Action [UserStoreMethods.setUserRole]: void
   @Getter [UserStoreMethods.isLoggedIn]: string
   @Getter [UserStoreMethods.getTheme]: string
 }

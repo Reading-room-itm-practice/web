@@ -13,9 +13,9 @@ import axios from 'axios'
 
 @Component
 export default class EmailConfirmationCard extends Vue {
-  private token = this.$route.query.token
-  private username = this.$route.query.username
-  private responseMessage = this.$t('emailActivation.error')
+  private token: string = this.$route.query.token
+  private username: string = this.$route.query.username
+  private responseMessage: string = this.$t('emailActivation.error').toString()
 
   created (): void {
     if (this.token) {

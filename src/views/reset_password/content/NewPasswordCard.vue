@@ -35,8 +35,8 @@ import { UserStoreMethods } from '@/enums/UserStoreMethods'
 })
 export default class NewPasswordCard extends Vue {
   private validationRules = newPasswordRules
-  private token = this.$route.query.token
-  private username = this.$route.query.username
+  private token: string = this.$route.query.token
+  private username: string = this.$route.query.username
 
   private newPasswordForm = {
     token: '',
@@ -67,6 +67,6 @@ export default class NewPasswordCard extends Vue {
     })
   }
 
-  @Getter [UserStoreMethods.getTheme]
+  @Getter [UserStoreMethods.getTheme]: string
 }
 </script>

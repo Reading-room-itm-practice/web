@@ -79,6 +79,6 @@ export default class BookCard extends Vue {
     return this.category !== null && this.author !== null && this.book !== null
   }
 
-  @Getter [UserStoreMethods.getUserRole]
+  @Getter [UserStoreMethods.getUserRole]: string | Array<string>
 }
 </script>

@@ -42,7 +42,7 @@ import { AuthorSuggestion } from '@/models/suggestions/authorSuggestion'
 })
 export default class SuggestedAuthors extends BaseSuggestion {
   private route = 'Authors'
-  private active = []
+  private active: Array<string> = []
   private authors: Filtered<AuthorSuggestion> = {
     approved: [],
     unapproved: []

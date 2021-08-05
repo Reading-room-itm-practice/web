@@ -53,7 +53,7 @@ export default class BookInput extends BaseSuggestionForm {
   @Prop(Object) readonly bookToEdit: Array<BookSuggestion> | undefined
 
   private requestType = Requests.POST
-  private form = this.bookToEdit || {
+  private form = {
     title: '',
     authorId: 0,
     categoryId: 0,
