@@ -24,7 +24,7 @@ import { Select } from 'element-ui'
 
 @Component
 export default class Categories extends Vue {
-  @Prop(Number) readonly selectedCategoryId: number | undefined
+  @Prop([Number, String]) readonly selectedCategoryId: number | string | undefined
 
   private categories: Array<Select> | null = null
   private selectedCategory: Select | null = null

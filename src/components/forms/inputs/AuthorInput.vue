@@ -1,7 +1,7 @@
 <template>
   <el-col class='suggestion'>
     <h2>
-      <base-suggestion-form route-name="Authors" :data="form" v-on:form-validated="$emit('form-validated', $event)">
+      <base-suggestion-form route-name="Authors" :data="form" v-on:form-validated="$emit('form-validated', $event.form)">
         <el-row>
           <el-col :span="8">Name</el-col>
           <el-col :span="16">
@@ -24,16 +24,25 @@
 import { Component, Prop } from 'vue-property-decorator'
 import BaseSuggestionForm from '@/components/forms/BaseSuggestionForm.vue'
 import { AuthorSuggestion } from '@/models/suggestions/authorSuggestion'
+import { Requests } from '@/enums/Requests'
 
 @Component({
   components: { BaseSuggestionForm }
 })
 export default class AuthorInput extends BaseSuggestionForm {
-  @Prop(Object) readonly author: AuthorSuggestion | undefined
+  @Prop(Object) readonly authorToEdit: AuthorSuggestion | undefined
 
-  private form = this.author || {
+  private requestType = Requests.POST
+  private form = {
     name: '',
     biography: ''
+  }
+
+  created (): void {
+    if (this.authorToEdit) {
+      this.requestType = Requests.PUT
+      this.form = this.authorToEdit
+    }
   }
 }
 </script>

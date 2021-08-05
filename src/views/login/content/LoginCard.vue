@@ -67,7 +67,7 @@ export default class LoginCard extends Vue {
 
   @Action [UserStoreMethods.setToken]
   @Action [UserStoreMethods.setUserRole]
-  @Getter [UserStoreMethods.isLoggedIn]
-  @Getter [UserStoreMethods.getTheme]
+  @Getter [UserStoreMethods.isLoggedIn]: string
+  @Getter [UserStoreMethods.getTheme]: string
 }
 </script>

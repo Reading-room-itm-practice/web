@@ -1,7 +1,7 @@
 <template>
   <el-col class='suggestion'>
     <h2>
-      <base-suggestion-form route-name="Books" :data="form" v-on:form-validated="$emit('form-validated', $event)">
+      <base-suggestion-form route-name="Books" :data="form" v-on:form-validated="$emit('form-validated', $event.form)">
       <el-row>
         <el-col :span="8">Title</el-col>
         <el-col :span="16">
@@ -44,14 +44,16 @@ import Authors from '@/components/forms/selects/Authors.vue'
 import Categories from '@/components/forms/selects/Categories.vue'
 import BaseSuggestionForm from '@/components/forms/BaseSuggestionForm.vue'
 import { BookSuggestion } from '@/models/suggestions/bookSuggestion'
+import { Requests } from '@/enums/Requests'
 
 @Component({
   components: { BaseSuggestionForm, Categories, Authors }
 })
 export default class BookInput extends BaseSuggestionForm {
-  @Prop(Object) readonly book: Array<BookSuggestion> | undefined
+  @Prop(Object) readonly bookToEdit: Array<BookSuggestion> | undefined
 
-  private form = this.book || {
+  private requestType = Requests.POST
+  private form = this.bookToEdit || {
     title: '',
     authorId: 0,
     categoryId: 0,
@@ -59,6 +61,13 @@ export default class BookInput extends BaseSuggestionForm {
     mainPhotoId: 0,
     releaseYear: '',
     description: ''
+  }
+
+  created (): void {
+    if (this.bookToEdit) {
+      this.requestType = Requests.PUT
+      this.form = this.bookToEdit
+    }
   }
 }
 </script>

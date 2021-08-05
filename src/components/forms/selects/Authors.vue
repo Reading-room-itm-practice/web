@@ -24,7 +24,7 @@ import { Select } from 'element-ui'
 
 @Component
 export default class Authors extends Vue {
-  @Prop(Number) readonly selectedAuthorId: number | undefined
+  @Prop([Number, String]) readonly selectedAuthorId: number | string | undefined
 
   private authors: Array<Select> | null = null
   private selectedAuthor: Select | null = null
