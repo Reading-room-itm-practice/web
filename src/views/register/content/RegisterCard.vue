@@ -66,6 +66,6 @@ export default class RegisterCard extends Vue {
     })
   }
 
-  @Getter [UserStoreMethods.getTheme]
+  @Getter [UserStoreMethods.getTheme]: string
 }
 </script>

@@ -40,7 +40,7 @@ import { CategorySuggestion } from '@/models/suggestions/categorySuggestion'
 })
 export default class SuggestedCategories extends BaseSuggestion {
   private route = 'Category'
-  private active = []
+  private active: Array<string> = []
   private categories: Filtered<CategorySuggestion> = {
     approved: [],
     unapproved: []

@@ -42,7 +42,7 @@ import BookListing from '@/components/listing/BookListing.vue'
 })
 export default class SuggestedBooks extends BaseSuggestion {
   private route = 'Books'
-  private active = []
+  private active: Array<string> = []
   private books: Filtered<BookSuggestion> = {
     approved: [],
     unapproved: []

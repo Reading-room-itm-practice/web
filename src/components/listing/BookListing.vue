@@ -70,6 +70,6 @@ export default class BookListing extends Vue {
     return this.category !== null && this.author !== null
   }
 
-  @Getter [UserStoreMethods.getUserRole]
+  @Getter [UserStoreMethods.getUserRole]: string
 }
 </script>

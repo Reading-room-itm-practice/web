@@ -1,4 +1,4 @@
 export type ResourceType = {
-  type: string,
-  input: string
+  id: string,
+  name: string
 }

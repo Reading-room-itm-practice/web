@@ -32,6 +32,6 @@ import { UserStoreMethods } from '@/enums/UserStoreMethods'
   }
 })
 export default class ProfileCard extends Vue {
-  @Getter [UserStoreMethods.isLoggedIn]
+  @Getter [UserStoreMethods.isLoggedIn]: string
 }
 </script>

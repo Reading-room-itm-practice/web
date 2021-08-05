@@ -39,7 +39,7 @@ import { Getter } from 'vuex-class'
 
 @Component
 export default class SearchResult extends Vue {
-  private data: Array<BasicResource> | undefined
+  private data: Array<BasicResource> | undefined = undefined
 
   created (): void {
     this.data = this.$route.params.data
@@ -59,6 +59,6 @@ export default class SearchResult extends Vue {
     this.$router.push(`${resource.toLowerCase()}/${id}`)
   }
 
-  @Getter [UserStoreMethods.getTheme]
+  @Getter [UserStoreMethods.getTheme]: string
 }
 </script>
