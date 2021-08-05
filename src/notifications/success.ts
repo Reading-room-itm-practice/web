@@ -1,12 +1,7 @@
-import VueI18n from 'vue-i18n'
 import { i18n } from '@/localization/i18n'
+import { BaseNotification } from '@/notifications/base'
 
-export class SuccessNotification {
-  private group: VueI18n.TranslateResult = i18n.t('success.group')
-  private title: VueI18n.TranslateResult = i18n.t('success.title')
-  private text: VueI18n.TranslateResult = ''
-
-  constructor (message: VueI18n.TranslateResult) {
-    this.text = message
-  }
+export class SuccessNotification extends BaseNotification {
+  public group: string = i18n.t('success.group').toString()
+  public title: string = i18n.t('success.title').toString()
 }
