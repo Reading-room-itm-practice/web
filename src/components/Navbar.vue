@@ -21,8 +21,13 @@
     </el-col>
     <el-col :span="4">
       <div v-if="isLoggedIn">
-        <router-link to="/profile" class='break-items'>{{ $t('navbar.profile') }}</router-link>
-        <el-button @click="logout">{{ $t('navbar.logout') }}</el-button>
+        <el-col :span='12'>
+          <el-image :src="require('@/assets/plus.png')" @click="$router.push('/add-suggestion')" class='add-image'></el-image>
+        </el-col>
+        <el-col :span='12'>
+          <router-link to="/profile" class='break-items'>{{ $t('navbar.profile') }}</router-link>
+          <el-button @click="logout">{{ $t('navbar.logout') }}</el-button>
+        </el-col>
       </div>
       <div v-else>
         <router-link to="/login" class='break-items'>{{ $t('navbar.login') }}</router-link>
@@ -86,3 +91,6 @@ export default class Navbar extends Vue {
   @Getter [UserStoreMethods.getTheme]
 }
 </script>
+
+<style scoped>
+</style>

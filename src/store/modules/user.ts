@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex, { Module } from 'vuex'
-import { UserState } from '@/models/userState'
+import { UserState } from '@/models/states/user'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { RootState } from '@/models/root'
 import { UserRoles } from '@/enums/UserRoles'
@@ -14,7 +14,8 @@ export const user: Module<UserState, RootState> = {
     token: localStorage.getItem(UserStoreKeys.TOKEN) || UserStoreDefaults.STRING_EMPTY,
     email: localStorage.getItem(UserStoreKeys.EMAIL) || UserStoreDefaults.STRING_EMPTY,
     role: UserRoles.USER,
-    theme: localStorage.getItem(UserStoreKeys.THEME) || UserStoreDefaults.DEFAULT_THEME
+    theme: localStorage.getItem(UserStoreKeys.THEME) || UserStoreDefaults.DEFAULT_THEME,
+    routeModifier: UserStoreDefaults.STRING_EMPTY
   },
   mutations: {
     [UserStoreMethods.setEmail] (state, email: string): void {
@@ -38,7 +39,9 @@ export const user: Module<UserState, RootState> = {
     [UserStoreMethods.getEmail]: (state): string => state.email,
     [UserStoreMethods.isLoggedIn]: (state): boolean => state.token !== UserStoreDefaults.STRING_EMPTY,
     [UserStoreMethods.getUserRole]: (state): string => state.role,
-    [UserStoreMethods.getTheme]: (state): string => state.theme
+    [UserStoreMethods.getTheme]: (state): string => state.theme,
+    [UserStoreMethods.getRouteModifier]: (state): string => state.role.includes(UserRoles.ADMIN) ? UserRoles.ADMIN : UserStoreDefaults.STRING_EMPTY,
+    [UserStoreMethods.isAdmin]: (state, getters): boolean => getters.getRouteModifier === UserRoles.ADMIN
   },
   actions: {
     [UserStoreMethods.setEmail] ({ commit }, email: string): void {

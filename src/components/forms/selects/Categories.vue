@@ -1,30 +1,44 @@
 <template>
-  <el-select v-model='selectedCategory' placeholder='Categories' filterable allow-create>
-    <el-option v-for='(category, index) in categories'
-               :key='index'
-               :value='category'
-               :label='category.name'
+  <div v-if="isDataLoaded">
+    <el-select v-model='selectedCategory'
+               placeholder='Categories'
+               filterable
+               @change="$emit('category-selected', selectedCategory)"
     >
-      {{ category.name }}
-    </el-option>
-  </el-select>
+      <el-option v-for='(category, index) in categories'
+                 :key='index'
+                 :value='category'
+                 :label='category.label'
+      >
+        {{ category.label }}
+      </el-option>
+    </el-select>
+  </div>
 </template>
 
 <script lang='ts'>
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import axios from 'axios'
-import { Category } from '@/models/category'
+import { castSelect } from '@/helpers/castSelect'
+import { Select } from 'element-ui'
 
 @Component
 export default class Categories extends Vue {
-  private categories: Array<Category> | null = null
-  private selectedCategory: Category | null = null
+  @Prop([Number, String]) readonly selectedCategoryId: number | string | undefined
+
+  private categories: Array<Select> | null = null
+  private selectedCategory: Select | null = null
 
   async created (): Promise<void> {
     const response = await axios.get('Category')
     if (response) {
-      this.categories = response.data
+      this.categories = castSelect(response.data.content)
+      if (this.selectedCategoryId) this.selectedCategory = this.categories.find((category) => parseInt(category.value) === this.selectedCategoryId)
     }
+  }
+
+  get isDataLoaded (): boolean {
+    return this.categories !== null
   }
 }
 </script>

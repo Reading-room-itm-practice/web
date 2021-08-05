@@ -5,25 +5,10 @@
         <el-image :src="require('@/assets/logo.png')"></el-image>
       </el-col>
       <el-col :span='16'>
-        <el-row>
-          <h1 class='book-title'>
-            {{ book.title }} ({{ book.releaseYear }})
-          </h1>
-        </el-row>
-        <el-row>
-          <el-col :span='24'>
-            <hr>
-            <router-link class='link' :to="'/author/'+author.id"><h2>{{ author.name }}</h2></router-link>
-          </el-col>
-          <el-col :span='24'>
-            <hr>
-            <router-link class='link' :to="'/category/'+category.id"><h2>{{ category.name }}</h2></router-link>
-          </el-col>
-        </el-row>
-        <el-row>
-          <hr>
-          <span class='book-desc'>{{ book.description }}</span>
-        </el-row>
+        <book-display :book="book"
+                      :author="author"
+                      :category="category"
+        ></book-display>
       </el-col>
     </el-col>
     <el-col class='book-bubble' :offset='8'>
@@ -47,9 +32,12 @@ import { Author } from '@/models/author'
 import { Category } from '@/models/category'
 import RateBook from '@/views/book/content/RateBook.vue'
 import ReviewCard from '@/views/book/content/ReviewCard.vue'
+import BookDisplay from '@/components/BookDisplay.vue'
+import { UserStoreMethods } from '@/enums/UserStoreMethods'
+import { Getter } from 'vuex-class'
 
 @Component({
-  components: { RateBook, ReviewCard }
+  components: { BookDisplay, RateBook, ReviewCard }
 })
 export default class BookCard extends Vue {
   private bookId: string = this.$route.params.id
@@ -90,5 +78,7 @@ export default class BookCard extends Vue {
   get dataLoaded (): boolean {
     return this.category !== null && this.author !== null && this.book !== null
   }
+
+  @Getter [UserStoreMethods.getUserRole]
 }
 </script>
