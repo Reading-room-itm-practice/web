@@ -16,6 +16,7 @@ import SearchResult from '@/views/search/content/SearchResult.vue'
 import ResetPasswordPage from '@/views/reset_password/ResetPasswordPage.vue'
 import NewPasswordCard from '@/views/reset_password/content/NewPasswordCard.vue'
 import AddSuggestion from '@/views/suggestions/content/AddSuggestion.vue'
+import admin from '@/router/middleware/admin'
 
 Vue.use(VueRouter)
 
@@ -61,7 +62,7 @@ const routes: Array<RouteConfig> = [
     component: AdminPage,
     meta: {
       middleware: [
-        auth
+        admin
       ]
     }
   },
