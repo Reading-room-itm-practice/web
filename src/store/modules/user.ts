@@ -15,7 +15,9 @@ export const user: Module<UserState, RootState> = {
     email: localStorage.getItem(UserStoreKeys.EMAIL) || UserStoreDefaults.STRING_EMPTY,
     role: UserRoles.USER,
     theme: localStorage.getItem(UserStoreKeys.THEME) || UserStoreDefaults.DEFAULT_THEME,
-    routeModifier: UserStoreDefaults.STRING_EMPTY
+    routeModifier: UserStoreDefaults.STRING_EMPTY,
+    username: UserStoreDefaults.STRING_EMPTY,
+    userId: UserStoreDefaults.STRING_EMPTY
   },
   mutations: {
     [UserStoreMethods.setEmail] (state, email: string): void {
@@ -32,6 +34,12 @@ export const user: Module<UserState, RootState> = {
     [UserStoreMethods.setTheme] (state, theme: string): void {
       state.theme = theme
       localStorage.setItem(UserStoreKeys.THEME, theme)
+    },
+    [UserStoreMethods.setUsername] (state, username: string): void {
+      state.username = username
+    },
+    [UserStoreMethods.setUserId] (state, id: string): void {
+      state.userId = id
     }
   },
   getters: {
@@ -41,7 +49,9 @@ export const user: Module<UserState, RootState> = {
     [UserStoreMethods.getUserRole]: (state): string | Array<string> => state.role,
     [UserStoreMethods.getTheme]: (state): string => state.theme,
     [UserStoreMethods.getRouteModifier]: (state): string => state.role.includes(UserRoles.ADMIN) ? UserRoles.ADMIN : UserStoreDefaults.STRING_EMPTY,
-    [UserStoreMethods.isAdmin]: (state, getters): boolean => getters.getRouteModifier === UserRoles.ADMIN
+    [UserStoreMethods.isAdmin]: (state, getters): boolean => getters.getRouteModifier === UserRoles.ADMIN,
+    [UserStoreMethods.getUsername]: (state): string => state.username,
+    [UserStoreMethods.getUserId]: (state): string => state.userId
   },
   actions: {
     [UserStoreMethods.setEmail] ({ commit }, email: string): void {
@@ -59,6 +69,12 @@ export const user: Module<UserState, RootState> = {
     },
     [UserStoreMethods.setTheme] ({ commit }, theme: string): void {
       commit(UserStoreMethods.setTheme, theme)
+    },
+    [UserStoreMethods.setUsername] ({ commit }, username: string): void {
+      commit(UserStoreMethods.setUsername, username)
+    },
+    [UserStoreMethods.setUserId] ({ commit }, id: string): void {
+      commit(UserStoreMethods.setUserId, id)
     }
   }
 }

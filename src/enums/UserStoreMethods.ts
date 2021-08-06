@@ -10,5 +10,9 @@ export enum UserStoreMethods {
   getTheme = 'getTheme',
   setTheme = 'setTheme',
   getRouteModifier = 'getRouteModifier',
-  isAdmin = 'isAdmin'
+  isAdmin = 'isAdmin',
+  setUsername = 'setUsername',
+  getUsername = 'getUsername',
+  setUserId = 'setUserId',
+  getUserId = 'getUserId'
 }

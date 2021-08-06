@@ -3,5 +3,7 @@ export type UserState = {
   token: string,
   role: string,
   theme: string,
-  routeModifier: string
+  routeModifier: string,
+  username: string,
+  userId: string
 }
