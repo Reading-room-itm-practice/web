@@ -6,6 +6,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import { BasicResource } from '@/models/resourceBasic'
 import axios from 'axios'
+import { UserStoreDefaults } from '@/enums/UserStoreDefaults'
 
 @Component
 export default class SearchCard extends Vue {
@@ -36,7 +37,7 @@ export default class SearchCard extends Vue {
 
   private getDataFromResponse (responseData: Array<BasicResource>): Array<BasicResource> {
     const type = this.getResourceType()
-    if (type === '') {
+    if (type === UserStoreDefaults.STRING_EMPTY) {
       return responseData
     } else {
       return {

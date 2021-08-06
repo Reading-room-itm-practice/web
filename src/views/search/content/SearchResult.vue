@@ -36,17 +36,24 @@ import { Vue, Component } from 'vue-property-decorator'
 import { BasicResource } from '@/models/resourceBasic'
 import { UserStoreMethods } from '@/enums/UserStoreMethods'
 import { Getter } from 'vuex-class'
+import { ErrorNotification } from '@/notifications/error'
 
 @Component
 export default class SearchResult extends Vue {
-  private data: Array<BasicResource> | undefined = undefined
+  private data: Array<BasicResource> | undefined | null = null
 
   created (): void {
     this.data = this.$route.params.data
-    if (!this.data) {
+    if (this.isSearchResultEmpty()) {
+      Vue.notify(new ErrorNotification('Found nothing'))
       this.$router.push('/')
+    } else {
+      this.removeEmptyKeys()
     }
-    this.removeEmptyKeys()
+  }
+
+  private isSearchResultEmpty (): boolean {
+    return (!this.data && (this.data === undefined))
   }
 
   private removeEmptyKeys (): void {
@@ -55,7 +62,7 @@ export default class SearchResult extends Vue {
     }
   }
 
-  private goTo (resource, id): void {
+  private goTo (resource: string, id: string): void {
     this.$router.push(`${resource.toLowerCase()}/${id}`)
   }
 

@@ -84,11 +84,11 @@ export default class Navbar extends Vue {
     this.setTheme(selectedMode)
   }
 
-  @Action [UserStoreMethods.destroySession]
-  @Action [UserStoreMethods.setTheme]
-  @Getter [UserStoreMethods.isLoggedIn]
-  @Getter [UserStoreMethods.getUserRole]
-  @Getter [UserStoreMethods.getTheme]
+  @Action [UserStoreMethods.destroySession]: void
+  @Action [UserStoreMethods.setTheme]: void
+  @Getter [UserStoreMethods.isLoggedIn]: string
+  @Getter [UserStoreMethods.getUserRole]: string
+  @Getter [UserStoreMethods.getTheme]: string
 }
 </script>
 
