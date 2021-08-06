@@ -1,10 +1,7 @@
 <template>
   <el-row v-if="dataLoaded" :gutter='24'>
     <el-col class='book-bubble' :offset='8'>
-      <el-col class='book-cover' :span='8'>
-        <el-image :src="require('@/assets/logo.png')"></el-image>
-      </el-col>
-      <el-col :span='16'>
+      <el-col>
         <book-display :book="book"
                       :author="author"
                       :category="category"
