@@ -36,5 +36,9 @@ export default class BookDisplay extends Vue {
   @Prop(Object) book: Book | BookSuggestion | undefined
   @Prop(Object) category: Category | CategorySuggestion | undefined
   @Prop(Object) author: Author | AuthorSuggestion | undefined
+
+  created () {
+    console.log(this.book)
+  }
 }
 </script>
