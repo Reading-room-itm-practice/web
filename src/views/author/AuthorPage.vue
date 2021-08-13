@@ -1,16 +1,15 @@
 <template>
-  <author-card></author-card>
+	<author-card></author-card>
 </template>
 
-<script lang='ts'>
-import { Vue, Component } from 'vue-property-decorator'
-import AuthorCard from '@/views/author/content/AuthorCard.vue'
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+import AuthorCard from '@/views/author/content/AuthorCard.vue';
 
 @Component({
-  components: {
-    AuthorCard
-  }
+	components: {
+		AuthorCard
+	}
 })
-export default class AuthorPage extends Vue {
-}
+export default class AuthorPage extends Vue {}
 </script>

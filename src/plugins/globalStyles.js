@@ -1,3 +1,3 @@
-import '../assets/sass/imports.scss'
+import '../assets/sass/imports.scss';
 
-export default {}
+export default {};

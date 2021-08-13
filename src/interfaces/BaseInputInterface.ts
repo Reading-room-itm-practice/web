@@ -1,4 +1,4 @@
 export interface BaseInputInterface {
-  type: string,
-  body: string
+	type: string;
+	body: string;
 }

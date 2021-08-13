@@ -1,16 +1,15 @@
 <template>
-  <admin-card></admin-card>
+	<admin-card></admin-card>
 </template>
 
-<script lang='ts'>
-import AdminCard from '@/views/admin/content/AdminCard.vue'
-import { Vue, Component } from 'vue-property-decorator'
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+import AdminCard from '@/views/admin/content/AdminCard.vue';
 
 @Component({
-  components: {
-    AdminCard
-  }
+	components: {
+		AdminCard
+	}
 })
-export default class AdminPage extends Vue {
-}
+export default class AdminPage extends Vue {}
 </script>

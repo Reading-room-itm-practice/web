@@ -1,3 +1,3 @@
 export type BasicResource = {
-  id: string
-}
+	id: string;
+};

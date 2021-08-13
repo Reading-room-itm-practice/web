@@ -1,5 +1,5 @@
 export enum UserStoreKeys {
-  TOKEN = 'token',
-  EMAIL = 'email',
-  THEME = 'theme'
+	TOKEN = 'token',
+	EMAIL = 'email',
+	THEME = 'theme'
 }

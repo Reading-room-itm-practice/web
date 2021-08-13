@@ -1,16 +1,15 @@
 <template>
-  <category-card></category-card>
+	<category-card></category-card>
 </template>
 
-<script lang='ts'>
-import { Vue, Component } from 'vue-property-decorator'
-import CategoryCard from '@/views/category/content/CategoryCard.vue'
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+import CategoryCard from '@/views/category/content/CategoryCard.vue';
 
 @Component({
-  components: {
-    CategoryCard
-  }
+	components: {
+		CategoryCard
+	}
 })
-export default class CategoryPage extends Vue {
-}
+export default class CategoryPage extends Vue {}
 </script>

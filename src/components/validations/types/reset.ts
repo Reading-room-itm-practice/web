@@ -1,5 +1,5 @@
-import { rules } from '@/components/validations'
+import { rules } from '@/components/validations';
 
 export const resetPasswordRules = {
-  email: rules.email
-}
+	email: rules.email
+};

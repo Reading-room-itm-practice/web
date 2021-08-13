@@ -1,4 +1,4 @@
 export type Star = {
-  imagePath: string,
-  isRated: boolean
-}
+	imagePath: string;
+	isRated: boolean;
+};

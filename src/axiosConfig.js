@@ -1,41 +1,42 @@
-import axios from 'axios'
-import store from '@/store'
-import Vue from 'vue'
-import { ErrorNotification } from '@/notifications/error'
-import { i18n } from '@/localization/i18n'
+import axios from 'axios';
+import Vue from 'vue';
+import store from '@/store';
+import { ErrorNotification } from '@/notifications/error';
+import { i18n } from '@/localization/i18n';
 
-axios.defaults.baseURL = 'https://localhost:44381/api/'
+axios.defaults.baseURL = 'https://localhost:50359/api/';
 
 axios.interceptors.request.use(
-  request => {
-    const token = store.getters.getToken
+	(request) => {
+		const token = store.getters.getToken;
 
-    if (token) {
-      request.headers.Authorization = `Bearer ${token}`
-    }
+		if (token) {
+			request.headers.Authorization = `Bearer ${token}`;
+		}
 
-    return request
-  },
-  error => Promise.reject(error)
-)
+		return request;
+	},
+	(error) => Promise.reject(error)
+);
 
 axios.interceptors.response.use(
-  response => response,
-  error => {
-    if (!error.response) {
-      Vue.notify(new ErrorNotification(i18n.t('errors.networkError')))
-    } else {
-      const status = error.response.status
+	(response) => response,
+	(error) => {
+		if (!error.response) {
+			Vue.notify(new ErrorNotification(i18n.t('errors.networkError')));
+		} else {
+			const status = error.response.status;
 
-      if (status === 404) {
-        Vue.notify(new ErrorNotification(i18n.t('errors.notFound')))
-      } else {
-        Vue.notify(new ErrorNotification(error.response.data.message))
-      }
+			if (status === 404) {
+				Vue.notify(new ErrorNotification(i18n.t('errors.notFound')));
+			} else {
+				Vue.notify(new ErrorNotification(error.response.data.message));
+			}
 
-      return error
-    }
-  }
-)
+			return error;
+		}
+		return null;
+	}
+);
 
-export default {}
+export default {};
